@@ -119,8 +119,8 @@ export function HeroSection() {
                                 whileHover={{ scale: 1.03, y: -5 }}
                                 className="absolute top-4 right-4 bg-white p-5 rounded-2xl shadow-lg shadow-gray-200/50 border border-gray-100/80 w-52 z-20 cursor-default transition-all duration-300"
                             >
-                                <div className="h-11 w-11 bg-gradient-to-br from-green-100 to-green-50 rounded-xl flex items-center justify-center mb-3 text-green-600">
-                                    <TrendingUp size={22} strokeWidth={2} />
+                                <div className="h-11 w-11 bg-gradient-to-br from-[#009688]/15 to-[#009688]/5 rounded-xl flex items-center justify-center mb-3 text-[#00796B] border border-[#009688]/15">
+                                    <TrendingUp size={22} strokeWidth={1.5} />
                                 </div>
                                 <h3 className="font-bold text-base mb-1.5 text-secondary">نتائج ملموسة</h3>
                                 <p className="text-sm text-muted-foreground leading-relaxed">زيادة في المبيعات وتحسين كفاءة التشغيل.</p>
@@ -134,8 +134,8 @@ export function HeroSection() {
                                 whileHover={{ scale: 1.03, x: -5 }}
                                 className="absolute top-1/2 left-0 -translate-y-1/2 bg-white p-5 rounded-2xl shadow-lg shadow-gray-200/50 border border-gray-100/80 w-52 z-30 cursor-default transition-all duration-300"
                             >
-                                <div className="h-11 w-11 bg-gradient-to-br from-blue-100 to-blue-50 rounded-xl flex items-center justify-center mb-3 text-blue-600">
-                                    <Layers size={22} strokeWidth={2} />
+                                <div className="h-11 w-11 bg-gradient-to-br from-[#607D8B]/15 to-[#607D8B]/5 rounded-xl flex items-center justify-center mb-3 text-[#455A64] border border-[#607D8B]/15">
+                                    <Layers size={22} strokeWidth={1.5} />
                                 </div>
                                 <h3 className="font-bold text-base mb-1.5 text-secondary">استراتيجيات دقيقة</h3>
                                 <p className="text-sm text-muted-foreground leading-relaxed">خطط عمل مفصلة تناسب حجم وطبيعة عملك.</p>
@@ -149,8 +149,8 @@ export function HeroSection() {
                                 whileHover={{ scale: 1.03, y: 5 }}
                                 className="absolute bottom-6 right-16 bg-white p-4 rounded-2xl shadow-lg shadow-gray-200/50 border border-gray-100/80 w-48 z-10 flex items-center gap-3 cursor-default transition-all duration-300"
                             >
-                                <div className="h-11 w-11 bg-gradient-to-br from-orange-100 to-orange-50 rounded-full flex items-center justify-center text-orange-500 shrink-0">
-                                    <CheckCircle2 size={20} strokeWidth={2} />
+                                <div className="h-11 w-11 bg-gradient-to-br from-[#FF7043]/15 to-[#FF7043]/5 rounded-full flex items-center justify-center text-[#E64A19] shrink-0 border border-[#FF7043]/15">
+                                    <CheckCircle2 size={20} strokeWidth={1.5} />
                                 </div>
                                 <div>
                                     <h3 className="font-bold text-sm text-secondary">خبرة موثوقة</h3>
@@ -173,8 +173,8 @@ export function HeroSection() {
                             transition={{ duration: 0.5, delay: 0.3 }}
                             className="bg-white p-5 rounded-2xl shadow-lg border border-gray-100"
                         >
-                            <div className="h-11 w-11 bg-gradient-to-br from-green-100 to-green-50 rounded-xl flex items-center justify-center mb-3 text-green-600">
-                                <TrendingUp size={22} aria-hidden="true" />
+                            <div className="h-11 w-11 bg-gradient-to-br from-[#009688]/15 to-[#009688]/5 rounded-xl flex items-center justify-center mb-3 text-[#00796B] border border-[#009688]/15">
+                                <TrendingUp size={22} strokeWidth={1.5} aria-hidden="true" />
                             </div>
                             <h3 className="font-bold text-base mb-1.5 text-secondary">نتائج ملموسة</h3>
                             <p className="text-sm text-muted-foreground leading-relaxed">زيادة في المبيعات وتحسين كفاءة التشغيل.</p>
@@ -186,8 +186,8 @@ export function HeroSection() {
                             transition={{ duration: 0.5, delay: 0.4 }}
                             className="bg-white p-5 rounded-2xl shadow-lg border border-gray-100"
                         >
-                            <div className="h-11 w-11 bg-gradient-to-br from-blue-100 to-blue-50 rounded-xl flex items-center justify-center mb-3 text-blue-600">
-                                <Layers size={22} aria-hidden="true" />
+                            <div className="h-11 w-11 bg-gradient-to-br from-[#607D8B]/15 to-[#607D8B]/5 rounded-xl flex items-center justify-center mb-3 text-[#455A64] border border-[#607D8B]/15">
+                                <Layers size={22} strokeWidth={1.5} aria-hidden="true" />
                             </div>
                             <h3 className="font-bold text-base mb-1.5 text-secondary">استراتيجيات دقيقة</h3>
                             <p className="text-sm text-muted-foreground leading-relaxed">خطط عمل مفصلة تناسب حجم وطبيعة عملك.</p>
@@ -199,8 +199,8 @@ export function HeroSection() {
                             transition={{ duration: 0.5, delay: 0.5 }}
                             className="bg-white p-4 rounded-2xl shadow-lg border border-gray-100 flex items-center gap-3"
                         >
-                            <div className="h-11 w-11 bg-gradient-to-br from-orange-100 to-orange-50 rounded-full flex items-center justify-center text-orange-500 shrink-0">
-                                <CheckCircle2 size={20} aria-hidden="true" />
+                            <div className="h-11 w-11 bg-gradient-to-br from-[#FF7043]/15 to-[#FF7043]/5 rounded-full flex items-center justify-center text-[#E64A19] shrink-0 border border-[#FF7043]/15">
+                                <CheckCircle2 size={20} strokeWidth={1.5} aria-hidden="true" />
                             </div>
                             <div>
                                 <h3 className="font-bold text-sm text-secondary">خبرة موثوقة</h3>
