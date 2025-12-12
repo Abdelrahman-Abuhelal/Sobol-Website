@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Facebook, Instagram, Linkedin, Twitter } from "lucide-react";
 
 export function Footer() {
@@ -10,8 +11,8 @@ export function Footer() {
                     {/* Company Info */}
                     <div className="space-y-4">
                         <h3 className="text-2xl font-bold">سُبُل</h3>
-                        <p className="text-sm text-gray-300">
-                            شركاؤك في تطوير الأعمال وصناعة النجاح. نقدّم حلولاً عملية للمشاريع الصغيرة والمتوسطة.
+                        <p className="text-sm text-gray-300 leading-relaxed">
+                            نحن في سُبُل شركاؤك في تطوير الأعمال وصناعة النجاح. نقدّم حلولًا تسويقية متكاملة تجمع بين الإبداع والتخطيط، لتبني هوية قوية وتحقق تواجدًا فعّالًا في السوق بثقة واحتراف.
                         </p>
                         <div className="flex space-x-4 rtl:space-x-reverse">
                             <Link href="#" className="hover:text-primary transition-colors"><Facebook size={20} /></Link>

@@ -1,10 +1,11 @@
 const partners = [
+    "محلات العروج للتجارة العامة",
     "الصوباني هوم بلس",
     "ميرفيلا للتطريز اليدوي",
-    "عيادات ألماس",
-    "عيادات بريميوم لزراعة الأسنان",
+    "عيادات ألماس لطب وزراعة الأسنان",
+    "عيادات بريميوم لتجميل وزراعة الأسنان",
     "لمار كيك آند سويت",
-    "مكتب د. سناء طوطح",
+    "مكتب د. سناء طوطح للمحاماة",
     "شركة أحبار الغريب",
 ];
 
@@ -17,16 +18,16 @@ export function Partners() {
                     <p className="text-muted-foreground mt-2">نفخر بثقة عملائنا في مختلف القطاعات</p>
                 </div>
 
-                <div className="flex flex-wrap justify-center gap-8 md:gap-12 items-center opacity-70 cursor-default">
+                <ul className="flex flex-wrap justify-center gap-8 md:gap-12 items-center opacity-70 cursor-default list-none p-0 m-0">
                     {partners.map((partner, i) => (
-                        <div
+                        <li
                             key={i}
                             className="px-6 py-4 bg-gray-50 rounded-lg text-lg font-semibold text-gray-500 hover:text-primary hover:bg-gray-100 transition-all text-center"
                         >
                             {partner}
-                        </div>
+                        </li>
                     ))}
-                </div>
+                </ul>
             </div>
         </section>
     );

@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -23,9 +24,15 @@ export function Navbar() {
             <div className="container mx-auto px-4 md:px-6">
                 <div className="flex h-20 items-center justify-between">
                     <div className="flex items-center gap-8">
-                        <Link href="/" className="flex items-center space-x-2 rtl:space-x-reverse">
-                            {/* Logo Placeholder */}
-                            <div className="text-2xl font-bold text-primary">سُبُل</div>
+                        <Link href="/" className="flex items-center">
+                            <Image
+                                src="/logo.png"
+                                alt="سُبُل - لتطوير الأعمال"
+                                width={100}
+                                height={50}
+                                className="h-12 w-auto"
+                                priority
+                            />
                         </Link>
 
                         {/* Desktop Nav */}

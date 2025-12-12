@@ -7,23 +7,26 @@ import { TrendingUp, Layers, CheckCircle2, ArrowLeft } from "lucide-react";
 
 export function HeroSection() {
     return (
-        <section className="relative w-full overflow-hidden bg-gradient-to-b from-slate-50 to-white pt-10 pb-20 md:pt-20 md:pb-32">
+        <section
+            className="relative w-full overflow-hidden bg-gradient-to-b from-slate-50 to-white pt-10 pb-20 md:pt-20 md:pb-32"
+            aria-label="القسم الرئيسي"
+        >
             {/* Background Decorations */}
-            <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
-            <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-secondary/5 rounded-full blur-3xl translate-y-1/3 -translate-x-1/3" />
+            <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" aria-hidden="true" />
+            <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-secondary/5 rounded-full blur-3xl translate-y-1/3 -translate-x-1/3" aria-hidden="true" />
 
-            <div className="container relative z-10 px-4 md:px-6 mx-auto">
-                <div className="grid lg:grid-cols-2 gap-12 lg:gap-8 items-center">
+            <div className="container relative z-10 px-4 md:px-8 lg:px-12 mx-auto">
+                <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
 
                     {/* Text Content (Right Side) */}
                     <motion.div
                         initial={{ opacity: 0, x: 20 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.6 }}
-                        className="flex flex-col items-start text-right space-y-6"
+                        className="flex flex-col items-start text-right space-y-6 pe-0 md:pe-4 lg:pe-8"
                     >
                         <div className="inline-flex items-center rounded-full border border-primary/20 bg-primary/5 px-3 py-1 text-sm text-primary">
-                            <span className="flex h-2 w-2 rounded-full bg-primary ml-2 animate-pulse"></span>
+                            <span className="flex h-2 w-2 rounded-full bg-primary ms-2 animate-pulse" aria-hidden="true"></span>
                             شريكك الاستراتيجي للنجاح
                         </div>
 
@@ -32,88 +35,179 @@ export function HeroSection() {
                             <span className="text-primary">لهندسة النمو</span>
                         </h1>
 
-                        <p className="text-lg md:text-xl text-muted-foreground leading-relaxed max-w-xl">
-                            في سُبُل، نحول التحديات إلى فرص. نقدم استشارات إدارية وتسويقية مخصصة للشركات الطموحة في السوق الفلسطيني، لنضمن لك الاستقرار والنمو المستدام.
-                        </p>
+                        {/* Split subheadline */}
+                        <div className="space-y-3 max-w-xl">
+                            <p className="text-lg md:text-xl text-secondary font-medium leading-relaxed">
+                                في سُبُل، نحول التحديات إلى فرص.
+                            </p>
+                            <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
+                                نقدم استشارات إدارية وتسويقية مخصصة للشركات الطموحة في السوق الفلسطيني، لنضمن لك الاستقرار والنمو المستدام.
+                            </p>
+                        </div>
 
                         <div className="flex flex-wrap gap-4 pt-4 w-full sm:w-auto">
-                            <Link href="/contact">
-                                <Button size="lg" className="text-lg px-8 h-14 w-full sm:w-auto shadow-lg shadow-primary/20 hover:shadow-primary/30 transition-shadow">
+                            <Link href="/contact" aria-label="احجز استشارة مجانية">
+                                <Button
+                                    size="lg"
+                                    className="text-lg px-8 h-14 w-full sm:w-auto shadow-lg shadow-primary/20 hover:shadow-primary/30 hover:scale-[1.02] transition-all duration-300"
+                                >
                                     احجز استشارة مجانية
-                                    <ArrowLeft className="mr-2 h-5 w-5" />
+                                    <ArrowLeft className="me-2 h-5 w-5" aria-hidden="true" />
                                 </Button>
                             </Link>
-                            <Link href="/services">
-                                <Button variant="outline" size="lg" className="text-lg px-8 h-14 w-full sm:w-auto">
+                            <Link href="/services" aria-label="استكشف خدماتنا">
+                                <Button
+                                    variant="outline"
+                                    size="lg"
+                                    className="text-lg px-8 h-14 w-full sm:w-auto hover:bg-primary/5 transition-all duration-300"
+                                >
                                     استكشف خدماتنا
                                 </Button>
                             </Link>
                         </div>
 
-                        {/* Trust Indicators / Mini Stats */}
-                        <div className="pt-8 flex items-center gap-8 text-sm text-muted-foreground border-t border-gray-100 w-full mt-4">
+                        {/* Trust Indicators */}
+                        <div className="pt-8 flex flex-wrap items-center gap-4 md:gap-8 text-sm text-muted-foreground border-t border-gray-100 w-full mt-4">
                             <div className="flex items-center gap-2">
-                                <CheckCircle2 className="text-primary h-5 w-5" />
+                                <CheckCircle2 className="text-primary h-5 w-5" aria-hidden="true" />
                                 <span>حلول عملية وواقعية</span>
                             </div>
                             <div className="flex items-center gap-2">
-                                <CheckCircle2 className="text-primary h-5 w-5" />
+                                <CheckCircle2 className="text-primary h-5 w-5" aria-hidden="true" />
                                 <span>خبرة محلية عميقة</span>
                             </div>
                         </div>
                     </motion.div>
 
-                    {/* Visual Content (Left Side - Floating Cards) */}
+                    {/* Visual Content - Connected Cards Layout (Desktop) */}
                     <motion.div
                         initial={{ opacity: 0, scale: 0.9 }}
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ duration: 0.8, delay: 0.2 }}
-                        className="relative h-[400px] md:h-[500px] w-full hidden lg:block"
+                        className="relative h-[420px] w-full hidden lg:flex items-center justify-center"
+                        aria-hidden="true"
                     >
-                        {/* Abstract Shape Blob */}
-                        <div className="absolute inset-0 bg-gradient-to-tr from-gray-100 to-gray-50 rounded-[2rem] transform rotate-3 border border-gray-100/50" />
+                        {/* Connecting Background Shape - Unified backdrop */}
+                        <div className="absolute inset-0 flex items-center justify-center">
+                            <div className="w-[320px] h-[380px] bg-gradient-to-br from-accent via-accent/50 to-transparent rounded-[3rem] transform -rotate-3" />
+                        </div>
 
-                        {/* Floating Card 1: Growth */}
-                        <motion.div
-                            animate={{ y: [0, -10, 0] }}
-                            transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
-                            className="absolute top-10 right-10 bg-white p-6 rounded-2xl shadow-xl border border-gray-100 w-64 z-20"
+                        {/* Subtle connecting line/flow element */}
+                        <svg
+                            className="absolute inset-0 w-full h-full pointer-events-none opacity-20"
+                            viewBox="0 0 400 420"
+                            aria-hidden="true"
                         >
-                            <div className="h-10 w-10 bg-green-100 rounded-lg flex items-center justify-center mb-4 text-green-600">
-                                <TrendingUp size={24} />
+                            <path
+                                d="M 280 80 Q 200 120 120 200 Q 80 280 180 350"
+                                fill="none"
+                                stroke="currentColor"
+                                strokeWidth="2"
+                                strokeDasharray="8 8"
+                                className="text-primary"
+                            />
+                        </svg>
+
+                        {/* Cards in Connected Triangle/Zigzag Formation */}
+                        <div className="relative w-full h-full">
+
+                            {/* Card 1: Top Right - نتائج ملموسة */}
+                            <motion.div
+                                initial={{ opacity: 0, y: -20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ duration: 0.5, delay: 0.3 }}
+                                whileHover={{ scale: 1.03, y: -5 }}
+                                className="absolute top-4 right-4 bg-white p-5 rounded-2xl shadow-lg shadow-gray-200/50 border border-gray-100/80 w-52 z-20 cursor-default transition-all duration-300"
+                            >
+                                <div className="h-11 w-11 bg-gradient-to-br from-green-100 to-green-50 rounded-xl flex items-center justify-center mb-3 text-green-600">
+                                    <TrendingUp size={22} strokeWidth={2} />
+                                </div>
+                                <h3 className="font-bold text-base mb-1.5 text-secondary">نتائج ملموسة</h3>
+                                <p className="text-sm text-muted-foreground leading-relaxed">زيادة في المبيعات وتحسين كفاءة التشغيل.</p>
+                            </motion.div>
+
+                            {/* Card 2: Middle Left - استراتيجيات دقيقة */}
+                            <motion.div
+                                initial={{ opacity: 0, x: -20 }}
+                                animate={{ opacity: 1, x: 0 }}
+                                transition={{ duration: 0.5, delay: 0.5 }}
+                                whileHover={{ scale: 1.03, x: -5 }}
+                                className="absolute top-1/2 left-0 -translate-y-1/2 bg-white p-5 rounded-2xl shadow-lg shadow-gray-200/50 border border-gray-100/80 w-52 z-30 cursor-default transition-all duration-300"
+                            >
+                                <div className="h-11 w-11 bg-gradient-to-br from-blue-100 to-blue-50 rounded-xl flex items-center justify-center mb-3 text-blue-600">
+                                    <Layers size={22} strokeWidth={2} />
+                                </div>
+                                <h3 className="font-bold text-base mb-1.5 text-secondary">استراتيجيات دقيقة</h3>
+                                <p className="text-sm text-muted-foreground leading-relaxed">خطط عمل مفصلة تناسب حجم وطبيعة عملك.</p>
+                            </motion.div>
+
+                            {/* Card 3: Bottom Center-Right - خبرة موثوقة */}
+                            <motion.div
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ duration: 0.5, delay: 0.7 }}
+                                whileHover={{ scale: 1.03, y: 5 }}
+                                className="absolute bottom-6 right-16 bg-white p-4 rounded-2xl shadow-lg shadow-gray-200/50 border border-gray-100/80 w-48 z-10 flex items-center gap-3 cursor-default transition-all duration-300"
+                            >
+                                <div className="h-11 w-11 bg-gradient-to-br from-orange-100 to-orange-50 rounded-full flex items-center justify-center text-orange-500 shrink-0">
+                                    <CheckCircle2 size={20} strokeWidth={2} />
+                                </div>
+                                <div>
+                                    <h3 className="font-bold text-sm text-secondary">خبرة موثوقة</h3>
+                                    <p className="text-xs text-muted-foreground">فريق متخصص معك.</p>
+                                </div>
+                            </motion.div>
+
+                            {/* Decorative Dots - Connection hints */}
+                            <div className="absolute top-24 right-56 w-2 h-2 rounded-full bg-primary/30" />
+                            <div className="absolute top-40 left-52 w-1.5 h-1.5 rounded-full bg-primary/20" />
+                            <div className="absolute bottom-28 right-64 w-2 h-2 rounded-full bg-primary/25" />
+                        </div>
+                    </motion.div>
+
+                    {/* Mobile Cards - Clean stacked layout */}
+                    <div className="lg:hidden space-y-4 w-full">
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.5, delay: 0.3 }}
+                            className="bg-white p-5 rounded-2xl shadow-lg border border-gray-100"
+                        >
+                            <div className="h-11 w-11 bg-gradient-to-br from-green-100 to-green-50 rounded-xl flex items-center justify-center mb-3 text-green-600">
+                                <TrendingUp size={22} aria-hidden="true" />
                             </div>
-                            <h3 className="font-bold text-lg mb-1">نتائج ملموسة</h3>
-                            <p className="text-sm text-muted-foreground">زيادة في المبيعات وتحسين كفاءة التشغيل.</p>
+                            <h3 className="font-bold text-base mb-1.5 text-secondary">نتائج ملموسة</h3>
+                            <p className="text-sm text-muted-foreground leading-relaxed">زيادة في المبيعات وتحسين كفاءة التشغيل.</p>
                         </motion.div>
 
-                        {/* Floating Card 2: Strategy */}
                         <motion.div
-                            animate={{ y: [0, 15, 0] }}
-                            transition={{ repeat: Infinity, duration: 5, ease: "easeInOut", delay: 1 }}
-                            className="absolute top-1/2 left-0 transform -translate-y-1/2 bg-white p-6 rounded-2xl shadow-xl border border-gray-100 w-64 z-30"
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.5, delay: 0.4 }}
+                            className="bg-white p-5 rounded-2xl shadow-lg border border-gray-100"
                         >
-                            <div className="h-10 w-10 bg-blue-100 rounded-lg flex items-center justify-center mb-4 text-blue-600">
-                                <Layers size={24} />
+                            <div className="h-11 w-11 bg-gradient-to-br from-blue-100 to-blue-50 rounded-xl flex items-center justify-center mb-3 text-blue-600">
+                                <Layers size={22} aria-hidden="true" />
                             </div>
-                            <h3 className="font-bold text-lg mb-1">استراتيجيات دقيقة</h3>
-                            <p className="text-sm text-muted-foreground">خطط عمل مفصلة تناسب حجم وطبيعة عملك.</p>
+                            <h3 className="font-bold text-base mb-1.5 text-secondary">استراتيجيات دقيقة</h3>
+                            <p className="text-sm text-muted-foreground leading-relaxed">خطط عمل مفصلة تناسب حجم وطبيعة عملك.</p>
                         </motion.div>
 
-                        {/* Floating Card 3: Success */}
                         <motion.div
-                            animate={{ y: [0, -8, 0] }}
-                            transition={{ repeat: Infinity, duration: 6, ease: "easeInOut", delay: 0.5 }}
-                            className="absolute bottom-10 right-20 bg-white p-4 rounded-2xl shadow-xl border border-gray-100 w-56 z-10 flex items-center gap-3"
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.5, delay: 0.5 }}
+                            className="bg-white p-4 rounded-2xl shadow-lg border border-gray-100 flex items-center gap-3"
                         >
-                            <div className="h-10 w-10 bg-orange-100 rounded-full flex items-center justify-center text-orange-600 shrink-0">
-                                <CheckCircle2 size={20} />
+                            <div className="h-11 w-11 bg-gradient-to-br from-orange-100 to-orange-50 rounded-full flex items-center justify-center text-orange-500 shrink-0">
+                                <CheckCircle2 size={20} aria-hidden="true" />
                             </div>
                             <div>
-                                <h3 className="font-bold text-base">خبرة موثوقة</h3>
+                                <h3 className="font-bold text-sm text-secondary">خبرة موثوقة</h3>
                                 <p className="text-xs text-muted-foreground">فريق متخصص معك.</p>
                             </div>
                         </motion.div>
-                    </motion.div>
+                    </div>
                 </div>
             </div>
         </section>

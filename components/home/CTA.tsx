@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import { ArrowLeft } from "lucide-react";
 
 export function CTA() {
     return (
@@ -14,6 +15,7 @@ export function CTA() {
                 <Link href="/contact">
                     <Button size="lg" className="text-lg px-8 h-14">
                         احجز استشارتك المجانية
+                        <ArrowLeft className="me-2 h-5 w-5" />
                     </Button>
                 </Link>
             </div>
