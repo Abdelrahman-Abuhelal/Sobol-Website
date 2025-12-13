@@ -149,8 +149,8 @@ export function HeroSection() {
                                 whileHover={{ scale: 1.03, y: 5 }}
                                 className="absolute bottom-6 right-16 bg-white p-5 rounded-2xl shadow-lg shadow-gray-200/50 border border-gray-100/80 w-52 h-40 z-10 cursor-default transition-all duration-300"
                             >
-                                <div className="h-11 w-11 bg-gradient-to-br from-[#FF7043]/15 to-[#FF7043]/5 rounded-full flex items-center justify-center text-[#E64A19] shrink-0 border border-[#FF7043]/15 mb-3">
-                                    <CheckCircle2 size={20} strokeWidth={1.5} />
+                                <div className="h-11 w-11 bg-gradient-to-br from-[#FF7043]/15 to-[#FF7043]/5 rounded-xl flex items-center justify-center text-[#E64A19] shrink-0 border border-[#FF7043]/15 mb-3">
+                                    <CheckCircle2 size={22} strokeWidth={1.5} />
                                 </div>
                                 <h3 className="font-bold text-base mb-1.5 text-secondary">خبرة موثوقة</h3>
                                 <p className="text-sm text-muted-foreground leading-relaxed">فريق متخصص معك.</p>
@@ -195,15 +195,13 @@ export function HeroSection() {
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.5, delay: 0.5 }}
-                            className="bg-white p-4 rounded-2xl shadow-lg border border-gray-100 flex items-center gap-3"
+                            className="bg-white p-5 rounded-2xl shadow-lg border border-gray-100"
                         >
-                            <div className="h-11 w-11 bg-gradient-to-br from-[#FF7043]/15 to-[#FF7043]/5 rounded-full flex items-center justify-center text-[#E64A19] shrink-0 border border-[#FF7043]/15">
-                                <CheckCircle2 size={20} strokeWidth={1.5} aria-hidden="true" />
+                            <div className="h-11 w-11 bg-gradient-to-br from-[#FF7043]/15 to-[#FF7043]/5 rounded-xl flex items-center justify-center text-[#E64A19] shrink-0 border border-[#FF7043]/15 mb-3">
+                                <CheckCircle2 size={22} strokeWidth={1.5} aria-hidden="true" />
                             </div>
-                            <div>
-                                <h3 className="font-bold text-sm text-secondary">خبرة موثوقة</h3>
-                                <p className="text-xs text-muted-foreground">فريق متخصص معك.</p>
-                            </div>
+                            <h3 className="font-bold text-base mb-1.5 text-secondary">خبرة موثوقة</h3>
+                            <p className="text-sm text-muted-foreground leading-relaxed">فريق متخصص معك.</p>
                         </motion.div>
                     </div>
                 </div>
