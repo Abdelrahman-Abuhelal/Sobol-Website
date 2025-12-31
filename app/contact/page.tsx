@@ -20,7 +20,7 @@ export default function ContactPage() {
 
             <section className="bg-secondary text-white py-20">
                 <div className="container mx-auto px-4 text-center">
-                    <h1 className="text-4xl md:text-5xl font-bold mb-4">احجز استشارة</h1>
+                    <h1 className="text-4xl md:text-5xl font-bold mb-4">اطلب استشارة</h1>
                     <p className="text-gray-300 max-w-2xl mx-auto">
                         هل تواجه تحديات في مشروعك؟ املأ النموذج وسنتواصل معك قريباً.
                     </p>

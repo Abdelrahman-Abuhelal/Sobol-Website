@@ -36,12 +36,12 @@ export function Navbar() {
                         </Link>
 
                         {/* Desktop Nav */}
-                        <div className="hidden md:flex items-center gap-6">
+                        <div className="hidden md:flex items-center gap-10">
                             {navLinks.map((link) => (
                                 <Link
                                     key={link.href}
                                     href={link.href}
-                                    className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
+                                    className="text-base font-medium text-muted-foreground transition-colors hover:text-primary px-2 py-1"
                                 >
                                     {link.name}
                                 </Link>
@@ -88,7 +88,7 @@ export function Navbar() {
                                 </Link>
                             ))}
                             <Link href="/contact" onClick={() => setIsOpen(false)}>
-                                <Button className="w-full">احجز استشارة</Button>
+                                <Button className="w-full">اطلب استشارة</Button>
                             </Link>
                         </div>
                     </motion.div>

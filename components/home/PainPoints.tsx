@@ -83,12 +83,12 @@ export function PainPoints() {
                     className="text-center mt-12"
                 >
                     <div
-                        className="inline-block px-8 py-4 bg-primary rounded-full"
+                        className="inline-block px-8 py-4 bg-white rounded-full border border-primary/10"
                         style={{
-                            boxShadow: '0 8px 24px rgba(56, 116, 120, 0.3)'
+                            boxShadow: '0 4px 20px rgba(0, 0, 0, 0.05)'
                         }}
                     >
-                        <p className="text-white font-semibold text-lg">
+                        <p className="text-primary font-bold text-lg">
                             في سُبُل، نقدّم لك حلولاً عملية من واقعك وبيئتك 💡
                         </p>
                     </div>
