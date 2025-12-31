@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, BarChart3, TrendingUp } from "lucide-react";
 
 export function HeroSection() {
     return (
@@ -114,7 +114,22 @@ export function HeroSection() {
                                 ))}
                             </div>
 
+                            {/* Floating Elements for Originality */}
+                            <motion.div
+                                animate={{ y: [0, -15, 0] }}
+                                transition={{ repeat: Infinity, duration: 6, ease: "easeInOut" }}
+                                className="absolute top-[15%] right-[5%] p-4 bg-white/10 backdrop-blur-md rounded-2xl border border-white/20 shadow-2xl"
+                            >
+                                <TrendingUp className="text-accent w-8 h-8" />
+                            </motion.div>
 
+                            <motion.div
+                                animate={{ y: [0, 15, 0] }}
+                                transition={{ repeat: Infinity, duration: 7, ease: "easeInOut", delay: 1 }}
+                                className="absolute bottom-[25%] left-[0%] p-4 bg-secondary/90 backdrop-blur-md rounded-2xl border border-white/10 shadow-2xl"
+                            >
+                                <BarChart3 className="text-primary w-8 h-8" />
+                            </motion.div>
                         </div>
 
                         {/* Buttons moved here */}
