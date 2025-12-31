@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
-import { ArrowLeft, TrendingUp, BarChart3 } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 
 export function HeroSection() {
     return (
@@ -48,12 +48,12 @@ export function HeroSection() {
                         {/* Stats Counter */}
                         <div className="flex items-center gap-8 pt-4">
                             <div className="flex flex-col">
-                                <span className="text-3xl font-bold text-white">+20</span>
+                                <span className="text-3xl font-bold text-white">+50</span>
                                 <span className="text-sm text-gray-400">مشروع ناجح</span>
                             </div>
                             <div className="w-px h-10 bg-white/10"></div>
                             <div className="flex flex-col">
-                                <span className="text-3xl font-bold text-white">+15</span>
+                                <span className="text-3xl font-bold text-white">+5</span>
                                 <span className="text-sm text-gray-400">سنوات خبرة</span>
                             </div>
                         </div>
@@ -114,22 +114,7 @@ export function HeroSection() {
                                 ))}
                             </div>
 
-                            {/* Floating Elements for Originality */}
-                            <motion.div
-                                animate={{ y: [0, -15, 0] }}
-                                transition={{ repeat: Infinity, duration: 6, ease: "easeInOut" }}
-                                className="absolute top-[15%] right-[5%] p-4 bg-white/10 backdrop-blur-md rounded-2xl border border-white/20 shadow-2xl"
-                            >
-                                <TrendingUp className="text-accent w-8 h-8" />
-                            </motion.div>
 
-                            <motion.div
-                                animate={{ y: [0, 15, 0] }}
-                                transition={{ repeat: Infinity, duration: 7, ease: "easeInOut", delay: 1 }}
-                                className="absolute bottom-[25%] left-[0%] p-4 bg-secondary/90 backdrop-blur-md rounded-2xl border border-white/10 shadow-2xl"
-                            >
-                                <BarChart3 className="text-primary w-8 h-8" />
-                            </motion.div>
                         </div>
 
                         {/* Buttons moved here */}
