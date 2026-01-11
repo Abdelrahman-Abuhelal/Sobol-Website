@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, Variants, Transition } from "framer-motion"; // Added Variants and Transition types
 import { AlertCircle, TrendingDown, Users, HelpCircle, ArrowDown, Sparkles, CheckCircle2 } from "lucide-react";
 
 const painPoints = [
@@ -26,7 +26,7 @@ const painPoints = [
     },
 ];
 
-const containerVariants = {
+const containerVariants: Variants = { // Explicitly typed as Variants
     hidden: { opacity: 0 },
     visible: {
         opacity: 1,
@@ -37,7 +37,7 @@ const containerVariants = {
     },
 };
 
-const itemVariants = {
+const itemVariants: Variants = { // Explicitly typed as Variants
     hidden: { opacity: 0, y: 30, scale: 0.95 },
     visible: {
         opacity: 1,
@@ -47,7 +47,7 @@ const itemVariants = {
             type: "spring",
             stiffness: 100,
             damping: 15,
-        },
+        } as Transition, // Explicitly cast to Transition
     },
 };
 
