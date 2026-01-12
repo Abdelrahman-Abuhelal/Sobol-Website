@@ -12,6 +12,9 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Ignore legacy src folder and old app/components
+    "src/**",
+    "app/components/**",
   ]),
 ]);
 
