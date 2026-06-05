@@ -28,7 +28,16 @@ export function HeroSection() {
                 />
                 
                 {/* Grid Pattern */}
-                <div className="absolute inset-0 opacity-[0.8] bg-white"></div>
+                <div className="absolute inset-0 opacity-[0.02]">
+                    <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
+                        <defs>
+                            <pattern id="hero-grid" width="8" height="8" patternUnits="userSpaceOnUse">
+                                <path d="M 8 0 L 0 0 0 8" fill="none" stroke="white" strokeWidth="0.3" />
+                            </pattern>
+                        </defs>
+                        <rect width="100%" height="100%" fill="url(#hero-grid)" />
+                    </svg>
+                </div>
 
                 {/* Floating Particles */}
                 {[...Array(8)].map((_, i) => (

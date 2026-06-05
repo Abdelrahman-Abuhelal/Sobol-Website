@@ -57,17 +57,6 @@ export function PainPoints() {
             {/* Dynamic Background */}
             <div className="absolute inset-0 bg-gradient-to-b from-white via-accent/30 to-accent/50" />
             
-            {/* Geometric Pattern Overlay */}
-            <div className="absolute inset-0 opacity-[0.03]">
-                <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
-                    <defs>
-                        <pattern id="diagonal-lines" width="10" height="10" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
-                            <line x1="0" y1="0" x2="0" y2="10" stroke="#122E45" strokeWidth="0.5" />
-                        </pattern>
-                    </defs>
-                    <rect width="100%" height="100%" fill="url(#diagonal-lines)" />
-                </svg>
-            </div>
 
             {/* Floating Decorative Elements */}
             <motion.div
@@ -90,16 +79,6 @@ export function PainPoints() {
                     transition={{ duration: 0.7 }}
                     className="text-center mb-20"
                 >
-                    <motion.div
-                        initial={{ scale: 0.9, opacity: 0 }}
-                        whileInView={{ scale: 1, opacity: 1 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: 0.2 }}
-                        className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-secondary/5 border border-secondary/10 mb-6"
-                    >
-                        <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-                        <span className="text-sm font-semibold text-secondary tracking-wide">نفهم تحدياتك</span>
-                    </motion.div>
                     
                     <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-secondary mb-6 leading-tight">
                         هل تواجه هذه
