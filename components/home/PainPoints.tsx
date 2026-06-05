@@ -106,9 +106,6 @@ export function PainPoints() {
                         <span className="block text-primary mt-2">التحديات؟</span>
                     </h2>
                     
-                    <p className="text-lg md:text-xl text-secondary/60 max-w-2xl mx-auto leading-relaxed">
-                        إذا كانت إجابتك <span className="font-bold text-primary">"نعم"</span> على أي من هذه الأسئلة، فأنت في المكان الصحيح
-                    </p>
                 </motion.div>
 
                 {/* Pain Points Grid - Modern Card Design */}
@@ -146,17 +143,8 @@ export function PainPoints() {
                                         </div>
                                     </div>
                                     
-                                    {/* Solution Preview */}
-                                    <div className="flex items-center gap-3 pt-4 border-t border-secondary/5">
-                                        <CheckCircle2 className="w-5 h-5 text-primary shrink-0" />
-                                        <span className="text-sm font-medium text-primary/80">{item.solution}</span>
-                                    </div>
                                 </div>
 
-                                {/* Number Badge */}
-                                <div className="absolute bottom-4 left-4 w-8 h-8 rounded-full bg-secondary/5 flex items-center justify-center">
-                                    <span className="text-xs font-bold text-secondary/30">{String(index + 1).padStart(2, '0')}</span>
-                                </div>
                             </div>
                         </motion.div>
                     ))}

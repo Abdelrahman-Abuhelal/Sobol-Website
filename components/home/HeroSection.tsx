@@ -28,16 +28,7 @@ export function HeroSection() {
                 />
                 
                 {/* Grid Pattern */}
-                <div className="absolute inset-0 opacity-[0.02]">
-                    <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
-                        <defs>
-                            <pattern id="hero-grid" width="8" height="8" patternUnits="userSpaceOnUse">
-                                <path d="M 8 0 L 0 0 0 8" fill="none" stroke="white" strokeWidth="0.3" />
-                            </pattern>
-                        </defs>
-                        <rect width="100%" height="100%" fill="url(#hero-grid)" />
-                    </svg>
-                </div>
+                <div className="absolute inset-0 opacity-[0.8] bg-white"></div>
 
                 {/* Floating Particles */}
                 {[...Array(8)].map((_, i) => (
@@ -72,17 +63,6 @@ export function HeroSection() {
                         transition={{ duration: 0.7 }}
                         className="flex flex-col items-start text-right space-y-10"
                     >
-                        {/* Badge/Tag */}
-                        <motion.div 
-                            initial={{ opacity: 0, y: 10 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: 0.3 }}
-                            className="inline-flex items-center rounded-full border border-white/15 bg-white/5 px-5 py-2 text-sm text-accent backdrop-blur-md"
-                        >
-                            <Sparkles className="w-4 h-4 ml-2 text-accent" />
-                            <span className="font-medium">شريكك الاستراتيجي للنجاح</span>
-                            <span className="flex h-2 w-2 rounded-full bg-accent ms-3 animate-pulse" aria-hidden="true"></span>
-                        </motion.div>
 
                         <div className="space-y-5">
                             <motion.h1 
