@@ -8,7 +8,7 @@ import { ArrowLeft, BarChart3, TrendingUp, Sparkles, Target, Zap } from "lucide-
 export function HeroSection() {
     return (
         <section
-            className="relative w-full overflow-hidden bg-secondary pt-24 pb-28 md:pt-36 md:pb-40"
+            className="relative w-full overflow-hidden bg-gray-50 pt-24 pb-28 md:pt-36 md:pb-40"
             aria-label="القسم الرئيسي"
         >
             {/* Enhanced Background Elements */}

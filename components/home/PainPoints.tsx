@@ -56,7 +56,18 @@ export function PainPoints() {
         <section className="relative py-28 overflow-hidden">
             {/* Dynamic Background */}
             <div className="absolute inset-0 bg-gradient-to-b from-white via-accent/30 to-accent/50" />
-            
+
+            {/* Geometric Pattern Overlay */}
+            <div className="absolute inset-0 opacity-[0.03]">
+                <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
+                    <defs>
+                        <pattern id="diagonal-lines" width="10" height="10" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+                            <line x1="0" y1="0" x2="0" y2="10" stroke="#122E45" strokeWidth="0.5" />
+                        </pattern>
+                    </defs>
+                    <rect width="100%" height="100%" fill="url(#diagonal-lines)" />
+                </svg>
+            </div>
 
             {/* Floating Decorative Elements */}
             <motion.div

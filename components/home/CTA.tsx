@@ -76,18 +76,6 @@ export function CTA() {
                         transition={{ duration: 0.7 }}
                         className="text-center"
                     >
-                        {/* Badge */}
-                        <motion.div
-                            initial={{ scale: 0.9, opacity: 0 }}
-                            whileInView={{ scale: 1, opacity: 1 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: 0.2 }}
-                            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/10 backdrop-blur-sm border border-white/10 mb-8"
-                        >
-                            <Sparkles className="w-4 h-4 text-accent" />
-                            <span className="text-sm font-semibold text-white/90">ابدأ الآن مجاناً</span>
-                        </motion.div>
-
                         {/* Heading */}
                         <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-white mb-6 leading-tight">
                             ابدأ رحلتك نحو

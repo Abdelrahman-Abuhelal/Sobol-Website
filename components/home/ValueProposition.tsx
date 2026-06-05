@@ -88,15 +88,6 @@ export function ValueProposition() {
                     transition={{ duration: 0.7 }}
                     className="text-center mb-20"
                 >
-                    <motion.div
-                        initial={{ scale: 0.9, opacity: 0 }}
-                        whileInView={{ scale: 1, opacity: 1 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: 0.2 }}
-                        className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-primary/5 border border-primary/10 mb-6"
-                    >
-                        <span className="text-sm font-semibold text-primary tracking-wide">لماذا سُبُل؟</span>
-                    </motion.div>
                     
                     <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-secondary mb-6 leading-tight">
                         ما يميزنا
