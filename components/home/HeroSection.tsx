@@ -11,24 +11,50 @@ export function HeroSection() {
             className="relative w-full overflow-hidden bg-slate-900 pt-24 pb-28 md:pt-36 md:pb-40"
             aria-label="القسم الرئيسي"
         >
-            {/* Enhanced Background Elements */}
+            {/* Enhanced Background with Gradient and Shapes */}
             <div className="absolute inset-0 overflow-hidden">
-                {/* Large Gradient Orbs */}
-                <motion.div 
-                    animate={{ scale: [1, 1.1, 1], opacity: [0.15, 0.25, 0.15] }}
+                {/* Base Gradient */}
+                <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900" />
+
+                {/* Animated Large Gradient Orbs */}
+                <motion.div
+                    animate={{ scale: [1, 1.1, 1], opacity: [0.2, 0.3, 0.2] }}
                     transition={{ repeat: Infinity, duration: 10, ease: "easeInOut" }}
-                    className="absolute top-0 right-0 w-[800px] h-[800px] bg-primary/20 rounded-full blur-[150px] -translate-y-1/3 translate-x-1/3 pointer-events-none" 
-                    aria-hidden="true" 
+                    className="absolute top-0 right-0 w-[800px] h-[800px] bg-blue-500/15 rounded-full blur-[150px] -translate-y-1/3 translate-x-1/3 pointer-events-none"
+                    aria-hidden="true"
                 />
-                <motion.div 
-                    animate={{ scale: [1.1, 1, 1.1], opacity: [0.1, 0.15, 0.1] }}
+                <motion.div
+                    animate={{ scale: [1.1, 1, 1.1], opacity: [0.15, 0.25, 0.15] }}
                     transition={{ repeat: Infinity, duration: 12, ease: "easeInOut", delay: 2 }}
-                    className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-accent/10 rounded-full blur-[120px] translate-y-1/2 -translate-x-1/3 pointer-events-none" 
-                    aria-hidden="true" 
+                    className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-teal-500/10 rounded-full blur-[120px] translate-y-1/2 -translate-x-1/3 pointer-events-none"
+                    aria-hidden="true"
                 />
-                
-                {/* Grid Pattern */}
-                <div className="absolute inset-0 opacity-[0.02]">
+
+                {/* Decorative SVG Shapes */}
+                <svg className="absolute inset-0 w-full h-full" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+                    <defs>
+                        <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stopColor="#3b82f6" stopOpacity="0.1" />
+                            <stop offset="100%" stopColor="#14b8a6" stopOpacity="0.05" />
+                        </linearGradient>
+                        <filter id="glow">
+                            <feGaussianBlur stdDeviation="3" result="coloredBlur" />
+                            <feMerge>
+                                <feMergeNode in="coloredBlur" />
+                                <feMergeNode in="SourceGraphic" />
+                            </feMerge>
+                        </filter>
+                    </defs>
+
+                    {/* Geometric shapes */}
+                    <circle cx="1100" cy="100" r="250" fill="url(#grad1)" filter="url(#glow)" opacity="0.4" />
+                    <circle cx="100" cy="700" r="300" fill="url(#grad1)" filter="url(#glow)" opacity="0.3" />
+                    <path d="M 600 0 L 800 400 L 600 500 L 400 400 Z" fill="none" stroke="#3b82f6" strokeWidth="1" opacity="0.1" />
+                    <path d="M 0 200 Q 300 100 600 200 T 1200 200" fill="none" stroke="#14b8a6" strokeWidth="2" opacity="0.15" />
+                </svg>
+
+                {/* Grid Pattern - Very Subtle */}
+                <div className="absolute inset-0 opacity-[0.05]">
                     <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
                         <defs>
                             <pattern id="hero-grid" width="8" height="8" patternUnits="userSpaceOnUse">
@@ -40,24 +66,27 @@ export function HeroSection() {
                 </div>
 
                 {/* Floating Particles */}
-                {[...Array(8)].map((_, i) => (
+                {[...Array(12)].map((_, i) => (
                     <motion.div
                         key={i}
                         animate={{
-                            y: [0, -20, 0],
-                            opacity: [0.1, 0.3, 0.1],
+                            y: [0, -30, 0],
+                            opacity: [0.05, 0.2, 0.05],
                         }}
                         transition={{
                             repeat: Infinity,
-                            duration: 5 + i,
-                            delay: i * 0.7,
+                            duration: 6 + i,
+                            delay: i * 0.5,
                             ease: "easeInOut",
                         }}
-                        className="absolute w-1.5 h-1.5 rounded-full bg-white/30"
+                        className="absolute rounded-full bg-white pointer-events-none"
                         style={{
-                            left: `${10 + i * 12}%`,
-                            top: `${15 + (i % 4) * 20}%`,
+                            width: `${2 + (i % 3)}px`,
+                            height: `${2 + (i % 3)}px`,
+                            left: `${8 + i * 8}%`,
+                            top: `${20 + (i % 5) * 15}%`,
                         }}
+                        aria-hidden="true"
                     />
                 ))}
             </div>
