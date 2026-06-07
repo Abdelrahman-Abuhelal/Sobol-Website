@@ -8,87 +8,24 @@ import { ArrowLeft, BarChart3, TrendingUp, Sparkles, Target, Zap } from "lucide-
 export function HeroSection() {
     return (
         <section
-            className="relative w-full overflow-hidden bg-slate-900 pt-24 pb-28 md:pt-36 md:pb-40"
+            className="relative w-full overflow-hidden bg-secondary pt-24 pb-28 md:pt-36 md:pb-40"
             aria-label="القسم الرئيسي"
         >
-            {/* Enhanced Background with Gradient and Shapes */}
+            {/* Clean Brand Background */}
             <div className="absolute inset-0 overflow-hidden">
-                {/* Base Gradient */}
-                <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900" />
-
-                {/* Animated Large Gradient Orbs */}
+                {/* Subtle Accent Blobs - Minimal, Professional */}
                 <motion.div
-                    animate={{ scale: [1, 1.1, 1], opacity: [0.2, 0.3, 0.2] }}
-                    transition={{ repeat: Infinity, duration: 10, ease: "easeInOut" }}
-                    className="absolute top-0 right-0 w-[800px] h-[800px] bg-blue-500/15 rounded-full blur-[150px] -translate-y-1/3 translate-x-1/3 pointer-events-none"
+                    animate={{ opacity: [0.08, 0.12, 0.08] }}
+                    transition={{ repeat: Infinity, duration: 8, ease: "easeInOut" }}
+                    className="absolute top-20 right-[10%] w-[400px] h-[400px] bg-primary/20 rounded-full blur-[120px] pointer-events-none"
                     aria-hidden="true"
                 />
                 <motion.div
-                    animate={{ scale: [1.1, 1, 1.1], opacity: [0.15, 0.25, 0.15] }}
-                    transition={{ repeat: Infinity, duration: 12, ease: "easeInOut", delay: 2 }}
-                    className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-teal-500/10 rounded-full blur-[120px] translate-y-1/2 -translate-x-1/3 pointer-events-none"
+                    animate={{ opacity: [0.06, 0.1, 0.06] }}
+                    transition={{ repeat: Infinity, duration: 10, ease: "easeInOut", delay: 1 }}
+                    className="absolute -bottom-20 left-[5%] w-[350px] h-[350px] bg-accent/40 rounded-full blur-[100px] pointer-events-none"
                     aria-hidden="true"
                 />
-
-                {/* Decorative SVG Shapes */}
-                <svg className="absolute inset-0 w-full h-full" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-                    <defs>
-                        <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
-                            <stop offset="0%" stopColor="#3b82f6" stopOpacity="0.1" />
-                            <stop offset="100%" stopColor="#14b8a6" stopOpacity="0.05" />
-                        </linearGradient>
-                        <filter id="glow">
-                            <feGaussianBlur stdDeviation="3" result="coloredBlur" />
-                            <feMerge>
-                                <feMergeNode in="coloredBlur" />
-                                <feMergeNode in="SourceGraphic" />
-                            </feMerge>
-                        </filter>
-                    </defs>
-
-                    {/* Geometric shapes */}
-                    <circle cx="1100" cy="100" r="250" fill="url(#grad1)" filter="url(#glow)" opacity="0.4" />
-                    <circle cx="100" cy="700" r="300" fill="url(#grad1)" filter="url(#glow)" opacity="0.3" />
-                    <path d="M 600 0 L 800 400 L 600 500 L 400 400 Z" fill="none" stroke="#3b82f6" strokeWidth="1" opacity="0.1" />
-                    <path d="M 0 200 Q 300 100 600 200 T 1200 200" fill="none" stroke="#14b8a6" strokeWidth="2" opacity="0.15" />
-                </svg>
-
-                {/* Grid Pattern - Very Subtle */}
-                <div className="absolute inset-0 opacity-[0.05]">
-                    <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
-                        <defs>
-                            <pattern id="hero-grid" width="8" height="8" patternUnits="userSpaceOnUse">
-                                <path d="M 8 0 L 0 0 0 8" fill="none" stroke="white" strokeWidth="0.3" />
-                            </pattern>
-                        </defs>
-                        <rect width="100%" height="100%" fill="url(#hero-grid)" />
-                    </svg>
-                </div>
-
-                {/* Floating Particles */}
-                {[...Array(12)].map((_, i) => (
-                    <motion.div
-                        key={i}
-                        animate={{
-                            y: [0, -30, 0],
-                            opacity: [0.05, 0.2, 0.05],
-                        }}
-                        transition={{
-                            repeat: Infinity,
-                            duration: 6 + i,
-                            delay: i * 0.5,
-                            ease: "easeInOut",
-                        }}
-                        className="absolute rounded-full bg-white pointer-events-none"
-                        style={{
-                            width: `${2 + (i % 3)}px`,
-                            height: `${2 + (i % 3)}px`,
-                            left: `${8 + i * 8}%`,
-                            top: `${20 + (i % 5) * 15}%`,
-                        }}
-                        aria-hidden="true"
-                    />
-                ))}
             </div>
 
             <div className="container relative z-10 px-4 md:px-8 lg:px-12 mx-auto">
