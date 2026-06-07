@@ -11,19 +11,21 @@ export function HeroSection() {
             className="relative w-full overflow-hidden bg-secondary pt-24 pb-28 md:pt-36 md:pb-40"
             aria-label="القسم الرئيسي"
         >
-            {/* Clean Brand Background */}
+            {/* Clean Brand Background - Orange Accent Blobs */}
             <div className="absolute inset-0 overflow-hidden">
-                {/* Subtle Accent Blobs - Minimal, Professional */}
+                {/* Subtle Orange Accent Blobs - Minimal, Professional */}
                 <motion.div
                     animate={{ opacity: [0.08, 0.12, 0.08] }}
                     transition={{ repeat: Infinity, duration: 8, ease: "easeInOut" }}
-                    className="absolute top-20 right-[10%] w-[400px] h-[400px] bg-primary/20 rounded-full blur-[120px] pointer-events-none"
+                    className="absolute top-20 right-[10%] w-[400px] h-[400px] rounded-full blur-[120px] pointer-events-none"
+                    style={{ backgroundColor: 'rgba(253, 139, 81, 0.2)' }}
                     aria-hidden="true"
                 />
                 <motion.div
                     animate={{ opacity: [0.06, 0.1, 0.06] }}
                     transition={{ repeat: Infinity, duration: 10, ease: "easeInOut", delay: 1 }}
-                    className="absolute -bottom-20 left-[5%] w-[350px] h-[350px] bg-accent/40 rounded-full blur-[100px] pointer-events-none"
+                    className="absolute -bottom-20 left-[5%] w-[350px] h-[350px] rounded-full blur-[100px] pointer-events-none"
+                    style={{ backgroundColor: 'rgba(253, 139, 81, 0.15)' }}
                     aria-hidden="true"
                 />
             </div>
@@ -86,7 +88,7 @@ export function HeroSection() {
                             </div>
                             <div className="w-px h-14 bg-white/10 hidden sm:block"></div>
                             <div className="flex-col hidden sm:flex">
-                                <span className="text-4xl md:text-5xl font-black text-accent">100%</span>
+                                <span className="text-4xl md:text-5xl font-black" style={{ color: '#FD8B51' }}>100%</span>
                                 <span className="text-sm text-white/50 font-medium mt-1">رضا العملاء</span>
                             </div>
                         </motion.div>

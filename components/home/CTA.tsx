@@ -43,24 +43,25 @@ export function CTA() {
                     </svg>
                 </div>
                 
-                {/* Floating Particles */}
-                {[...Array(6)].map((_, i) => (
+                {/* Floating Particles - Reduced Count */}
+                {[...Array(3)].map((_, i) => (
                     <motion.div
                         key={i}
                         animate={{
-                            y: [0, -30, 0],
-                            opacity: [0.2, 0.5, 0.2],
+                            y: [0, -20, 0],
+                            opacity: [0.1, 0.3, 0.1],
                         }}
                         transition={{
                             repeat: Infinity,
-                            duration: 4 + i,
-                            delay: i * 0.5,
+                            duration: 5 + i,
+                            delay: i * 0.8,
                             ease: "easeInOut",
                         }}
-                        className="absolute w-2 h-2 rounded-full bg-accent/40"
+                        className="absolute w-2 h-2 rounded-full"
                         style={{
-                            left: `${15 + i * 15}%`,
-                            top: `${20 + (i % 3) * 25}%`,
+                            backgroundColor: 'rgba(253, 139, 81, 0.5)',
+                            left: `${20 + i * 30}%`,
+                            top: `${30 + (i % 2) * 20}%`,
                         }}
                     />
                 ))}
@@ -79,7 +80,7 @@ export function CTA() {
                         {/* Heading */}
                         <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-white mb-6 leading-tight">
                             ابدأ رحلتك نحو
-                            <span className="block text-accent mt-3">التميز الإداري</span>
+                            <span className="block mt-3" style={{ color: '#FD8B51' }}>التميز الإداري</span>
                         </h2>
 
                         {/* Description */}

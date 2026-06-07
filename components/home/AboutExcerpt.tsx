@@ -4,7 +4,7 @@ import { CheckCircle2 } from "lucide-react";
 
 export function AboutExcerpt() {
     return (
-        <section className="py-20 bg-gray-50">
+        <section className="py-20" style={{ backgroundColor: '#DCEEE7' }}>
             <div className="container px-4 md:px-6 mx-auto">
                 <div className="flex flex-col md:flex-row items-center gap-12">
                     {/* Text Content */}
@@ -26,7 +26,7 @@ export function AboutExcerpt() {
                                 "نتائج ملموسة بعيداً عن التنظير"
                             ].map((item, i) => (
                                 <li key={i} className="flex items-center gap-2">
-                                    <CheckCircle2 className="text-primary w-5 h-5 flex-shrink-0" />
+                                    <CheckCircle2 className="w-5 h-5 flex-shrink-0" style={{ color: '#FD8B51' }} />
                                     <span className="text-secondary font-medium">{item}</span>
                                 </li>
                             ))}

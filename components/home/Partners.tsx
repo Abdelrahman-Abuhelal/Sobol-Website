@@ -11,7 +11,7 @@ const partners = [
 
 export function Partners() {
     return (
-        <section className="py-16 bg-white border-t">
+        <section className="py-16 border-t" style={{ backgroundColor: '#DCEEE7' }}>
             <div className="container px-4 md:px-6 mx-auto">
                 <div className="text-center mb-10">
                     <h2 className="text-2xl md:text-3xl font-bold text-secondary">شركاء النجاح</h2>
@@ -22,7 +22,10 @@ export function Partners() {
                     {partners.map((partner, i) => (
                         <li
                             key={i}
-                            className="px-6 py-4 bg-gray-50 rounded-lg text-lg font-semibold text-gray-500 hover:text-primary hover:bg-gray-100 transition-all text-center"
+                            className="px-6 py-4 bg-white rounded-lg text-lg font-semibold text-secondary transition-all text-center"
+                            style={{ color: '#006989' }}
+                            onMouseEnter={(e) => e.currentTarget.style.color = '#FD8B51'}
+                            onMouseLeave={(e) => e.currentTarget.style.color = '#006989'}
                         >
                             {partner}
                         </li>

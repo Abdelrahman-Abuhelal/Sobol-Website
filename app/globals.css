@@ -3,24 +3,27 @@
 @theme {
   --font-sans: var(--font-tajawal);
 
-  --color-primary: #387478;
-  /* Teal Green */
+  --color-primary: #006989;
+  /* Sobol Brand Teal */
   --color-primary-foreground: #ffffff;
 
-  --color-secondary: #122E45;
-  /* Deep Navy Blue */
+  --color-secondary: #12323A;
+  /* Sobol Dark Navy */
   --color-secondary-foreground: #ffffff;
 
-  --color-accent: #E2F1E7;
-  /* Soft Mint */
-  --color-accent-foreground: #122E45;
+  --color-accent: #DCEEE7;
+  /* Sobol Mint Background */
+  --color-accent-foreground: #12323A;
 
   --color-background: #ffffff;
-  --color-foreground: #122E45;
+  --color-foreground: #12323A;
 
-  --color-muted: #E2F1E7;
-  /* Soft Mint */
-  --color-muted-foreground: #5a7a6e;
+  --color-muted: #DCEEE7;
+  /* Sobol Mint */
+  --color-muted-foreground: #006989;
+
+  --color-orange-accent: #FD8B51;
+  /* Sobol Orange Accent */
 }
 
 /* Custom Utilities if needed */

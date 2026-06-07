@@ -54,8 +54,8 @@ const itemVariants: Variants = { // Explicitly typed as Variants
 export function PainPoints() {
     return (
         <section className="relative py-28 overflow-hidden">
-            {/* Dynamic Background */}
-            <div className="absolute inset-0 bg-gradient-to-b from-white via-accent/30 to-accent/50" />
+            {/* Sobol Mint Background */}
+            <div className="absolute inset-0" style={{ backgroundColor: '#DCEEE7' }} />
 
             {/* Geometric Pattern Overlay */}
             <div className="absolute inset-0 opacity-[0.03]">
@@ -123,8 +123,8 @@ export function PainPoints() {
                                 <div className="relative z-10">
                                     {/* Icon */}
                                     <div className="flex items-start gap-5 mb-5">
-                                        <div className="shrink-0 w-14 h-14 rounded-2xl bg-gradient-to-br from-primary/10 to-primary/5 border border-primary/10 flex items-center justify-center group-hover:scale-110 group-hover:bg-primary/15 transition-all duration-300">
-                                            <item.icon className="w-7 h-7 text-primary" strokeWidth={1.5} />
+                                        <div className="shrink-0 w-14 h-14 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-all duration-300" style={{ backgroundColor: 'rgba(253, 139, 81, 0.1)', borderColor: 'rgba(253, 139, 81, 0.2)', borderWidth: '1px' }}>
+                                            <item.icon className="w-7 h-7" strokeWidth={1.5} style={{ color: '#FD8B51' }} />
                                         </div>
                                         <div className="flex-1">
                                             <p className="text-lg md:text-xl font-bold text-secondary leading-relaxed group-hover:text-secondary/90 transition-colors">
@@ -153,7 +153,7 @@ export function PainPoints() {
                         transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
                         className="w-12 h-12 rounded-full bg-white shadow-lg flex items-center justify-center border border-secondary/5"
                     >
-                        <ArrowDown className="w-5 h-5 text-primary" />
+                        <ArrowDown className="w-5 h-5" style={{ color: '#FD8B51' }} />
                     </motion.div>
                 </motion.div>
 
