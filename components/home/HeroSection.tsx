@@ -42,20 +42,20 @@ export function HeroSection() {
                     >
 
                         <div className="space-y-5">
-                            <motion.h1 
+                            <motion.h1
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ delay: 0.4, duration: 0.6 }}
-                                className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black tracking-tight text-white leading-[1.1]"
+                                className="text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-black tracking-tight text-white leading-[1.1]"
                             >
                                 سُبُل
                                 <span className="block text-primary-foreground/80 mt-2">لتطوير الأعمال</span>
                             </motion.h1>
-                            <motion.h2 
+                            <motion.h2
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ delay: 0.5, duration: 0.6 }}
-                                className="text-2xl md:text-3xl lg:text-4xl font-bold text-accent"
+                                className="text-3xl md:text-4xl lg:text-5xl font-bold text-accent"
                             >
                                 شركاء نحو التميز الإداري
                             </motion.h2>
@@ -65,7 +65,7 @@ export function HeroSection() {
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.6, duration: 0.6 }}
-                            className="text-lg md:text-xl text-white/70 leading-relaxed max-w-2xl"
+                            className="text-xl md:text-2xl text-white/70 leading-relaxed max-w-2xl"
                         >
                             نساعد المشاريع والشركات على فهم واقعها، تنظيم أعمالها، وتحسين أدائها من خلال حلول عملية تقود إلى نمو أكثر ثباتًا.
                         </motion.p>

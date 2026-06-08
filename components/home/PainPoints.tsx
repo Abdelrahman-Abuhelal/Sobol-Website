@@ -91,7 +91,7 @@ export function PainPoints() {
                     className="text-center mb-20"
                 >
                     
-                    <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-secondary mb-6 leading-tight">
+                    <h2 className="text-5xl md:text-6xl lg:text-7xl font-black text-secondary mb-6 leading-tight">
                         هل تواجه هذه
                         <span className="block text-primary mt-2">التحديات؟</span>
                     </h2>
@@ -127,7 +127,7 @@ export function PainPoints() {
                                             <item.icon className="w-7 h-7" strokeWidth={1.5} style={{ color: '#FD8B51' }} />
                                         </div>
                                         <div className="flex-1">
-                                            <p className="text-lg md:text-xl font-bold text-secondary leading-relaxed group-hover:text-secondary/90 transition-colors">
+                                            <p className="text-xl md:text-2xl font-bold text-secondary leading-relaxed group-hover:text-secondary/90 transition-colors">
                                                 {item.question}
                                             </p>
                                         </div>

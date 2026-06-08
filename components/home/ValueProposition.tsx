@@ -89,12 +89,12 @@ export function ValueProposition() {
                     className="text-center mb-20"
                 >
                     
-                    <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-secondary mb-6 leading-tight">
+                    <h2 className="text-5xl md:text-6xl lg:text-7xl font-black text-secondary mb-6 leading-tight">
                         ما يميزنا
                         <span className="block text-primary/80 mt-2">عن غيرنا</span>
                     </h2>
-                    
-                    <p className="text-lg md:text-xl text-secondary/60 max-w-2xl mx-auto leading-relaxed">
+
+                    <p className="text-xl md:text-2xl text-secondary/60 max-w-2xl mx-auto leading-relaxed">
                         نجمع بين الخبرة العميقة والفهم المحلي لنقدم لك حلولاً تناسب واقعك
                     </p>
                 </motion.div>
@@ -134,10 +134,10 @@ export function ValueProposition() {
                                     </div>
 
                                     {/* Title & Description */}
-                                    <h3 className="text-2xl lg:text-3xl font-black text-secondary mb-4 group-hover:text-secondary/90 transition-colors">
+                                    <h3 className="text-3xl lg:text-4xl font-black text-secondary mb-4 group-hover:text-secondary/90 transition-colors">
                                         {feature.title}
                                     </h3>
-                                    <p className="text-secondary/60 leading-relaxed text-lg">
+                                    <p className="text-secondary/60 leading-relaxed text-xl">
                                         {feature.description}
                                     </p>
 

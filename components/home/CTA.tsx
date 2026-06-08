@@ -78,13 +78,13 @@ export function CTA() {
                         className="text-center"
                     >
                         {/* Heading */}
-                        <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-white mb-6 leading-tight">
+                        <h2 className="text-5xl md:text-6xl lg:text-7xl font-black text-white mb-6 leading-tight">
                             ابدأ رحلتك نحو
                             <span className="block mt-3" style={{ color: '#FD8B51' }}>التميز الإداري</span>
                         </h2>
 
                         {/* Description */}
-                        <p className="text-lg md:text-xl text-white/60 mb-12 max-w-2xl mx-auto leading-relaxed">
+                        <p className="text-xl md:text-2xl text-white/60 mb-12 max-w-2xl mx-auto leading-relaxed">
                             لا تترك التحديات تعيق نمو مشروعك. دعنا نساعدك في وضع مشروعك على المسار الصحيح من خلال استشارة مجانية شاملة.
                         </p>
 
