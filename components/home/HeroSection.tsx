@@ -61,13 +61,13 @@ export function HeroSection() {
                             </motion.h2>
                         </div>
 
-                        <motion.p 
+                        <motion.p
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.6, duration: 0.6 }}
                             className="text-lg md:text-xl text-white/70 leading-relaxed max-w-2xl"
                         >
-                            نقدم استشارات إدارية وتسويقية مخصصة للشركات الطموحة في السوق الفلسطيني، لنضمن لك الاستقرار والنمو المستدام.
+                            نساعد المشاريع والشركات على فهم واقعها، تنظيم أعمالها، وتحسين أدائها من خلال حلول عملية تقود إلى نمو أكثر ثباتًا.
                         </motion.p>
 
                         {/* Stats Counter - Enhanced */}
