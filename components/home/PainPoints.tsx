@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, Variants, Transition } from "framer-motion"; // Added Variants and Transition types
-import { AlertCircle, TrendingDown, Users, HelpCircle, ArrowDown, Sparkles, CheckCircle2 } from "lucide-react";
+import { AlertCircle, TrendingDown, Users, HelpCircle, ArrowDown, Sparkles, CheckCircle2, Code2, Lightbulb, Heart } from "lucide-react";
 
 const painPoints = [
     {
@@ -201,19 +201,19 @@ export function PainPoints() {
                                 من واقعك وبيئتك، مصممة خصيصاً لاحتياجاتك
                             </p>
                             
-                            {/* Stats Row */}
+                            {/* Stats Row - with Icons */}
                             <div className="flex flex-wrap justify-center gap-8 md:gap-16 mt-10 pt-8 border-t border-white/10">
-                                <div className="text-center">
-                                    <span className="block text-3xl md:text-4xl font-black text-accent">+20</span>
-                                    <span className="text-sm text-white/50 font-medium">مشروع ناجح</span>
+                                <div className="text-center flex flex-col items-center">
+                                    <Code2 className="w-8 h-8 mb-2" style={{ color: '#FD8B51' }} />
+                                    <span className="text-sm text-white/50 font-medium">تطوير متكامل</span>
                                 </div>
-                                <div className="text-center">
-                                    <span className="block text-3xl md:text-4xl font-black text-accent">+15</span>
-                                    <span className="text-sm text-white/50 font-medium">سنة خبرة</span>
+                                <div className="text-center flex flex-col items-center">
+                                    <Lightbulb className="w-8 h-8 mb-2" style={{ color: '#FD8B51' }} />
+                                    <span className="text-sm text-white/50 font-medium">حلول واقعية</span>
                                 </div>
-                                <div className="text-center">
-                                    <span className="block text-3xl md:text-4xl font-black text-accent">100%</span>
-                                    <span className="text-sm text-white/50 font-medium">رضا العملاء</span>
+                                <div className="text-center flex flex-col items-center">
+                                    <Heart className="w-8 h-8 mb-2" style={{ color: '#FD8B51' }} />
+                                    <span className="text-sm text-white/50 font-medium">مرافقة صادقة</span>
                                 </div>
                             </div>
                         </div>

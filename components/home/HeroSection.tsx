@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
-import { ArrowLeft, BarChart3, TrendingUp, Sparkles, Target, Settings } from "lucide-react";
+import { ArrowLeft, BarChart3, TrendingUp, Sparkles, Target, Settings, Code2, Lightbulb, Heart } from "lucide-react";
 
 export function HeroSection() {
     return (
@@ -71,25 +71,25 @@ export function HeroSection() {
                         </motion.p>
 
                         {/* Stats Counter - Enhanced */}
-                        <motion.div 
+                        <motion.div
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.7, duration: 0.6 }}
                             className="flex items-center gap-10 pt-2"
                         >
-                            <div className="flex flex-col">
-                                <span className="text-4xl md:text-5xl font-black text-white">+20</span>
-                                <span className="text-sm text-white/50 font-medium mt-1">مشروع ناجح</span>
+                            <div className="flex flex-col items-center">
+                                <Code2 className="text-white w-8 h-8 mb-2" style={{ color: '#FD8B51' }} />
+                                <span className="text-sm text-white/50 font-medium">تطوير متكامل</span>
                             </div>
                             <div className="w-px h-14 bg-white/10"></div>
-                            <div className="flex flex-col">
-                                <span className="text-4xl md:text-5xl font-black text-white">+15</span>
-                                <span className="text-sm text-white/50 font-medium mt-1">سنوات خبرة</span>
+                            <div className="flex flex-col items-center">
+                                <Lightbulb className="text-white w-8 h-8 mb-2" style={{ color: '#FD8B51' }} />
+                                <span className="text-sm text-white/50 font-medium">حلول واقعية</span>
                             </div>
                             <div className="w-px h-14 bg-white/10 hidden sm:block"></div>
-                            <div className="flex-col hidden sm:flex">
-                                <span className="text-4xl md:text-5xl font-black" style={{ color: '#FD8B51' }}>100%</span>
-                                <span className="text-sm text-white/50 font-medium mt-1">رضا العملاء</span>
+                            <div className="flex-col items-center hidden sm:flex">
+                                <Heart className="text-white w-8 h-8 mb-2" style={{ color: '#FD8B51' }} />
+                                <span className="text-sm text-white/50 font-medium">مرافقة صادقة</span>
                             </div>
                         </motion.div>
                     </motion.div>
