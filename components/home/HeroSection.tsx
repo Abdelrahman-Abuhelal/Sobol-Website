@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
-import { ArrowLeft, BarChart3, TrendingUp, Sparkles, Target, Zap } from "lucide-react";
+import { ArrowLeft, BarChart3, TrendingUp, Sparkles, Target, Settings } from "lucide-react";
 
 export function HeroSection() {
     return (
@@ -188,7 +188,7 @@ export function HeroSection() {
                                 transition={{ repeat: Infinity, duration: 5.5, ease: "easeInOut", delay: 0.5 }}
                                 className="absolute bottom-[35%] right-[-3%] p-4 bg-primary/90 backdrop-blur-xl rounded-xl border border-white/20 shadow-2xl"
                             >
-                                <Zap className="text-white w-7 h-7" />
+                                <Settings className="text-white w-7 h-7" />
                             </motion.div>
                         </div>
 
