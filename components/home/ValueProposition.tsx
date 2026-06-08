@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { TrendingUp, Layers, Award, ArrowUpRight } from "lucide-react";
+import { TrendingUp, Layers, Award, DollarSign } from "lucide-react";
 
 const features = [
     {
@@ -141,11 +141,11 @@ export function ValueProposition() {
                                         {feature.description}
                                     </p>
 
-                                    {/* Arrow Link */}
+                                    {/* Learn More Link */}
                                     <div className="mt-8 pt-6 border-t border-secondary/5">
                                         <div className="flex items-center gap-2 font-semibold group-hover:gap-3 transition-all duration-300" style={{ color: '#FD8B51' }}>
                                             <span>اكتشف المزيد</span>
-                                            <ArrowUpRight className="w-5 h-5 group-hover:translate-x-[-4px] group-hover:-translate-y-1 transition-transform duration-300" />
+                                            <DollarSign className="w-5 h-5 group-hover:scale-110 transition-transform duration-300" />
                                         </div>
                                     </div>
                                 </div>
