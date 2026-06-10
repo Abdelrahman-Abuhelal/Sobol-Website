@@ -80,7 +80,7 @@ export function CTA() {
                         {/* Heading */}
                         <h2 className="text-5xl md:text-6xl lg:text-7xl font-black text-white mb-6 leading-tight">
                             ابدأ رحلتك نحو
-                            <span className="block mt-3" style={{ color: '#FD8B51' }}>التميز الإداري</span>
+                            <span className="block mt-3" style={{ color: '#DCEEE7' }}>التميز الإداري</span>
                         </h2>
 
                         {/* Description */}

@@ -55,7 +55,7 @@ export function HeroSection() {
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ delay: 0.5, duration: 0.6 }}
-                                className="text-3xl md:text-4xl lg:text-5xl font-bold" style={{ color: '#FD8B51' }}
+                                className="text-3xl md:text-4xl lg:text-5xl font-bold" style={{ color: '#006989' }}
                             >
                                 شركاء نحو التميز الإداري
                             </motion.h2>
@@ -78,17 +78,17 @@ export function HeroSection() {
                             className="flex items-center gap-10 pt-2"
                         >
                             <div className="flex flex-col items-center">
-                                <Code2 className="w-8 h-8 mb-2" style={{ color: '#FD8B51' }} />
+                                <Code2 className="w-8 h-8 mb-2" style={{ color: '#006989' }} />
                                 <span className="text-sm text-secondary/50 font-medium">تطوير متكامل</span>
                             </div>
                             <div className="w-px h-14 bg-secondary/10"></div>
                             <div className="flex flex-col items-center">
-                                <Lightbulb className="w-8 h-8 mb-2" style={{ color: '#FD8B51' }} />
+                                <Lightbulb className="w-8 h-8 mb-2" style={{ color: '#006989' }} />
                                 <span className="text-sm text-secondary/50 font-medium">حلول واقعية</span>
                             </div>
                             <div className="w-px h-14 bg-secondary/10 hidden sm:block"></div>
                             <div className="flex-col items-center hidden sm:flex">
-                                <Heart className="w-8 h-8 mb-2" style={{ color: '#FD8B51' }} />
+                                <Heart className="w-8 h-8 mb-2" style={{ color: '#006989' }} />
                                 <span className="text-sm text-secondary/50 font-medium">مرافقة صادقة</span>
                             </div>
                         </motion.div>
@@ -119,7 +119,7 @@ export function HeroSection() {
                                         initial={{ pathLength: 0, opacity: 0 }}
                                         animate={{ pathLength: 1, opacity: 1 }}
                                         transition={{ duration: 2.5, ease: "easeInOut" }}
-                                        style={{ stroke: '#FD8B51' }}
+                                        style={{ stroke: '#006989' }}
                                     />
                                     {/* Glow effect under the line */}
                                     <motion.path
@@ -131,8 +131,8 @@ export function HeroSection() {
                                     />
                                     <defs>
                                         <linearGradient id="hero-gradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                                            <stop offset="0%" stopColor="#FD8B51" stopOpacity="0.4" />
-                                            <stop offset="100%" stopColor="#FD8B51" stopOpacity="0" />
+                                            <stop offset="0%" stopColor="#006989" stopOpacity="0.4" />
+                                            <stop offset="100%" stopColor="#006989" stopOpacity="0" />
                                         </linearGradient>
                                     </defs>
                                 </svg>
@@ -146,7 +146,7 @@ export function HeroSection() {
                                             animate={{ height: `${height}%` }}
                                             transition={{ duration: 1.2, delay: i * 0.12 + 0.6, ease: "easeOut" }}
                                             className="w-5 md:w-7 rounded-t-xl backdrop-blur-sm relative group transition-colors duration-300"
-                                            style={{ backgroundImage: 'linear-gradient(to top, rgba(253, 139, 81, 0.2), rgba(253, 139, 81, 0.4))', borderTop: '2px solid #FD8B51', borderLeft: '1px solid rgba(253, 139, 81, 0.3)', borderRight: '1px solid rgba(253, 139, 81, 0.3)' }}
+                                            style={{ backgroundImage: 'linear-gradient(to top, rgba(0, 105, 137, 0.2), rgba(0, 105, 137, 0.4))', borderTop: '2px solid #006989', borderLeft: '1px solid rgba(0, 105, 137, 0.3)', borderRight: '1px solid rgba(0, 105, 137, 0.3)' }}
                                         >
                                             <motion.div 
                                                 initial={{ scale: 0 }}
@@ -166,7 +166,7 @@ export function HeroSection() {
                                 className="absolute top-[10%] right-[0%] p-5 backdrop-blur-xl rounded-2xl border shadow-2xl"
                                 style={{ backgroundColor: 'rgba(220, 238, 231, 0.7)', borderColor: 'rgba(220, 238, 231, 0.5)' }}
                             >
-                                <TrendingUp className="w-9 h-9" style={{ color: '#006989' }} />
+                                <TrendingUp className="w-9 h-9" style={{ color: '#12323A' }} />
                             </motion.div>
 
                             <motion.div
@@ -191,9 +191,9 @@ export function HeroSection() {
                                 animate={{ y: [0, 10, 0], x: [0, -5, 0] }}
                                 transition={{ repeat: Infinity, duration: 5.5, ease: "easeInOut", delay: 0.5 }}
                                 className="absolute bottom-[35%] right-[-3%] p-4 backdrop-blur-xl rounded-xl border shadow-2xl"
-                                style={{ backgroundColor: 'rgba(0, 105, 137, 0.8)', borderColor: 'rgba(0, 105, 137, 0.4)' }}
+                                style={{ backgroundColor: 'rgba(18, 50, 58, 0.9)', borderColor: 'rgba(18, 50, 58, 0.4)' }}
                             >
-                                <Settings className="w-7 h-7" style={{ color: 'white' }} />
+                                <Settings className="w-7 h-7" style={{ color: '#DCEEE7' }} />
                             </motion.div>
                         </div>
 
@@ -208,7 +208,7 @@ export function HeroSection() {
                                 <Button
                                     size="lg"
                                     className="text-lg px-10 h-16 font-bold rounded-2xl transition-all duration-300 hover:scale-[1.02]"
-                                    style={{ backgroundColor: '#FD8B51', color: 'white' }}
+                                    style={{ backgroundColor: '#006989', color: 'white' }}
                                 >
                                     اطلب استشارة مجانية
                                     <ArrowLeft className="me-3 h-5 w-5" aria-hidden="true" />

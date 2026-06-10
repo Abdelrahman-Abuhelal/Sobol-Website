@@ -123,8 +123,8 @@ export function PainPoints() {
                                 <div className="relative z-10">
                                     {/* Icon */}
                                     <div className="flex items-start gap-5 mb-5">
-                                        <div className="shrink-0 w-14 h-14 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-all duration-300" style={{ backgroundColor: 'rgba(253, 139, 81, 0.1)', borderColor: 'rgba(253, 139, 81, 0.2)', borderWidth: '1px' }}>
-                                            <item.icon className="w-7 h-7" strokeWidth={1.5} style={{ color: '#FD8B51' }} />
+                                        <div className="shrink-0 w-14 h-14 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-all duration-300" style={{ backgroundColor: 'rgba(0, 105, 137, 0.1)', borderColor: 'rgba(0, 105, 137, 0.2)', borderWidth: '1px' }}>
+                                            <item.icon className="w-7 h-7" strokeWidth={1.5} style={{ color: '#006989' }} />
                                         </div>
                                         <div className="flex-1">
                                             <p className="text-xl md:text-2xl font-bold text-secondary leading-relaxed group-hover:text-secondary/90 transition-colors">
@@ -153,7 +153,7 @@ export function PainPoints() {
                         transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
                         className="w-12 h-12 rounded-full bg-white shadow-lg flex items-center justify-center border border-secondary/5"
                     >
-                        <ArrowDown className="w-5 h-5" style={{ color: '#FD8B51' }} />
+                        <ArrowDown className="w-5 h-5" style={{ color: '#006989' }} />
                     </motion.div>
                 </motion.div>
 
@@ -204,15 +204,15 @@ export function PainPoints() {
                             {/* Stats Row - with Icons */}
                             <div className="flex flex-wrap justify-center gap-8 md:gap-16 mt-10 pt-8 border-t border-white/10">
                                 <div className="text-center flex flex-col items-center">
-                                    <Code2 className="w-8 h-8 mb-2" style={{ color: '#FD8B51' }} />
+                                    <Code2 className="w-8 h-8 mb-2" style={{ color: '#006989' }} />
                                     <span className="text-sm text-white/50 font-medium">تطوير متكامل</span>
                                 </div>
                                 <div className="text-center flex flex-col items-center">
-                                    <Lightbulb className="w-8 h-8 mb-2" style={{ color: '#FD8B51' }} />
+                                    <Lightbulb className="w-8 h-8 mb-2" style={{ color: '#006989' }} />
                                     <span className="text-sm text-white/50 font-medium">حلول واقعية</span>
                                 </div>
                                 <div className="text-center flex flex-col items-center">
-                                    <Heart className="w-8 h-8 mb-2" style={{ color: '#FD8B51' }} />
+                                    <Heart className="w-8 h-8 mb-2" style={{ color: '#006989' }} />
                                     <span className="text-sm text-white/50 font-medium">مرافقة صادقة</span>
                                 </div>
                             </div>

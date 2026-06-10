@@ -124,11 +124,11 @@ export function ValueProposition() {
                                 <div className="relative z-10">
                                     {/* Metric Badge */}
                                     <div className="flex items-start justify-between mb-8">
-                                        <div className="w-16 h-16 rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300" style={{ backgroundColor: 'rgba(253, 139, 81, 0.15)' }}>
-                                            <feature.icon className="w-8 h-8" strokeWidth={1.5} style={{ color: '#FD8B51' }} />
+                                        <div className="w-16 h-16 rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300" style={{ backgroundColor: 'rgba(0, 105, 137, 0.15)' }}>
+                                            <feature.icon className="w-8 h-8" strokeWidth={1.5} style={{ color: '#006989' }} />
                                         </div>
                                         <div className="text-left opacity-60 group-hover:opacity-100 transition-opacity">
-                                            <span className="block text-3xl font-black" style={{ color: '#FD8B51' }}>{feature.metric}</span>
+                                            <span className="block text-3xl font-black" style={{ color: '#006989' }}>{feature.metric}</span>
                                             <span className="text-xs text-secondary/60 font-medium">{feature.metricLabel}</span>
                                         </div>
                                     </div>
@@ -143,7 +143,7 @@ export function ValueProposition() {
 
                                     {/* Learn More Link */}
                                     <div className="mt-8 pt-6 border-t border-secondary/5">
-                                        <div className="flex items-center gap-2 font-semibold group-hover:gap-3 transition-all duration-300" style={{ color: '#FD8B51' }}>
+                                        <div className="flex items-center gap-2 font-semibold group-hover:gap-3 transition-all duration-300" style={{ color: '#006989' }}>
                                             <span>اكتشف المزيد</span>
                                             <DollarSign className="w-5 h-5 group-hover:scale-110 transition-transform duration-300" />
                                         </div>
