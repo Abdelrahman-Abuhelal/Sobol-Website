@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, Variants, Transition } from "framer-motion"; // Added Variants and Transition types
-import { AlertCircle, TrendingDown, Users, HelpCircle, ArrowDown, Sparkles, CheckCircle2 } from "lucide-react";
+import { AlertCircle, TrendingDown, Users, HelpCircle, ArrowDown, Sparkles, CheckCircle2, Code2, Lightbulb, Heart } from "lucide-react";
 
 const painPoints = [
     {
@@ -54,9 +54,9 @@ const itemVariants: Variants = { // Explicitly typed as Variants
 export function PainPoints() {
     return (
         <section className="relative py-28 overflow-hidden">
-            {/* Dynamic Background */}
-            <div className="absolute inset-0 bg-gradient-to-b from-white via-accent/30 to-accent/50" />
-            
+            {/* Sobol Mint Background */}
+            <div className="absolute inset-0" style={{ backgroundColor: '#DCEEE7' }} />
+
             {/* Geometric Pattern Overlay */}
             <div className="absolute inset-0 opacity-[0.03]">
                 <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
@@ -90,25 +90,12 @@ export function PainPoints() {
                     transition={{ duration: 0.7 }}
                     className="text-center mb-20"
                 >
-                    <motion.div
-                        initial={{ scale: 0.9, opacity: 0 }}
-                        whileInView={{ scale: 1, opacity: 1 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: 0.2 }}
-                        className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-secondary/5 border border-secondary/10 mb-6"
-                    >
-                        <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-                        <span className="text-sm font-semibold text-secondary tracking-wide">نفهم تحدياتك</span>
-                    </motion.div>
                     
-                    <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-secondary mb-6 leading-tight">
+                    <h2 className="text-5xl md:text-6xl lg:text-7xl font-black text-secondary mb-6 leading-tight">
                         هل تواجه هذه
                         <span className="block text-primary mt-2">التحديات؟</span>
                     </h2>
                     
-                    <p className="text-lg md:text-xl text-secondary/60 max-w-2xl mx-auto leading-relaxed">
-                        إذا كانت إجابتك <span className="font-bold text-primary">"نعم"</span> على أي من هذه الأسئلة، فأنت في المكان الصحيح
-                    </p>
                 </motion.div>
 
                 {/* Pain Points Grid - Modern Card Design */}
@@ -136,27 +123,18 @@ export function PainPoints() {
                                 <div className="relative z-10">
                                     {/* Icon */}
                                     <div className="flex items-start gap-5 mb-5">
-                                        <div className="shrink-0 w-14 h-14 rounded-2xl bg-gradient-to-br from-primary/10 to-primary/5 border border-primary/10 flex items-center justify-center group-hover:scale-110 group-hover:bg-primary/15 transition-all duration-300">
-                                            <item.icon className="w-7 h-7 text-primary" strokeWidth={1.5} />
+                                        <div className="shrink-0 w-14 h-14 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-all duration-300" style={{ backgroundColor: 'rgba(0, 105, 137, 0.1)', borderColor: 'rgba(0, 105, 137, 0.2)', borderWidth: '1px' }}>
+                                            <item.icon className="w-7 h-7" strokeWidth={1.5} style={{ color: '#006989' }} />
                                         </div>
                                         <div className="flex-1">
-                                            <p className="text-lg md:text-xl font-bold text-secondary leading-relaxed group-hover:text-secondary/90 transition-colors">
+                                            <p className="text-xl md:text-2xl font-bold text-secondary leading-relaxed group-hover:text-secondary/90 transition-colors">
                                                 {item.question}
                                             </p>
                                         </div>
                                     </div>
                                     
-                                    {/* Solution Preview */}
-                                    <div className="flex items-center gap-3 pt-4 border-t border-secondary/5">
-                                        <CheckCircle2 className="w-5 h-5 text-primary shrink-0" />
-                                        <span className="text-sm font-medium text-primary/80">{item.solution}</span>
-                                    </div>
                                 </div>
 
-                                {/* Number Badge */}
-                                <div className="absolute bottom-4 left-4 w-8 h-8 rounded-full bg-secondary/5 flex items-center justify-center">
-                                    <span className="text-xs font-bold text-secondary/30">{String(index + 1).padStart(2, '0')}</span>
-                                </div>
                             </div>
                         </motion.div>
                     ))}
@@ -175,7 +153,7 @@ export function PainPoints() {
                         transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
                         className="w-12 h-12 rounded-full bg-white shadow-lg flex items-center justify-center border border-secondary/5"
                     >
-                        <ArrowDown className="w-5 h-5 text-primary" />
+                        <ArrowDown className="w-5 h-5" style={{ color: '#006989' }} />
                     </motion.div>
                 </motion.div>
 
@@ -223,19 +201,19 @@ export function PainPoints() {
                                 من واقعك وبيئتك، مصممة خصيصاً لاحتياجاتك
                             </p>
                             
-                            {/* Stats Row */}
+                            {/* Stats Row - with Icons */}
                             <div className="flex flex-wrap justify-center gap-8 md:gap-16 mt-10 pt-8 border-t border-white/10">
-                                <div className="text-center">
-                                    <span className="block text-3xl md:text-4xl font-black text-accent">+20</span>
-                                    <span className="text-sm text-white/50 font-medium">مشروع ناجح</span>
+                                <div className="text-center flex flex-col items-center">
+                                    <Code2 className="w-8 h-8 mb-2" style={{ color: '#006989' }} />
+                                    <span className="text-sm text-white/50 font-medium">تطوير متكامل</span>
                                 </div>
-                                <div className="text-center">
-                                    <span className="block text-3xl md:text-4xl font-black text-accent">+15</span>
-                                    <span className="text-sm text-white/50 font-medium">سنة خبرة</span>
+                                <div className="text-center flex flex-col items-center">
+                                    <Lightbulb className="w-8 h-8 mb-2" style={{ color: '#006989' }} />
+                                    <span className="text-sm text-white/50 font-medium">حلول واقعية</span>
                                 </div>
-                                <div className="text-center">
-                                    <span className="block text-3xl md:text-4xl font-black text-accent">100%</span>
-                                    <span className="text-sm text-white/50 font-medium">رضا العملاء</span>
+                                <div className="text-center flex flex-col items-center">
+                                    <Heart className="w-8 h-8 mb-2" style={{ color: '#006989' }} />
+                                    <span className="text-sm text-white/50 font-medium">مرافقة صادقة</span>
                                 </div>
                             </div>
                         </div>

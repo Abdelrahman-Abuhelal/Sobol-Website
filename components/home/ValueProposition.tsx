@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { TrendingUp, Layers, Award, ArrowUpRight } from "lucide-react";
+import { TrendingUp, Layers, Award, DollarSign } from "lucide-react";
 
 const features = [
     {
@@ -88,22 +88,13 @@ export function ValueProposition() {
                     transition={{ duration: 0.7 }}
                     className="text-center mb-20"
                 >
-                    <motion.div
-                        initial={{ scale: 0.9, opacity: 0 }}
-                        whileInView={{ scale: 1, opacity: 1 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: 0.2 }}
-                        className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-primary/5 border border-primary/10 mb-6"
-                    >
-                        <span className="text-sm font-semibold text-primary tracking-wide">لماذا سُبُل؟</span>
-                    </motion.div>
                     
-                    <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-secondary mb-6 leading-tight">
+                    <h2 className="text-5xl md:text-6xl lg:text-7xl font-black text-secondary mb-6 leading-tight">
                         ما يميزنا
                         <span className="block text-primary/80 mt-2">عن غيرنا</span>
                     </h2>
-                    
-                    <p className="text-lg md:text-xl text-secondary/60 max-w-2xl mx-auto leading-relaxed">
+
+                    <p className="text-xl md:text-2xl text-secondary/60 max-w-2xl mx-auto leading-relaxed">
                         نجمع بين الخبرة العميقة والفهم المحلي لنقدم لك حلولاً تناسب واقعك
                     </p>
                 </motion.div>
@@ -133,28 +124,28 @@ export function ValueProposition() {
                                 <div className="relative z-10">
                                     {/* Metric Badge */}
                                     <div className="flex items-start justify-between mb-8">
-                                        <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${feature.iconGradient} flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300`}>
-                                            <feature.icon className="w-8 h-8 text-white" strokeWidth={1.5} />
+                                        <div className="w-16 h-16 rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300" style={{ backgroundColor: 'rgba(0, 105, 137, 0.15)' }}>
+                                            <feature.icon className="w-8 h-8" strokeWidth={1.5} style={{ color: '#006989' }} />
                                         </div>
                                         <div className="text-left opacity-60 group-hover:opacity-100 transition-opacity">
-                                            <span className="block text-3xl font-black text-secondary">{feature.metric}</span>
+                                            <span className="block text-3xl font-black" style={{ color: '#006989' }}>{feature.metric}</span>
                                             <span className="text-xs text-secondary/60 font-medium">{feature.metricLabel}</span>
                                         </div>
                                     </div>
 
                                     {/* Title & Description */}
-                                    <h3 className="text-2xl lg:text-3xl font-black text-secondary mb-4 group-hover:text-secondary/90 transition-colors">
+                                    <h3 className="text-3xl lg:text-4xl font-black text-secondary mb-4 group-hover:text-secondary/90 transition-colors">
                                         {feature.title}
                                     </h3>
-                                    <p className="text-secondary/60 leading-relaxed text-lg">
+                                    <p className="text-secondary/60 leading-relaxed text-xl">
                                         {feature.description}
                                     </p>
 
-                                    {/* Arrow Link */}
+                                    {/* Learn More Link */}
                                     <div className="mt-8 pt-6 border-t border-secondary/5">
-                                        <div className="flex items-center gap-2 text-primary font-semibold group-hover:gap-3 transition-all duration-300">
+                                        <div className="flex items-center gap-2 font-semibold group-hover:gap-3 transition-all duration-300" style={{ color: '#006989' }}>
                                             <span>اكتشف المزيد</span>
-                                            <ArrowUpRight className="w-5 h-5 group-hover:translate-x-[-4px] group-hover:-translate-y-1 transition-transform duration-300" />
+                                            <DollarSign className="w-5 h-5 group-hover:scale-110 transition-transform duration-300" />
                                         </div>
                                     </div>
                                 </div>

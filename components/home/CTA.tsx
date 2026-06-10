@@ -43,24 +43,25 @@ export function CTA() {
                     </svg>
                 </div>
                 
-                {/* Floating Particles */}
-                {[...Array(6)].map((_, i) => (
+                {/* Floating Particles - Reduced Count */}
+                {[...Array(3)].map((_, i) => (
                     <motion.div
                         key={i}
                         animate={{
-                            y: [0, -30, 0],
-                            opacity: [0.2, 0.5, 0.2],
+                            y: [0, -20, 0],
+                            opacity: [0.1, 0.3, 0.1],
                         }}
                         transition={{
                             repeat: Infinity,
-                            duration: 4 + i,
-                            delay: i * 0.5,
+                            duration: 5 + i,
+                            delay: i * 0.8,
                             ease: "easeInOut",
                         }}
-                        className="absolute w-2 h-2 rounded-full bg-accent/40"
+                        className="absolute w-2 h-2 rounded-full"
                         style={{
-                            left: `${15 + i * 15}%`,
-                            top: `${20 + (i % 3) * 25}%`,
+                            backgroundColor: 'rgba(253, 139, 81, 0.5)',
+                            left: `${20 + i * 30}%`,
+                            top: `${30 + (i % 2) * 20}%`,
                         }}
                     />
                 ))}
@@ -76,26 +77,14 @@ export function CTA() {
                         transition={{ duration: 0.7 }}
                         className="text-center"
                     >
-                        {/* Badge */}
-                        <motion.div
-                            initial={{ scale: 0.9, opacity: 0 }}
-                            whileInView={{ scale: 1, opacity: 1 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: 0.2 }}
-                            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/10 backdrop-blur-sm border border-white/10 mb-8"
-                        >
-                            <Sparkles className="w-4 h-4 text-accent" />
-                            <span className="text-sm font-semibold text-white/90">ابدأ الآن مجاناً</span>
-                        </motion.div>
-
                         {/* Heading */}
-                        <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-white mb-6 leading-tight">
+                        <h2 className="text-5xl md:text-6xl lg:text-7xl font-black text-white mb-6 leading-tight">
                             ابدأ رحلتك نحو
-                            <span className="block text-accent mt-3">التميز الإداري</span>
+                            <span className="block mt-3" style={{ color: '#DCEEE7' }}>التميز الإداري</span>
                         </h2>
 
                         {/* Description */}
-                        <p className="text-lg md:text-xl text-white/60 mb-12 max-w-2xl mx-auto leading-relaxed">
+                        <p className="text-xl md:text-2xl text-white/60 mb-12 max-w-2xl mx-auto leading-relaxed">
                             لا تترك التحديات تعيق نمو مشروعك. دعنا نساعدك في وضع مشروعك على المسار الصحيح من خلال استشارة مجانية شاملة.
                         </p>
 
