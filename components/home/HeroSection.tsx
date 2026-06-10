@@ -8,24 +8,24 @@ import { ArrowLeft, BarChart3, TrendingUp, Sparkles, Target, Settings, Code2, Li
 export function HeroSection() {
     return (
         <section
-            className="relative w-full overflow-hidden bg-secondary pt-24 pb-28 md:pt-36 md:pb-40"
+            className="relative w-full overflow-hidden bg-white pt-24 pb-28 md:pt-36 md:pb-40"
             aria-label="القسم الرئيسي"
         >
-            {/* Clean Brand Background - Orange Accent Blobs */}
+            {/* Clean Brand Background - Mint Accent Blobs */}
             <div className="absolute inset-0 overflow-hidden">
-                {/* Subtle Orange Accent Blobs - Minimal, Professional */}
+                {/* Subtle Mint Accent Blobs - Minimal, Professional */}
                 <motion.div
                     animate={{ opacity: [0.08, 0.12, 0.08] }}
                     transition={{ repeat: Infinity, duration: 8, ease: "easeInOut" }}
                     className="absolute top-20 right-[10%] w-[400px] h-[400px] rounded-full blur-[120px] pointer-events-none"
-                    style={{ backgroundColor: 'rgba(253, 139, 81, 0.2)' }}
+                    style={{ backgroundColor: 'rgba(220, 238, 231, 0.6)' }}
                     aria-hidden="true"
                 />
                 <motion.div
                     animate={{ opacity: [0.06, 0.1, 0.06] }}
                     transition={{ repeat: Infinity, duration: 10, ease: "easeInOut", delay: 1 }}
                     className="absolute -bottom-20 left-[5%] w-[350px] h-[350px] rounded-full blur-[100px] pointer-events-none"
-                    style={{ backgroundColor: 'rgba(253, 139, 81, 0.15)' }}
+                    style={{ backgroundColor: 'rgba(0, 105, 137, 0.08)' }}
                     aria-hidden="true"
                 />
             </div>
@@ -46,7 +46,7 @@ export function HeroSection() {
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ delay: 0.4, duration: 0.6 }}
-                                className="text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-black tracking-tight text-white leading-[1.1]"
+                                className="text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-black tracking-tight text-secondary leading-[1.1]"
                             >
                                 سُبُل
                                 <span className="block text-primary-foreground/80 mt-2">لتطوير الأعمال</span>
@@ -55,7 +55,7 @@ export function HeroSection() {
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ delay: 0.5, duration: 0.6 }}
-                                className="text-3xl md:text-4xl lg:text-5xl font-bold text-accent"
+                                className="text-3xl md:text-4xl lg:text-5xl font-bold" style={{ color: '#FD8B51' }}
                             >
                                 شركاء نحو التميز الإداري
                             </motion.h2>
@@ -65,7 +65,7 @@ export function HeroSection() {
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.6, duration: 0.6 }}
-                            className="text-xl md:text-2xl text-white/70 leading-relaxed max-w-2xl"
+                            className="text-xl md:text-2xl text-secondary/70 leading-relaxed max-w-2xl"
                         >
                             نساعد المشاريع والشركات على فهم واقعها، تنظيم أعمالها، وتحسين أدائها من خلال حلول عملية تقود إلى نمو أكثر ثباتًا.
                         </motion.p>
@@ -78,18 +78,18 @@ export function HeroSection() {
                             className="flex items-center gap-10 pt-2"
                         >
                             <div className="flex flex-col items-center">
-                                <Code2 className="text-white w-8 h-8 mb-2" style={{ color: '#FD8B51' }} />
-                                <span className="text-sm text-white/50 font-medium">تطوير متكامل</span>
+                                <Code2 className="w-8 h-8 mb-2" style={{ color: '#FD8B51' }} />
+                                <span className="text-sm text-secondary/50 font-medium">تطوير متكامل</span>
                             </div>
-                            <div className="w-px h-14 bg-white/10"></div>
+                            <div className="w-px h-14 bg-secondary/10"></div>
                             <div className="flex flex-col items-center">
-                                <Lightbulb className="text-white w-8 h-8 mb-2" style={{ color: '#FD8B51' }} />
-                                <span className="text-sm text-white/50 font-medium">حلول واقعية</span>
+                                <Lightbulb className="w-8 h-8 mb-2" style={{ color: '#FD8B51' }} />
+                                <span className="text-sm text-secondary/50 font-medium">حلول واقعية</span>
                             </div>
-                            <div className="w-px h-14 bg-white/10 hidden sm:block"></div>
+                            <div className="w-px h-14 bg-secondary/10 hidden sm:block"></div>
                             <div className="flex-col items-center hidden sm:flex">
-                                <Heart className="text-white w-8 h-8 mb-2" style={{ color: '#FD8B51' }} />
-                                <span className="text-sm text-white/50 font-medium">مرافقة صادقة</span>
+                                <Heart className="w-8 h-8 mb-2" style={{ color: '#FD8B51' }} />
+                                <span className="text-sm text-secondary/50 font-medium">مرافقة صادقة</span>
                             </div>
                         </motion.div>
                     </motion.div>
@@ -114,12 +114,12 @@ export function HeroSection() {
                                     <motion.path
                                         d="M5,85 C20,75 30,55 45,60 S65,35 80,25 L95,10"
                                         fill="none"
-                                        stroke="white"
                                         strokeWidth="2"
                                         strokeLinecap="round"
                                         initial={{ pathLength: 0, opacity: 0 }}
                                         animate={{ pathLength: 1, opacity: 1 }}
                                         transition={{ duration: 2.5, ease: "easeInOut" }}
+                                        style={{ stroke: '#FD8B51' }}
                                     />
                                     {/* Glow effect under the line */}
                                     <motion.path
@@ -131,8 +131,8 @@ export function HeroSection() {
                                     />
                                     <defs>
                                         <linearGradient id="hero-gradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                                            <stop offset="0%" stopColor="#387478" stopOpacity="0.6" />
-                                            <stop offset="100%" stopColor="#387478" stopOpacity="0" />
+                                            <stop offset="0%" stopColor="#FD8B51" stopOpacity="0.4" />
+                                            <stop offset="100%" stopColor="#FD8B51" stopOpacity="0" />
                                         </linearGradient>
                                     </defs>
                                 </svg>
@@ -145,7 +145,8 @@ export function HeroSection() {
                                             initial={{ height: 0 }}
                                             animate={{ height: `${height}%` }}
                                             transition={{ duration: 1.2, delay: i * 0.12 + 0.6, ease: "easeOut" }}
-                                            className="w-5 md:w-7 bg-gradient-to-t from-white/10 to-white/30 rounded-t-xl backdrop-blur-sm border-t border-x border-white/20 relative group hover:bg-white/40 transition-colors duration-300"
+                                            className="w-5 md:w-7 rounded-t-xl backdrop-blur-sm relative group transition-colors duration-300"
+                                            style={{ backgroundImage: 'linear-gradient(to top, rgba(253, 139, 81, 0.2), rgba(253, 139, 81, 0.4))', borderTop: '2px solid #FD8B51', borderLeft: '1px solid rgba(253, 139, 81, 0.3)', borderRight: '1px solid rgba(253, 139, 81, 0.3)' }}
                                         >
                                             <motion.div 
                                                 initial={{ scale: 0 }}
@@ -162,33 +163,37 @@ export function HeroSection() {
                             <motion.div
                                 animate={{ y: [0, -12, 0], rotate: [0, 3, 0] }}
                                 transition={{ repeat: Infinity, duration: 5, ease: "easeInOut" }}
-                                className="absolute top-[10%] right-[0%] p-5 bg-white/10 backdrop-blur-xl rounded-2xl border border-white/20 shadow-2xl"
+                                className="absolute top-[10%] right-[0%] p-5 backdrop-blur-xl rounded-2xl border shadow-2xl"
+                                style={{ backgroundColor: 'rgba(220, 238, 231, 0.7)', borderColor: 'rgba(220, 238, 231, 0.5)' }}
                             >
-                                <TrendingUp className="text-accent w-9 h-9" />
+                                <TrendingUp className="w-9 h-9" style={{ color: '#006989' }} />
                             </motion.div>
 
                             <motion.div
                                 animate={{ y: [0, 12, 0], rotate: [0, -3, 0] }}
                                 transition={{ repeat: Infinity, duration: 6, ease: "easeInOut", delay: 1 }}
-                                className="absolute bottom-[20%] left-[-5%] p-5 bg-secondary/95 backdrop-blur-xl rounded-2xl border border-white/10 shadow-2xl"
+                                className="absolute bottom-[20%] left-[-5%] p-5 backdrop-blur-xl rounded-2xl border shadow-2xl"
+                                style={{ backgroundColor: 'rgba(18, 50, 58, 0.9)', borderColor: 'rgba(18, 50, 58, 0.3)' }}
                             >
-                                <BarChart3 className="text-primary w-9 h-9" />
+                                <BarChart3 className="w-9 h-9" style={{ color: '#006989' }} />
                             </motion.div>
 
                             <motion.div
                                 animate={{ y: [0, -8, 0], x: [0, 5, 0] }}
                                 transition={{ repeat: Infinity, duration: 7, ease: "easeInOut", delay: 2 }}
-                                className="absolute top-[45%] left-[5%] p-4 bg-accent/90 backdrop-blur-xl rounded-xl border border-white/30 shadow-2xl"
+                                className="absolute top-[45%] left-[5%] p-4 backdrop-blur-xl rounded-xl border shadow-2xl"
+                                style={{ backgroundColor: 'rgba(220, 238, 231, 0.8)', borderColor: 'rgba(220, 238, 231, 0.6)' }}
                             >
-                                <Target className="text-secondary w-7 h-7" />
+                                <Target className="w-7 h-7" style={{ color: '#12323A' }} />
                             </motion.div>
 
                             <motion.div
                                 animate={{ y: [0, 10, 0], x: [0, -5, 0] }}
                                 transition={{ repeat: Infinity, duration: 5.5, ease: "easeInOut", delay: 0.5 }}
-                                className="absolute bottom-[35%] right-[-3%] p-4 bg-primary/90 backdrop-blur-xl rounded-xl border border-white/20 shadow-2xl"
+                                className="absolute bottom-[35%] right-[-3%] p-4 backdrop-blur-xl rounded-xl border shadow-2xl"
+                                style={{ backgroundColor: 'rgba(0, 105, 137, 0.8)', borderColor: 'rgba(0, 105, 137, 0.4)' }}
                             >
-                                <Settings className="text-white w-7 h-7" />
+                                <Settings className="w-7 h-7" style={{ color: 'white' }} />
                             </motion.div>
                         </div>
 
@@ -202,7 +207,8 @@ export function HeroSection() {
                             <Link href="/contact" aria-label="اطلب استشارة مجانية">
                                 <Button
                                     size="lg"
-                                    className="text-lg px-10 h-16 bg-white text-secondary hover:bg-accent hover:text-secondary hover:scale-[1.02] transition-all duration-300 font-bold rounded-2xl shadow-[0_8px_30px_rgba(255,255,255,0.15)]"
+                                    className="text-lg px-10 h-16 font-bold rounded-2xl transition-all duration-300 hover:scale-[1.02]"
+                                    style={{ backgroundColor: '#FD8B51', color: 'white' }}
                                 >
                                     اطلب استشارة مجانية
                                     <ArrowLeft className="me-3 h-5 w-5" aria-hidden="true" />
@@ -212,7 +218,8 @@ export function HeroSection() {
                                 <Button
                                     variant="outline"
                                     size="lg"
-                                    className="text-lg px-10 h-16 border-white/20 text-white hover:bg-white/10 transition-all duration-300 rounded-2xl font-semibold"
+                                    className="text-lg px-10 h-16 font-semibold rounded-2xl transition-all duration-300"
+                                    style={{ borderColor: '#12323A', color: '#12323A' }}
                                 >
                                     استكشف خدماتنا
                                 </Button>
