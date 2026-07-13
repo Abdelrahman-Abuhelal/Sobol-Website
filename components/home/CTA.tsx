@@ -117,7 +117,7 @@ export function CTA() {
                                     <ArrowLeft className="me-3 h-5 w-5" />
                                 </Button>
                             </Link>
-                            <Link href="tel:+970000000000">
+                            <Link href="tel:+970568060330">
                                 <Button 
                                     variant="outline" 
                                     size="lg" 

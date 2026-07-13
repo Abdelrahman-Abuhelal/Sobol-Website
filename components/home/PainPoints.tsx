@@ -107,7 +107,7 @@ export function PainPoints() {
                     </h2>
                     
                     <p className="text-lg md:text-xl text-secondary/60 max-w-2xl mx-auto leading-relaxed">
-                        إذا كانت إجابتك <span className="font-bold text-primary">"نعم"</span> على أي من هذه الأسئلة، فأنت في المكان الصحيح
+                        إذا كانت إجابتك <span className="font-bold text-primary">&quot;نعم&quot;</span> على أي من هذه الأسئلة، فأنت في المكان الصحيح
                     </p>
                 </motion.div>
 

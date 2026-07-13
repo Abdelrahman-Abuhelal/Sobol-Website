@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Tajawal } from "next/font/google";
+import { WhatsAppButton } from "@/components/layout/WhatsAppButton";
 import "./globals.css";
 
 const tajawal = Tajawal({
@@ -22,6 +23,7 @@ export default function RootLayout({
     <html lang="ar" dir="rtl" suppressHydrationWarning>
       <body className={`${tajawal.variable} font-sans antialiased bg-background text-foreground`} suppressHydrationWarning>
         {children}
+        <WhatsAppButton />
       </body>
     </html>
   );
