@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowLeft, ArrowUpLeft } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 
 const journey = [
     {
@@ -28,51 +28,64 @@ function GrowthJourney() {
         >
             <div className="absolute -inset-8 -z-10 rounded-[3.5rem] bg-[oklch(0.94_0.035_174/0.55)] blur-3xl" />
 
-            <div className="overflow-hidden rounded-[2rem] border border-[oklch(0.86_0.025_190)] bg-[oklch(0.995_0.004_175)] shadow-[0_24px_70px_oklch(0.36_0.055_210/0.10)]">
-                <div className="flex items-start justify-between gap-6 px-6 pb-3 pt-6 sm:px-8 sm:pt-7">
-                    <div>
-                        <p className="mb-1 text-sm font-medium text-primary">من الفكرة إلى الأثر</p>
-                        <figcaption id="journey-title" className="text-xl font-bold text-secondary sm:text-2xl">
-                            مسار العمل مع سُبُل
-                        </figcaption>
-                        <p id="journey-description" className="sr-only">
-                            ثلاث مراحل تبدأ بالتشخيص، ثم التنظيم، وتنتهي بالنمو المستدام.
-                        </p>
-                    </div>
-                    <span className="flex size-11 shrink-0 items-center justify-center rounded-full bg-[oklch(0.93_0.045_175)] text-primary">
-                        <ArrowUpLeft className="size-5" aria-hidden="true" />
-                    </span>
+            <div className="overflow-hidden rounded-[2rem] border border-[oklch(0.84_0.025_190)] bg-[oklch(0.992_0.006_175)] shadow-[0_24px_70px_oklch(0.36_0.055_210/0.11)]">
+                <div className="px-6 pb-5 pt-7 sm:px-8 sm:pb-6 sm:pt-8">
+                    <figcaption id="journey-title" className="text-2xl font-black text-secondary sm:text-[1.7rem]">
+                        مسار العمل مع سُبُل
+                    </figcaption>
+                    <p id="journey-description" className="mt-2 max-w-[28rem] text-sm leading-6 text-secondary/60">
+                        منهج واضح ينقل التحديات من الفهم إلى التقدّم المنظّم.
+                    </p>
                 </div>
 
-                <div className="px-5 pb-6 pt-3 sm:px-7 sm:pb-7">
-                    <ol className="relative grid gap-3 sm:grid-cols-3 sm:items-center sm:gap-3 sm:py-10">
-                        <span
-                            className="absolute inset-x-14 top-1/2 hidden border-t border-dashed border-[oklch(0.66_0.055_185/0.55)] sm:block"
-                            aria-hidden="true"
-                        />
-                        {journey.map((item) => (
-                            <li
-                                key={item.step}
-                                className={`relative flex min-h-24 items-center gap-4 p-5 sm:aspect-square sm:min-h-0 sm:w-full sm:p-5 ${
-                                    item.step === "01"
-                                        ? "z-30 rounded-[1.4rem_3rem_3rem_3rem] border border-[oklch(0.78_0.035_190)] bg-[oklch(0.995_0.004_175)] text-secondary shadow-[0_12px_30px_oklch(0.36_0.055_210/0.07)] sm:translate-y-6"
-                                        : item.step === "02"
-                                          ? "z-20 rounded-[2.5rem_1.5rem_2.5rem_2.5rem] bg-accent text-secondary sm:translate-y-0"
-                                          : "z-10 rounded-[3rem_3rem_3rem_1.3rem] bg-primary text-primary-foreground sm:-translate-y-6 sm:rounded-full"
-                                }`}
-                            >
-                                <div>
-                                    <span className={`block text-sm font-black tracking-wider ${item.step === "03" ? "text-primary-foreground/65" : "text-primary/70"}`}>
+                <div className="mx-4 overflow-hidden rounded-[1.5rem] border border-[oklch(0.84_0.025_190)] bg-[linear-gradient(145deg,oklch(0.995_0.004_175),oklch(0.965_0.022_174))] sm:mx-6">
+                    <ol className="relative grid sm:grid-cols-3" aria-label="مراحل مسار العمل">
+                        {journey.map((item) => {
+                            const isHighlighted = item.step === "03";
+
+                            return (
+                                <li
+                                    key={item.step}
+                                    className={`journey-stage relative grid min-h-36 grid-cols-[2.75rem_minmax(0,1fr)] gap-x-4 px-5 py-5 sm:block sm:min-h-[14rem] sm:px-5 sm:py-6 ${
+                                        isHighlighted
+                                            ? "bg-primary text-primary-foreground"
+                                            : "text-secondary"
+                                    }`}
+                                >
+                                    {item.step !== "03" && (
+                                        <span
+                                            className="journey-connector absolute right-[2.35rem] top-12 h-full w-px bg-[oklch(0.64_0.055_184/0.45)] sm:right-1/2 sm:top-8 sm:h-px sm:w-full"
+                                            aria-hidden="true"
+                                        />
+                                    )}
+
+                                    <span
+                                        className={`relative z-10 flex size-8 items-center justify-center rounded-full border text-[0.7rem] font-black tracking-wider sm:mx-auto ${
+                                            isHighlighted
+                                                ? "border-primary-foreground/35 bg-primary-foreground text-primary"
+                                                : "border-[oklch(0.7_0.05_185)] bg-[oklch(0.992_0.006_175)] text-primary"
+                                        }`}
+                                    >
                                         {item.step}
                                     </span>
-                                    <p className="mt-2 text-lg font-black leading-7">{item.title}</p>
-                                    <p className={`mt-1 text-sm leading-5 ${item.step === "03" ? "text-primary-foreground/80" : "text-secondary/65"}`}>
-                                        {item.description}
-                                    </p>
-                                </div>
-                            </li>
-                        ))}
+
+                                    <div className="pt-0.5 sm:mt-6 sm:pt-0 sm:text-center">
+                                        <p className="text-lg font-black leading-7">{item.title}</p>
+                                        <p className={`mt-2 text-sm leading-6 ${isHighlighted ? "text-primary-foreground/80" : "text-secondary/60"}`}>
+                                            {item.description}
+                                        </p>
+                                    </div>
+                                </li>
+                            );
+                        })}
                     </ol>
+                </div>
+
+                <div className="flex justify-end px-6 pb-7 pt-5 sm:px-8 sm:pb-8">
+                    <div className="inline-flex items-center gap-2.5 rounded-full border border-[oklch(0.84_0.03_185)] bg-[oklch(0.965_0.022_174)] px-4 py-2 text-xs font-bold text-secondary/75">
+                        <span className="size-1.5 rounded-full bg-primary" aria-hidden="true" />
+                        من الفكرة إلى أثر قابل للقياس
+                    </div>
                 </div>
             </div>
         </figure>
