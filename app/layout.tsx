@@ -12,6 +12,11 @@ const tajawal = Tajawal({
 export const metadata: Metadata = {
   title: "سُبُل | لتطوير الأعمال",
   description: "شركة استشارات إدارية ومالية وتشغيلية للشركات الصغيرة والمتوسطة.",
+  icons: {
+    icon: "/sobol.png",
+    shortcut: "/sobol.png",
+    apple: "/sobol.png",
+  },
 };
 
 export default function RootLayout({

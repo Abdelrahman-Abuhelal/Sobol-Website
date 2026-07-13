@@ -38,46 +38,27 @@ function GrowthJourney() {
                     </p>
                 </div>
 
-                <div className="mx-4 overflow-hidden rounded-[1.5rem] border border-[oklch(0.84_0.025_190)] bg-[linear-gradient(145deg,oklch(0.995_0.004_175),oklch(0.965_0.022_174))] sm:mx-6">
-                    <ol className="relative grid sm:grid-cols-3" aria-label="مراحل مسار العمل">
-                        {journey.map((item) => {
-                            const isHighlighted = item.step === "03";
-
-                            return (
-                                <li
-                                    key={item.step}
-                                    className={`journey-stage relative grid min-h-36 grid-cols-[2.75rem_minmax(0,1fr)] gap-x-4 px-5 py-5 sm:block sm:min-h-[14rem] sm:px-5 sm:py-6 ${
-                                        isHighlighted
-                                            ? "bg-primary text-primary-foreground"
-                                            : "text-secondary"
-                                    }`}
-                                >
-                                    {item.step !== "03" && (
-                                        <span
-                                            className="journey-connector absolute right-[2.35rem] top-12 h-full w-px bg-[oklch(0.64_0.055_184/0.45)] sm:right-1/2 sm:top-8 sm:h-px sm:w-full"
-                                            aria-hidden="true"
-                                        />
-                                    )}
-
-                                    <span
-                                        className={`relative z-10 flex size-8 items-center justify-center rounded-full border text-[0.7rem] font-black tracking-wider sm:mx-auto ${
-                                            isHighlighted
-                                                ? "border-primary-foreground/35 bg-primary-foreground text-primary"
-                                                : "border-[oklch(0.7_0.05_185)] bg-[oklch(0.992_0.006_175)] text-primary"
-                                        }`}
-                                    >
-                                        {item.step}
-                                    </span>
-
-                                    <div className="pt-0.5 sm:mt-6 sm:pt-0 sm:text-center">
-                                        <p className="text-lg font-black leading-7">{item.title}</p>
-                                        <p className={`mt-2 text-sm leading-6 ${isHighlighted ? "text-primary-foreground/80" : "text-secondary/60"}`}>
-                                            {item.description}
-                                        </p>
-                                    </div>
-                                </li>
-                            );
-                        })}
+                <div className="px-4 pb-1 sm:px-6">
+                    <ol className="flex flex-col gap-3 py-1" aria-label="مراحل مسار العمل">
+                        {journey.map((item) => (
+                            <li
+                                key={item.step}
+                                className={`journey-stage flex min-h-[4.5rem] items-center gap-2.5 rounded-[1.15rem] border px-4 py-3 pr-12 shadow-[0_10px_26px_oklch(0.36_0.055_210/0.06)] sm:min-h-20 sm:gap-3 sm:px-5 ${
+                                    item.step === "01"
+                                        ? "ml-auto w-[72%] border-[oklch(0.84_0.025_190)] bg-[linear-gradient(100deg,oklch(0.965_0.02_174),oklch(0.995_0.004_175))] text-secondary"
+                                        : item.step === "02"
+                                          ? "ml-auto mr-[8%] w-[80%] border-[oklch(0.8_0.035_186)] bg-[linear-gradient(100deg,oklch(0.89_0.045_176),oklch(0.955_0.026_174))] text-secondary"
+                                          : "ml-auto mr-[16%] w-[84%] border-[oklch(0.43_0.07_187)] bg-[linear-gradient(100deg,oklch(0.42_0.075_187),oklch(0.5_0.085_187))] text-primary-foreground shadow-[0_14px_32px_oklch(0.42_0.075_187/0.18)]"
+                                }`}
+                            >
+                                <span className={`hidden w-7 shrink-0 text-xs font-black tracking-wider sm:block ${item.step === "03" ? "text-primary-foreground/75" : "text-primary/75"}`}>
+                                    {item.step}
+                                </span>
+                                <span className={`hidden h-6 w-px shrink-0 sm:block ${item.step === "03" ? "bg-primary-foreground/25" : "bg-primary/20"}`} aria-hidden="true" />
+                                <p className="text-base font-black leading-6 sm:text-lg">{item.title}</p>
+                                <span className="sr-only">{item.description}</span>
+                            </li>
+                        ))}
                     </ol>
                 </div>
 
