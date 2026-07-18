@@ -7,6 +7,36 @@ import { Button } from "@/components/ui/button";
 import { Mail, MessageCircle, Phone } from "lucide-react";
 import { useState } from "react";
 
+const contactErrorFallback =
+    "تعذر إرسال الطلب الآن. يرجى المحاولة مجدداً أو التواصل معنا عبر واتساب.";
+
+type ContactResponse = {
+    ok?: boolean;
+    error?: string;
+};
+
+async function readContactResponse(response: Response): Promise<ContactResponse> {
+    const contentType = response.headers.get("content-type")?.toLowerCase() ?? "";
+
+    if (!contentType.includes("application/json")) {
+        throw new Error(contactErrorFallback);
+    }
+
+    let result: unknown;
+
+    try {
+        result = await response.json();
+    } catch {
+        throw new Error(contactErrorFallback);
+    }
+
+    if (!result || typeof result !== "object") {
+        throw new Error(contactErrorFallback);
+    }
+
+    return result as ContactResponse;
+}
+
 export default function ContactPage() {
     const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
     const [errorMessage, setErrorMessage] = useState("");
@@ -22,18 +52,21 @@ export default function ContactPage() {
         try {
             const response = await fetch("/api/contact", {
                 method: "POST",
-                headers: { "Content-Type": "application/json" },
+                headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json",
+                },
                 body: JSON.stringify(payload),
             });
-            const result = await response.json();
+            const result = await readContactResponse(response);
 
-            if (!response.ok) {
-                throw new Error(result.error || "تعذر إرسال الطلب.");
+            if (!response.ok || result.ok !== true) {
+                throw new Error(result.error || contactErrorFallback);
             }
 
             setStatus("success");
         } catch (error) {
-            setErrorMessage(error instanceof Error ? error.message : "تعذر إرسال الطلب.");
+            setErrorMessage(error instanceof Error ? error.message : contactErrorFallback);
             setStatus("error");
         }
     };
