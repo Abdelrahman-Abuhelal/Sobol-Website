@@ -6,15 +6,25 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "typecheck": "tsc --noEmit",
+    "seed:sanity": "sanity exec scripts/seed-sanity.mjs --with-user-token"
   },
   "dependencies": {
+    "@sanity/client": "^7.25.0",
+    "@sanity/image-url": "^2.1.1",
+    "@sanity/vision": "^6.5.0",
+    "@sanity/visual-editing": "^5.7.3",
+    "@sanity/webhook": "^4.0.4",
     "clsx": "^2.1.1",
     "framer-motion": "^12.23.25",
     "lucide-react": "^0.556.0",
     "next": "16.0.7",
-    "react": "19.2.0",
-    "react-dom": "19.2.0",
+    "next-sanity": "^13.2.1",
+    "react": "19.2.7",
+    "react-dom": "19.2.7",
+    "sanity": "^6.5.0",
+    "styled-components": "^6.1.19",
     "tailwind-merge": "^3.4.0"
   },
   "devDependencies": {

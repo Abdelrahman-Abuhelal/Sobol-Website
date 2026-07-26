@@ -1,0 +1,135 @@
+{
+  "siteSettings": {
+    "_id": "siteSettings", "_type": "siteSettings",
+    "organizationName": "سُبُل لتطوير الأعمال",
+    "defaultSeoTitle": "سُبُل | لتطوير الأعمال",
+    "defaultSeoDescription": "شركة استشارات إدارية ومالية وتشغيلية للشركات الصغيرة والمتوسطة.",
+    "publicSiteUrl": "https://sobol.ps",
+    "address": "فلسطين، رام الله", "email": "info@sobol.ps", "telephone": "+970568060330",
+    "whatsappNumber": "970568060330", "whatsappMessage": "مرحباً، أود الاستفسار عن خدمات سُبُل لتطوير الأعمال.", "whatsappLabel": "تواصل عبر واتساب",
+    "consultationCta": { "eyebrow": "خطوتك التالية", "heading": "لنبدأ من واقع مشروعك.", "link": { "label": "اطلب استشارة", "kind": "internal", "internalRoute": "/contact" } }
+  },
+  "navigation": {
+    "_id": "navigation", "_type": "navigation",
+    "headerLinks": [
+      { "_key": "nav-home", "_type": "navigationItem", "label": "الرئيسية", "destination": { "label": "الرئيسية", "kind": "internal", "internalRoute": "/" } },
+      { "_key": "nav-about", "_type": "navigationItem", "label": "من نحن", "destination": { "label": "من نحن", "kind": "internal", "internalRoute": "/about" } },
+      { "_key": "nav-services", "_type": "navigationItem", "label": "خدماتنا", "destination": { "label": "خدماتنا", "kind": "internal", "internalRoute": "/services" } },
+      { "_key": "nav-portfolio", "_type": "navigationItem", "label": "أعمالنا", "destination": { "label": "أعمالنا", "kind": "internal", "internalRoute": "/portfolio" } },
+      { "_key": "nav-blog", "_type": "navigationItem", "label": "المدونة", "destination": { "label": "المدونة", "kind": "internal", "internalRoute": "/blog" } }
+    ],
+    "headerCta": { "label": "احجز استشارة", "kind": "internal", "internalRoute": "/contact" },
+    "mobileHeaderCtaLabel": "اطلب استشارة",
+    "footerLinks": [
+      { "_key": "footer-home", "_type": "navigationItem", "label": "الرئيسية", "destination": { "label": "الرئيسية", "kind": "internal", "internalRoute": "/" } },
+      { "_key": "footer-about", "_type": "navigationItem", "label": "من نحن", "destination": { "label": "من نحن", "kind": "internal", "internalRoute": "/about" } },
+      { "_key": "footer-services", "_type": "navigationItem", "label": "خدماتنا", "destination": { "label": "خدماتنا", "kind": "internal", "internalRoute": "/services" } },
+      { "_key": "footer-portfolio", "_type": "navigationItem", "label": "أعمالنا", "destination": { "label": "أعمالنا", "kind": "internal", "internalRoute": "/portfolio" } },
+      { "_key": "footer-blog", "_type": "navigationItem", "label": "المدونة", "destination": { "label": "المدونة", "kind": "internal", "internalRoute": "/blog" } }
+    ],
+    "footerDescription": "شريك فلسطيني لتطوير الأعمال، يساعد المشاريع على التنظيم والاستقرار والنمو بخطوات عملية.",
+    "footerLinksHeading": "روابط الموقع", "footerContactHeading": "تواصل معنا",
+    "footerTagline": "وضوح في القرار، ثبات في النمو.", "copyrightWording": "شركة سُبُل للاستشارات. جميع الحقوق محفوظة."
+  },
+  "homePage": {
+    "_id": "homePage", "_type": "homePage", "internalTitle": "Homepage",
+    "seo": { "metaTitle": "سُبُل | لتطوير الأعمال", "metaDescription": "تساعدك سُبُل على تنظيم العمليات، معالجة التحديات، وبناء نمو مستدام يناسب واقع السوق الفلسطيني." },
+    "hero": {
+      "_type": "homeHeroSection", "eyebrow": "استشارات إدارية وتسويقية للشركات الطموحة",
+      "titleLineOne": "نرتّب أعمالك اليوم،", "titleLineTwo": "لتنمو بثقة غدًا.",
+      "description": "تساعدك سُبُل على تنظيم العمليات، معالجة التحديات، وبناء نمو مستدام يناسب واقع السوق الفلسطيني.",
+      "primaryButton": { "label": "اطلب استشارة", "kind": "internal", "internalRoute": "/contact" },
+      "secondaryButton": { "label": "تعرّف على خدماتنا", "kind": "internal", "internalRoute": "/services" },
+      "journeyTitle": "مسار العمل مع سُبُل", "journeyDescription": "منهج واضح ينقل التحديات من الفهم إلى التقدّم المنظّم.",
+      "journeyStages": [
+        { "_key": "journey-1", "title": "تشخيص واضح", "description": "نفهم الواقع والتحديات" },
+        { "_key": "journey-2", "title": "تنظيم عملي", "description": "نحوّل الأولويات إلى خطة" },
+        { "_key": "journey-3", "title": "نمو مستدام", "description": "نقيس، نطوّر، ونتقدّم" }
+      ], "closingBadgeText": "من الفكرة إلى أثر قابل للقياس"
+    }
+  },
+  "aboutPage": {
+    "_id": "aboutPage", "_type": "aboutPage", "internalTitle": "About page",
+    "seo": { "metaTitle": "من نحن | سُبُل", "metaDescription": "تعرّف على سُبُل، شركة استشارات فلسطينية تساعد المشاريع الصغيرة والمتوسطة على تنظيم العمل والنمو." },
+    "pageIntro": { "eyebrow": "من نحن", "heading": "شريك يفهم العمل من الداخل.", "description": "سُبُل شركة استشارات فلسطينية تساعد المشاريع الصغيرة والمتوسطة على تحويل التحديات اليومية إلى عمل منظم وقرارات أوضح.", "image": { "alt": "مستشاران يرتبان أجزاء العمل معًا", "fallbackSrc": "/images/page-intros/about.webp" } },
+    "sections": [
+      { "_key": "about-method", "_type": "aboutMethodSection", "eyebrow": "طريقتنا", "heading": "نبدأ من الواقع، ثم نبني ما يمكن تنفيذه.", "paragraphs": ["نخدم مشاريع القطاع الخاص الفلسطيني، وبشكل خاص الشركات العائلية التي تحتاج إلى تنظيم إداري ومالي وتشغيلي وتسويقي يناسب مرحلتها.", "لا نقدّم قالبًا جاهزًا. نفهم المشكلة، نحدد الأولويات، ثم نعمل مع الفريق على حلول عملية قابلة للقياس والاستمرار."], "missionTitle": "رسالتنا", "missionDescription": "تمكين المشاريع من بناء منظومات عمل مستقرة تعزز كفاءتها وقدرتها على النمو.", "visionTitle": "رؤيتنا", "visionDescription": "أن نكون الشريك الأول لتطوير المشاريع الصغيرة والمتوسطة في فلسطين." },
+      { "_key": "about-principles", "_type": "principlesSection", "eyebrow": "ما يميز سُبُل", "heading": "خبرة قريبة من مشروعك.", "principles": [
+        { "_key": "principle-1", "_type": "stringListItem", "text": "حلول قابلة للتطبيق، لا توصيات نظرية" },
+        { "_key": "principle-2", "_type": "stringListItem", "text": "فهم عميق للسوق والسياق الفلسطيني" },
+        { "_key": "principle-3", "_type": "stringListItem", "text": "مرافقة من التشخيص حتى الإنجاز" },
+        { "_key": "principle-4", "_type": "stringListItem", "text": "قرارات أوضح وعمليات أكثر استقرارًا" }
+      ] },
+      { "_key": "about-team", "_type": "teamSection", "eyebrow": "فريق العمل", "heading": "قيادة بخبرة متكاملة.", "members": [
+        { "_key": "team-islam", "name": "م. إسلام وراد", "role": "مؤسس الشركة", "initials": "إو" },
+        { "_key": "team-bashar", "name": "م. بشار أبو هلال", "role": "مؤسس الشركة", "initials": "به" },
+        { "_key": "team-alaa", "name": "أ. علاء بكر", "role": "مدير التسويق الإلكتروني", "initials": "عب" }
+      ] },
+      { "_key": "about-cta", "_type": "consultationCtaSection", "useGlobalDefault": true }
+    ]
+  },
+  "servicesPage": {
+    "_id": "servicesPage", "_type": "servicesPage", "internalTitle": "Services page",
+    "seo": { "metaTitle": "خدماتنا | سُبُل", "metaDescription": "استشارات لتطوير الأعمال والتنظيم المالي والإداري والتشغيلي والتسويق للشركات الفلسطينية." },
+    "pageIntro": { "eyebrow": "خدماتنا", "heading": "الحل المناسب لمرحلة مشروعك.", "description": "نبدأ من التحدي الحقيقي، ثم نختار نطاق العمل الذي يعيد التنظيم أو يعالج الخلل أو يفتح مساحة للنمو.", "image": { "alt": "فريق يشخّص هيكل العمل ويبني الحل المناسب", "fallbackSrc": "/images/page-intros/services.webp" } },
+    "sections": [
+      { "_key": "services-packages", "_type": "servicePackagesSection", "eyebrow": "تطوير الأعمال", "heading": "ثلاثة مسارات، حسب الأولوية.", "description": "يمكن البدء بمسار واحد أو دمج أكثر من مسار بعد التشخيص الأولي.", "packages": [
+        { "_key": "package-structuring", "label": "للمشاريع التي تحتاج إلى التنظيم", "title": "ترتيب البيت الداخلي", "description": "ننقل العمل من الاجتهاد الفردي إلى منظومة إدارية ومالية واضحة يمكن للفريق الاعتماد عليها.", "items": [
+          { "_key": "structuring-1", "_type": "stringListItem", "text": "تنظيم الأدوار والمهام" }, { "_key": "structuring-2", "_type": "stringListItem", "text": "ضبط الإجراءات والسياسات" }, { "_key": "structuring-3", "_type": "stringListItem", "text": "بناء نظام إداري ومالي" }, { "_key": "structuring-4", "_type": "stringListItem", "text": "أتمتة العمليات الأساسية" }
+        ] },
+        { "_key": "package-firefighting", "label": "للتحديات العاجلة", "title": "إطفاء الحرائق", "description": "نستعيد التوازن المالي والتشغيلي ونبني رؤية واضحة تساعدك على اتخاذ القرار بسرعة.", "items": [
+          { "_key": "fire-1", "_type": "stringListItem", "text": "معالجة التدفق النقدي" }, { "_key": "fire-2", "_type": "stringListItem", "text": "إدارة الالتزامات المالية" }, { "_key": "fire-3", "_type": "stringListItem", "text": "تنظيم العمليات اليومية" }, { "_key": "fire-4", "_type": "stringListItem", "text": "تحديد أولويات الإنقاذ" }
+        ] },
+        { "_key": "package-growth", "label": "للمشاريع الجاهزة للمرحلة التالية", "title": "النمو والتوسع", "description": "نحوّل فرص السوق إلى خطة نمو تربط التسويق والمبيعات والكفاءة التشغيلية بأهداف قابلة للقياس.", "items": [
+          { "_key": "growth-1", "_type": "stringListItem", "text": "تطوير التسويق والمبيعات" }, { "_key": "growth-2", "_type": "stringListItem", "text": "تحديد فرص النمو" }, { "_key": "growth-3", "_type": "stringListItem", "text": "تحسين الكفاءة التشغيلية" }, { "_key": "growth-4", "_type": "stringListItem", "text": "بناء أدوات قياس الأداء" }
+        ] }
+      ] },
+      { "_key": "services-marketing", "_type": "marketingServicesSection", "eyebrow": "الخدمات التسويقية", "heading": "حضور يخدم استراتيجية العمل.", "description": "نربط كل مخرج تسويقي بهدف واضح، من الهوية وحتى الحملات.", "services": [
+        { "_key": "marketing-identity", "icon": "Palette", "title": "الهوية البصرية", "description": "هوية تعبّر عن شخصية مشروعك بوضوح." },
+        { "_key": "marketing-social", "icon": "Share2", "title": "إدارة التواصل الاجتماعي", "description": "حضور منظم ومحتوى متسق مع أهدافك." },
+        { "_key": "marketing-campaigns", "icon": "Megaphone", "title": "الحملات الممولة", "description": "حملات مخططة للوصول والنتائج." },
+        { "_key": "marketing-content", "icon": "PenTool", "title": "كتابة المحتوى", "description": "محتوى يبني الثقة ويشرح القيمة." },
+        { "_key": "marketing-design", "icon": "Layout", "title": "التصميم الجرافيكي", "description": "مواد بصرية تخدم رسالتك التسويقية." },
+        { "_key": "marketing-strategy", "icon": "Target", "title": "الخطط الاستراتيجية", "description": "اتجاه تسويقي مبني على فهم السوق." }
+      ] },
+      { "_key": "services-cta", "_type": "consultationCtaSection", "useGlobalDefault": true }
+    ]
+  },
+  "portfolioPage": {
+    "_id": "portfolioPage", "_type": "portfolioPage", "internalTitle": "Portfolio page",
+    "seo": { "metaTitle": "أعمالنا | سُبُل", "metaDescription": "نماذج من تحديات عملت عليها سُبُل مع مشاريع فلسطينية في الإدارة والتشغيل والمال والتسويق." },
+    "pageIntro": { "eyebrow": "أعمالنا", "heading": "العمل الجيد يظهر في النتيجة.", "description": "نماذج من تحديات عملنا عليها مع مشاريع فلسطينية في الإدارة والتشغيل والمال والتسويق.", "image": { "alt": "مشروعات مكتملة مرتبة على درجات النجاح", "fallbackSrc": "/images/page-intros/portfolio.webp" } },
+    "sections": [
+      { "_key": "portfolio-list", "_type": "portfolioListSection", "eyebrow": "شركاء النجاح", "heading": "أثر عملي، في قطاعات مختلفة.", "description": "تختلف نقطة البداية من مشروع لآخر، لكن الهدف واحد: وضوح أكبر وقدرة أفضل على العمل والنمو.", "projects": [
+        { "_key": "project-sobani", "name": "الصوباني هوم بلس", "category": "استشارات إدارية", "result": "إعادة هيكلة مالية" },
+        { "_key": "project-mirvilla", "name": "ميرفيلا للتطريز", "category": "تسويق رقمي", "result": "تطوير المبيعات عبر الإنترنت" },
+        { "_key": "project-almas", "name": "عيادات ألماس", "category": "إدارة وتشغيل", "result": "تنظيم الحجوزات والعمليات" },
+        { "_key": "project-premium", "name": "عيادات بريميوم", "category": "تسويق", "result": "بناء هوية بصرية متكاملة" },
+        { "_key": "project-lamar", "name": "لمار كيك آند سويت", "category": "استشارات مالية", "result": "ضبط التكاليف والتدفق النقدي" },
+        { "_key": "project-sanaa", "name": "مكتب د. سناء طوطح", "category": "تطوير أعمال", "result": "تحسين بيئة العمل" },
+        { "_key": "project-ink", "name": "شركة أحبار الغريب", "category": "استشارات", "result": "بناء خطة نمو استراتيجية" }
+      ], "privacyNote": "تعرض النتائج بصياغة مختصرة احترامًا لخصوصية شركائنا ونطاق كل مشروع." },
+      { "_key": "portfolio-cta", "_type": "consultationCtaSection", "useGlobalDefault": true }
+    ]
+  },
+  "blogPage": {
+    "_id": "blogPage", "_type": "blogPage", "internalTitle": "Blog page",
+    "seo": { "metaTitle": "المدونة | سُبُل", "metaDescription": "معرفة إدارية ومالية وتسويقية عملية لأصحاب المشاريع." },
+    "pageIntro": { "eyebrow": "المدونة", "heading": "معرفة عملية لأصحاب المشاريع.", "description": "محتوى إداري ومالي وتسويقي يساعدك على فهم التحديات واتخاذ قرارات أفضل داخل مشروعك.", "image": { "alt": "كتاب مفتوح تخرج منه أفكار عملية ومنظمة", "fallbackSrc": "/images/page-intros/blog.webp" } },
+    "sections": [{ "_key": "blog-coming-soon", "_type": "blogComingSoonSection", "statusLabel": "قيد الإعداد", "heading": "نكتب ما يمكن استخدامه، لا ما يملأ الصفحة.", "description": "نعمل على أول مجموعة من المقالات. حتى ذلك الوقت، يمكنك مراسلتنا بسؤالك وسنساعدك على تحديد نقطة البداية.", "emailCta": { "label": "أرسل سؤالك للفريق", "kind": "email", "email": "info@sobol.ps", "emailSubject": "سؤال لفريق سُبُل" }, "topicsHeading": "موضوعات نعمل عليها", "topics": [
+      { "_key": "topic-1", "_type": "stringListItem", "text": "تنظيم العمل داخل الشركات العائلية" },
+      { "_key": "topic-2", "_type": "stringListItem", "text": "قراءة التدفق النقدي واتخاذ القرار" },
+      { "_key": "topic-3", "_type": "stringListItem", "text": "الانتقال من الإدارة اليومية إلى النمو" }
+    ] }]
+  },
+  "contactPage": {
+    "_id": "contactPage", "_type": "contactPage", "internalTitle": "Contact page",
+    "seo": { "metaTitle": "تواصل معنا | سُبُل", "metaDescription": "شاركنا احتياج مشروعك ليتواصل معك فريق سُبُل ويحدد معك الخطوة المناسبة." },
+    "pageIntro": { "eyebrow": "تواصل معنا", "heading": "ابدأ من التحدي الأهم.", "description": "شاركنا احتياج مشروعك، وسيتواصل معك فريق سُبُل لفهم الحالة وتحديد الخطوة المناسبة.", "image": { "alt": "جلسة استشارة هادئة بين صاحب مشروع ومستشار", "fallbackSrc": "/images/page-intros/contact.webp" } },
+    "contactSection": {
+      "_type": "contactSection", "eyebrow": "قنوات التواصل", "heading": "نحن قريبون منك.", "description": "اختر القناة الأنسب، أو أرسل تفاصيل المشروع عبر النموذج.",
+      "form": { "nameLabel": "الاسم الكامل", "namePlaceholder": "", "phoneLabel": "رقم الهاتف", "phonePlaceholder": "", "companyLabel": "اسم الشركة / المشروع", "companyPlaceholder": "", "serviceLabel": "نوع الخدمة المطلوبة", "servicePlaceholder": "اختر الخدمة...", "messageLabel": "تفاصيل إضافية", "messagePlaceholder": "", "submitText": "إرسال الطلب", "sendingText": "جارٍ الإرسال...", "successHeading": "شكراً لك!", "successMessage": "تم إرسال طلبك إلى فريق سُبُل، وسنتواصل معك قريباً.", "resetText": "إرسال طلب آخر", "errorFallback": "تعذر إرسال الطلب الآن. يرجى المحاولة مجدداً أو التواصل معنا عبر واتساب." },
+      "serviceLabels": { "firefighting": "استشارة إطفاء الحرائق", "structuring": "استشارة ترتيب البيت الداخلي", "growth": "استشارة النمو والتوسع", "marketing": "استشارة تسويق", "other": "أخرى" }
+    }
+  }
+}

@@ -6,18 +6,15 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { fallbackNavigation } from "@/content/fallbacks";
+import { controlledLinkHref, isExternalLink } from "@/sanity/lib/links";
+import type { Navigation } from "@/sanity/lib/types";
 
-const navLinks = [
-    { name: "الرئيسية", href: "/" },
-    { name: "من نحن", href: "/about" },
-    { name: "خدماتنا", href: "/services" },
-    { name: "أعمالنا", href: "/portfolio" },
-    { name: "المدونة", href: "/blog" },
-];
-
-export function Navbar() {
+export function Navbar({ navigation = fallbackNavigation }: { navigation?: Navigation }) {
     const [isOpen, setIsOpen] = useState(false);
     const pathname = usePathname();
+    const navLinks = navigation.headerLinks.filter((link) => !link.isHidden).map((link) => ({ name: link.label, href: controlledLinkHref(link.destination), external: isExternalLink(link.destination) }));
+    const headerCtaHref = controlledLinkHref(navigation.headerCta);
 
     return (
         <nav className="sticky top-0 z-50 w-full border-b border-[oklch(0.88_0.02_190)] bg-[oklch(0.995_0.004_175/0.96)] backdrop-blur-md">
@@ -41,6 +38,8 @@ export function Navbar() {
                                 <Link
                                     key={link.href}
                                     href={link.href}
+                                    target={link.external ? "_blank" : undefined}
+                                    rel={link.external ? "noreferrer" : undefined}
                                     aria-current={pathname === link.href ? "page" : undefined}
                                     className={`relative px-1 py-2 text-base font-bold transition-colors after:absolute after:inset-x-1 after:-bottom-[1.15rem] after:h-0.5 after:bg-primary after:transition-transform ${pathname === link.href ? "text-secondary after:scale-x-100" : "text-secondary/60 after:scale-x-0 hover:text-primary"}`}
                                 >
@@ -53,10 +52,10 @@ export function Navbar() {
                     <div className="flex items-center gap-4">
                         <div className="hidden md:block">
                             <Link
-                                href="/contact"
+                                href={headerCtaHref}
                                 className="inline-flex min-h-11 items-center justify-center rounded-lg bg-primary px-5 text-sm font-bold text-primary-foreground transition-colors hover:bg-[oklch(0.43_0.08_187)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-4"
                             >
-                                احجز استشارة
+                                {navigation.headerCta.label}
                             </Link>
                         </div>
 
@@ -88,6 +87,8 @@ export function Navbar() {
                                 <Link
                                     key={link.href}
                                     href={link.href}
+                                    target={link.external ? "_blank" : undefined}
+                                    rel={link.external ? "noreferrer" : undefined}
                                     aria-current={pathname === link.href ? "page" : undefined}
                                     className={`text-base font-bold ${pathname === link.href ? "text-primary" : "text-foreground hover:text-primary"}`}
                                     onClick={() => setIsOpen(false)}
@@ -95,9 +96,9 @@ export function Navbar() {
                                     {link.name}
                                 </Link>
                             ))}
-                            <Link href="/contact" onClick={() => setIsOpen(false)}>
+                            <Link href={headerCtaHref} onClick={() => setIsOpen(false)}>
                                 <span className="inline-flex min-h-11 w-full items-center justify-center rounded-lg bg-primary px-5 text-sm font-bold text-primary-foreground">
-                                    اطلب استشارة
+                                    {navigation.mobileHeaderCtaLabel}
                                 </span>
                             </Link>
                         </div>
