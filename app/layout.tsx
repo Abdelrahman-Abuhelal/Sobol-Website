@@ -5,6 +5,7 @@ import Script from "next/script";
 import { VisualEditing } from "next-sanity/visual-editing";
 import { DisableDraftMode } from "@/components/preview/DisableDraftMode";
 import { WhatsAppButton } from "@/components/layout/WhatsAppButton";
+import { WebMcpTools } from "@/components/agent/WebMcpTools";
 import { getSiteSettings } from "@/sanity/lib/data";
 import "./globals.css";
 
@@ -55,6 +56,7 @@ export default async function RootLayout({
         </Script>
       </head>
       <body className={`${tajawal.variable} font-sans antialiased bg-background text-foreground`} suppressHydrationWarning>
+        <WebMcpTools />
         {children}
         <WhatsAppButton siteSettings={siteSettings} />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData).replace(/</g, "\\u003c") }} />
