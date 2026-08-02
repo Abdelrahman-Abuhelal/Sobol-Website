@@ -1,6 +1,6 @@
 import {
   homepageLinkHeader,
-  publicPagePaths,
+  isPublicContentPath,
 } from "@/lib/agent-discovery";
 import { getSanityMarkdown } from "@/lib/sanity-agent-content";
 
@@ -9,7 +9,7 @@ export async function GET(request: Request) {
     request.headers.get("x-agent-markdown-path") ??
     new URL(request.url).searchParams.get("path") ??
     "";
-  if (!publicPagePaths.has(path)) {
+  if (!isPublicContentPath(path)) {
     return new Response("Not found", { status: 404 });
   }
 

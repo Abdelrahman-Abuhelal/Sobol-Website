@@ -57,9 +57,10 @@ export const teamSection = defineType({
       name: "teamMember", title: "عضو في الفريق", type: "object", fields: [
         defineField({ name: "name", title: "الاسم", type: "string", validation: (r) => r.required().max(80).custom(nonEmpty) }),
         defineField({ name: "role", title: "المسمى الوظيفي", type: "string", validation: (r) => r.required().max(100).custom(nonEmpty) }),
-        defineField({ name: "initials", title: "الأحرف المختصرة للاسم", type: "string", validation: (r) => r.required().min(1).max(4).custom(nonEmpty) }),
+        defineField({ name: "image", title: "صورة العضو", description: "ارفع صورة مربعة أو طولية واضحة. يمكنك ضبط موضع القص بعد الرفع.", type: "editorialImage" }),
+        defineField({ name: "initials", title: "الأحرف المختصرة للاسم", description: "اختياري. تظهر بدل الصورة عند عدم رفع صورة.", type: "string", validation: (r) => r.min(1).max(4).custom((value) => value === undefined || nonEmpty(value)) }),
         defineField({ name: "isHidden", title: "إخفاء هذا العضو", type: "boolean", initialValue: false }),
-      ], preview: { select: { title: "name", subtitle: "role" } },
+      ], preview: { select: { title: "name", subtitle: "role", media: "image.image" } },
     })] }),
   ], preview: { select: { title: "heading", hidden: "isHidden" }, prepare: ({ title, hidden }) => ({ title: `Team — ${title}`, subtitle: hidden ? "Hidden" : "Visible" }) },
 });
@@ -87,7 +88,7 @@ export const servicePackagesSection = defineType({
         defineField({ name: "label", title: "التصنيف الصغير للباقة", type: "string", validation: (r) => r.required().max(80).custom(nonEmpty) }),
         defineField({ name: "title", title: "اسم الباقة", type: "string", validation: (r) => r.required().max(80).custom(nonEmpty) }),
         defineField({ name: "description", title: "وصف الباقة", type: "text", rows: 3, validation: (r) => r.required().max(300).custom(nonEmpty) }),
-        defineField({ name: "items", title: "الخدمات المشمولة", type: "array", of: [defineArrayMember({ type: "stringListItem" })], validation: (r) => r.required().min(1).max(8) }),
+        defineField({ name: "items", title: "الخدمات المشمولة", description: "اختياري. يمكنك حذف جميع العناصر والاكتفاء باسم الباقة ووصفها.", type: "array", of: [defineArrayMember({ type: "stringListItem" })], validation: (r) => r.max(8) }),
         defineField({ name: "isHidden", title: "إخفاء هذه الباقة", type: "boolean", initialValue: false }),
       ], preview: { select: { title: "title", subtitle: "label" } },
     })] }),

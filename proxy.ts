@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import {
   homepageLinkHeader,
-  publicPagePaths,
+  isPublicContentPath,
 } from "@/lib/agent-discovery";
 
 export function proxy(request: NextRequest) {
@@ -12,7 +12,7 @@ export function proxy(request: NextRequest) {
     .split(",")
     .some((value) => value.trim().startsWith("text/markdown"));
 
-  if (request.method === "GET" && acceptsMarkdown && publicPagePaths.has(pathname)) {
+  if (request.method === "GET" && acceptsMarkdown && isPublicContentPath(pathname)) {
     const markdownUrl = request.nextUrl.clone();
     markdownUrl.pathname = "/agent-markdown";
     markdownUrl.search = "";
@@ -25,7 +25,7 @@ export function proxy(request: NextRequest) {
   }
 
   const response = NextResponse.next();
-  if (publicPagePaths.has(pathname)) {
+  if (isPublicContentPath(pathname)) {
     response.headers.append("Vary", "Accept");
     // Next's RSC renderer can replace Vary on the final HTML response. Avoid
     // cross-format browser/CDN cache reuse even when that happens.
@@ -37,6 +37,4 @@ export function proxy(request: NextRequest) {
   return response;
 }
 
-export const config = {
-  matcher: ["/", "/about", "/services", "/portfolio", "/blog", "/contact"],
-};
+export const config = { matcher: ["/", "/about", "/services", "/portfolio", "/blog/:path*", "/contact"] };

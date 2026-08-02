@@ -29,6 +29,10 @@ export const publicPagePaths = new Set<string>(
   publicPages.map((page) => page.path),
 );
 
+export function isPublicContentPath(path: string): boolean {
+  return publicPagePaths.has(path) || /^\/blog\/[^/]+$/.test(path);
+}
+
 export function homepageLinkHeader(): string {
   return [
     '</.well-known/api-catalog>; rel="api-catalog"; type="application/linkset+json"',

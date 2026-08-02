@@ -3,6 +3,7 @@ import "server-only";
 import {
   getAboutPage,
   getBlogPage,
+  getArticleBySlug,
   getContactPage,
   getGlobalContent,
   getHomePage,
@@ -39,8 +40,8 @@ function markdownLink(link: ControlledLink): string {
   return `[${link.label}](${linkHref(link)})`;
 }
 
-function visible<T extends { isHidden?: boolean }>(items: T[]): T[] {
-  return items.filter((item) => !item.isHidden);
+function visible<T extends { isHidden?: boolean }>(items: T[] | undefined): T[] {
+  return items?.filter((item) => !item.isHidden) || [];
 }
 
 function renderIntro(intro: {
@@ -49,6 +50,23 @@ function renderIntro(intro: {
   description: string;
 }) {
   return [`# ${intro.heading}`, intro.eyebrow, intro.description];
+}
+
+function portableTextToMarkdown(body: Array<Record<string, unknown>>): string[] {
+  const result: string[] = [];
+  for (const item of body) {
+    if (item._type !== "block") continue;
+    const children = Array.isArray(item.children) ? item.children as Array<{ text?: string }> : [];
+    const text = children.map((child) => child.text || "").join("").trim();
+    if (!text) continue;
+    if (item.style === "h2") result.push(`## ${text}`);
+    else if (item.style === "h3") result.push(`### ${text}`);
+    else if (item.style === "blockquote") result.push(`> ${text}`);
+    else if (item.listItem === "bullet") result.push(`- ${text}`);
+    else if (item.listItem === "number") result.push(`1. ${text}`);
+    else result.push(text);
+  }
+  return result;
 }
 
 function resolveCta(
@@ -230,6 +248,25 @@ export async function getSanityMarkdown(path: string): Promise<string | null> {
         ...visible(section.topics).map((topic) => `- ${topic.text}`),
       );
     }
+    return documentFrom(main, navigation, siteSettings);
+  }
+
+  if (path.startsWith("/blog/")) {
+    const slug = decodeURIComponent(path.slice("/blog/".length));
+    const article = await getArticleBySlug(slug);
+    if (!article) return null;
+    const main = [
+      `# ${article.title}`,
+      article.excerpt,
+      `## الخلاصة`,
+      article.directAnswer,
+      `الكاتب: ${article.author.name}، ${article.author.role}`,
+      `تاريخ النشر: ${article.publishedAt}`,
+      ...(article.updatedAt ? [`تاريخ آخر مراجعة: ${article.updatedAt}`] : []),
+      ...portableTextToMarkdown(article.body),
+    ];
+    if (article.faqs?.length) main.push("## أسئلة شائعة", ...article.faqs.flatMap((faq) => [`### ${faq.question}`, faq.answer]));
+    if (article.sources?.length) main.push("## المصادر", ...article.sources.map((source) => `- [${source.title}](${source.url})${source.publisher ? `، ${source.publisher}` : ""}`));
     return documentFrom(main, navigation, siteSettings);
   }
 

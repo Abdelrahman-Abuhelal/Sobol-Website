@@ -46,7 +46,7 @@ export const aboutPageQuery = defineQuery(`*[_id == "aboutPage"][0]{
   sections[]{
     _key, _type, isHidden, eyebrow, heading, paragraphs,
     missionTitle, missionDescription, visionTitle, visionDescription,
-    principles[]{_key, text, isHidden}, members[]{_key, name, role, initials, isHidden},
+    principles[]{_key, text, isHidden}, members[]{_key, name, role, initials, isHidden, image${imageProjection}},
     useGlobalDefault, link${linkProjection}
   }
 }`);
@@ -73,6 +73,30 @@ export const blogPageQuery = defineQuery(`*[_id == "blogPage"][0]{
   _id, seo${seoProjection}, pageIntro${pageIntroProjection},
   sections[]{_key, _type, isHidden, statusLabel, heading, description,
     emailCta${linkProjection}, topicsHeading, topics[]{_key, text, isHidden}}
+}`);
+
+const articleCardProjection = `{
+  _id, title, "slug": slug.current, excerpt, directAnswer, publishedAt, updatedAt, featured,
+  featuredImage${imageProjection},
+  author->{name, "slug": slug.current, role},
+  categories[]->{_id, title, "slug": slug.current}
+}`;
+
+export const articlesQuery = defineQuery(`*[_type == "article" && defined(slug.current)] | order(featured desc, publishedAt desc) ${articleCardProjection}`);
+
+export const articleSlugsQuery = defineQuery(`*[_type == "article" && defined(slug.current)].slug.current`);
+
+export const articleSitemapQuery = defineQuery(`*[_type == "article" && defined(slug.current) && seo.noIndex != true]{"slug": slug.current, publishedAt, updatedAt}`);
+
+export const articleBySlugQuery = defineQuery(`*[_type == "article" && slug.current == $slug][0]{
+  _id, _updatedAt, title, "slug": slug.current, excerpt, directAnswer, publishedAt, updatedAt,
+  featuredImage${imageProjection}, body,
+  author->{name, "slug": slug.current, role, bio, expertise, image${imageProjection}},
+  reviewer->{name, "slug": slug.current, role},
+  categories[]->{_id, title, "slug": slug.current},
+  faqs[]{_key, question, answer},
+  sources[]{_key, title, publisher, url, accessedAt},
+  seo${seoProjection}
 }`);
 
 export const contactPageQuery = defineQuery(`*[_id == "contactPage"][0]{

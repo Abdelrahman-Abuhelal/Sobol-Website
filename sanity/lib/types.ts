@@ -105,7 +105,7 @@ export type TeamSection = SanityKeyed & {
   isHidden?: boolean;
   eyebrow: string;
   heading: string;
-  members: Array<{ _key: string; name: string; role: string; initials: string; isHidden?: boolean }>;
+  members: Array<{ _key: string; name: string; role: string; initials?: string; image?: EditorialImage; isHidden?: boolean }>;
 };
 export type ConsultationCtaSection = SanityKeyed & {
   _type: "consultationCtaSection";
@@ -121,7 +121,7 @@ export type ServicePackagesSection = SanityKeyed & {
   eyebrow: string;
   heading: string;
   description: string;
-  packages: Array<{ _key: string; label: string; title: string; description: string; items: Array<{ _key: string; text: string; isHidden?: boolean }>; isHidden?: boolean }>;
+  packages: Array<{ _key: string; label: string; title: string; description: string; items?: Array<{ _key: string; text: string; isHidden?: boolean }>; isHidden?: boolean }>;
 };
 export type MarketingServicesSection = SanityKeyed & {
   _type: "marketingServicesSection";
@@ -170,3 +170,35 @@ export type ServicesPage = { _id?: string; seo?: Seo; pageIntro: PageIntroData; 
 export type PortfolioPage = { _id?: string; seo?: Seo; pageIntro: PageIntroData; sections: Array<PortfolioListSection | ConsultationCtaSection> };
 export type BlogPage = { _id?: string; seo?: Seo; pageIntro: PageIntroData; sections: BlogComingSoonSection[] };
 export type ContactPage = { _id?: string; seo?: Seo; pageIntro: PageIntroData; contactSection: ContactSection };
+
+export type ArticleAuthor = {
+  name: string;
+  slug: string;
+  role: string;
+  bio?: string;
+  expertise?: string[];
+  image?: EditorialImage;
+};
+export type ArticleCategory = { _id: string; title: string; slug: string };
+export type ArticleCard = {
+  _id: string;
+  title: string;
+  slug: string;
+  excerpt: string;
+  directAnswer: string;
+  publishedAt: string;
+  updatedAt?: string;
+  featured?: boolean;
+  featuredImage?: EditorialImage;
+  author: ArticleAuthor;
+  categories?: ArticleCategory[];
+};
+export type Article = ArticleCard & {
+  _updatedAt?: string;
+  body: Array<Record<string, unknown>>;
+  reviewer?: ArticleAuthor;
+  faqs?: Array<{ _key: string; question: string; answer: string }>;
+  sources?: Array<{ _key: string; title: string; publisher?: string; url: string; accessedAt?: string }>;
+  seo?: Seo;
+};
+export type ArticleSitemapEntry = { slug: string; publishedAt: string; updatedAt?: string };

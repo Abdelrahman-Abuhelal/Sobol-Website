@@ -7,6 +7,7 @@ const routeByType: Record<string, string[]> = {
   navigation: ["/", "/about", "/services", "/portfolio", "/blog", "/contact"],
   homePage: ["/"], aboutPage: ["/about"], servicesPage: ["/services"],
   portfolioPage: ["/portfolio"], blogPage: ["/blog"], contactPage: ["/contact"],
+  article: ["/blog"], author: ["/blog"], articleCategory: ["/blog"],
 };
 
 export async function POST(request: Request) {
@@ -22,5 +23,6 @@ export async function POST(request: Request) {
   const paths = new Set(types.flatMap((type) => routeByType[type]));
   for (const type of types) revalidateTag(type, "max");
   for (const path of paths) revalidatePath(path);
+  if (types.some((type) => type === "article" || type === "author" || type === "articleCategory")) revalidatePath("/blog/[slug]", "page");
   return NextResponse.json({ ok: true, revalidatedTypes: types, revalidatedPaths: [...paths] });
 }

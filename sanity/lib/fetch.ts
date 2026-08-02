@@ -8,12 +8,13 @@ type FetchOptions = {
   params?: QueryParams;
   tag: string;
   stega?: boolean;
+  requestless?: boolean;
 };
 
-export async function sanityFetch<T>({ query, params = {}, tag, stega = true }: FetchOptions): Promise<T | null> {
+export async function sanityFetch<T>({ query, params = {}, tag, stega = true, requestless = false }: FetchOptions): Promise<T | null> {
   if (!isSanityConfigured) return null;
 
-  const isDraft = (await draftMode()).isEnabled;
+  const isDraft = requestless ? false : (await draftMode()).isEnabled;
   const client = isDraft ? previewClient : sanityClient;
 
   try {
