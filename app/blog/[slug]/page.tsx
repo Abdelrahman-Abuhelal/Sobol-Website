@@ -83,13 +83,13 @@ export default async function ArticlePage({ params }: PageProps) {
     <main className="min-h-screen bg-background">
       <Navbar navigation={navigation} />
       <article>
-        <header className="bg-[oklch(0.982_0.008_178)] pb-14 pt-10 sm:pb-20 sm:pt-14">
+        <header className="bg-[oklch(0.982_0.008_178)] pb-14 pt-12 sm:pb-16 sm:pt-16">
           <div className="container-custom">
             <Link href="/blog" className="mb-8 inline-flex items-center gap-2 text-sm font-bold text-primary hover:gap-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-4"><ArrowRight className="size-4" aria-hidden="true" /> العودة إلى المدونة</Link>
-            <div className="ml-auto max-w-[64rem] text-right">
+            <div className="mx-auto max-w-[68rem] text-right">
               {article.categories?.length ? <div className="mb-5 flex flex-wrap justify-start gap-2">{article.categories.map((category) => <span key={category._id} className="rounded-full bg-accent px-3 py-1 text-sm font-bold text-accent-foreground">{category.title}</span>)}</div> : null}
-              <h1 id="article-title" className="max-w-[58rem] text-[clamp(2.4rem,5.5vw,4.8rem)] font-black leading-[1.12] tracking-[-0.04em] text-secondary">{article.title}</h1>
-              <p className="mt-6 max-w-[47rem] text-lg leading-8 text-[oklch(0.42_0.035_210)] sm:text-xl sm:leading-9">{article.excerpt}</p>
+              <h1 id="article-title" className="max-w-[62rem] text-[clamp(2.35rem,5vw,4.25rem)] font-black leading-[1.15] tracking-[-0.035em] text-secondary">{article.title}</h1>
+              <p className="mt-6 max-w-[52rem] text-lg leading-8 text-[oklch(0.42_0.035_210)] sm:text-xl sm:leading-9">{article.excerpt}</p>
               <div className="mt-7 flex flex-wrap items-center justify-start gap-x-5 gap-y-3 text-sm text-muted-foreground">
                 <span className="inline-flex items-center gap-3 text-secondary">
                   {authorImageSrc ? <span className="relative size-10 overflow-hidden rounded-full bg-muted"><Image src={authorImageSrc} alt={`صورة ${article.author.name}`} fill sizes="40px" className="object-cover" /></span> : <span className="flex size-10 items-center justify-center rounded-full bg-[oklch(0.91_0.045_176)] font-black text-primary">{article.author.name.trim().charAt(0)}</span>}
@@ -102,12 +102,11 @@ export default async function ArticlePage({ params }: PageProps) {
           </div>
         </header>
 
-        {imageSrc && <div className="container-custom -mt-4 sm:-mt-8"><div className="relative mx-auto aspect-[16/8] max-w-[68rem] overflow-hidden rounded-[1.75rem] bg-muted shadow-[0_28px_75px_-45px_oklch(0.29_0.055_235/0.7)]"><Image src={imageSrc} alt={article.featuredImage?.alt || article.title} fill priority sizes="(max-width: 1200px) 100vw, 1088px" className="object-cover" /></div></div>}
+        {imageSrc && <div className="container-custom -mt-4 sm:-mt-6"><div className="relative mx-auto aspect-[16/8] max-w-[68rem] overflow-hidden rounded-[1.75rem] bg-muted shadow-[0_28px_75px_-45px_oklch(0.29_0.055_235/0.7)]"><Image src={imageSrc} alt={article.featuredImage?.alt || article.title} fill priority sizes="(max-width: 1200px) 100vw, 1088px" className="object-cover" /></div></div>}
 
-        <div className="container-custom py-14 sm:py-20">
-          <div className="mx-auto max-w-[72rem]">
-            <div className="ml-auto max-w-[54rem]">
-            <p id="direct-answer" className="mb-10 text-[1.075rem] font-medium leading-[2] text-[oklch(0.31_0.04_220)] sm:text-lg">{article.directAnswer}</p>
+        <div className="container-custom py-12 sm:py-16">
+          <div className="mx-auto max-w-[58rem]">
+            <p id="direct-answer" className="mb-8 text-[1.075rem] leading-[2] text-[oklch(0.34_0.035_220)] sm:text-lg">{article.directAnswer}</p>
             <ArticleBody value={article.body} />
 
             {article.faqs?.length ? <section className="mt-16" aria-labelledby="faq-heading"><h2 id="faq-heading" className="text-3xl font-black tracking-[-0.025em] text-secondary">أسئلة شائعة</h2><div className="mt-7 divide-y divide-[oklch(0.87_0.018_190)] border-y border-[oklch(0.87_0.018_190)]">{article.faqs.map((faq) => <div key={faq._key} className="py-6"><h3 className="text-xl font-extrabold leading-8 text-secondary">{faq.question}</h3><p className="mt-3 text-base leading-8 text-[oklch(0.38_0.035_215)]">{faq.answer}</p></div>)}</div></section> : null}
@@ -120,7 +119,6 @@ export default async function ArticlePage({ params }: PageProps) {
                 <div className="min-w-0"><p className="text-sm font-bold text-primary">عن الكاتب</p><h2 className="mt-1 text-2xl font-black text-secondary">{article.author.name}</h2><p className="text-sm font-medium text-muted-foreground">{article.author.role}</p>{article.author.bio && <p className="mt-4 leading-7 text-[oklch(0.4_0.035_210)]">{article.author.bio}</p>}</div>
               </div>
             </section>
-            </div>
           </div>
         </div>
         <ConsultationCTA content={siteSettings.consultationCta} />
