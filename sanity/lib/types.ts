@@ -76,6 +76,7 @@ export type HomeHeroSection = {
   description: string;
   primaryButton: ControlledLink;
   secondaryButton: ControlledLink;
+  trustPoints?: string[];
   journeyTitle: string;
   journeyDescription: string;
   journeyStages: Array<{ _key: string; title: string; description: string }>;

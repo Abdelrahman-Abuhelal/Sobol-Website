@@ -35,17 +35,18 @@
     "_id": "homePage", "_type": "homePage", "internalTitle": "Homepage",
     "seo": { "metaTitle": "سُبُل | لتطوير الأعمال", "metaDescription": "تساعدك سُبُل على تنظيم العمليات، معالجة التحديات، وبناء نمو مستدام يناسب واقع السوق الفلسطيني." },
     "hero": {
-      "_type": "homeHeroSection", "eyebrow": "استشارات إدارية وتسويقية للشركات الطموحة",
-      "titleLineOne": "نرتّب أعمالك اليوم،", "titleLineTwo": "لتنمو بثقة غدًا.",
-      "description": "تساعدك سُبُل على تنظيم العمليات، معالجة التحديات، وبناء نمو مستدام يناسب واقع السوق الفلسطيني.",
-      "primaryButton": { "label": "اطلب استشارة", "kind": "internal", "internalRoute": "/contact" },
-      "secondaryButton": { "label": "تعرّف على خدماتنا", "kind": "internal", "internalRoute": "/services" },
-      "journeyTitle": "مسار العمل مع سُبُل", "journeyDescription": "منهج واضح ينقل التحديات من الفهم إلى التقدّم المنظّم.",
+      "_type": "homeHeroSection", "eyebrow": "حلول إدارية وتشغيلية ومالية للمشاريع الطموحة",
+      "titleLineOne": "نحوّل فوضى العمل", "titleLineTwo": "إلى نظام واضح وقابل للنمو",
+      "description": "نساعد المشاريع الصغيرة والمتوسطة في فلسطين على تنظيم العمليات، ضبط الإدارة والمالية، واتخاذ قرارات مبنية على أرقام واضحة.",
+      "primaryButton": { "label": "احجز جلسة تشخيص", "kind": "internal", "internalRoute": "/contact" },
+      "secondaryButton": { "label": "استعرض خدماتنا", "kind": "internal", "internalRoute": "/services" },
+      "trustPoints": ["حلول مصممة حسب واقع مشروعك", "خطوات عملية قابلة للتنفيذ", "متابعة مبنية على مؤشرات واضحة"],
+      "journeyTitle": "كيف نساعدك في تطوير مشروعك؟", "journeyDescription": "منهج عملي ينقل مشروعك من التشخيص إلى نظام واضح ثم إلى نمو مستدام.",
       "journeyStages": [
-        { "_key": "journey-1", "title": "تشخيص واضح", "description": "نفهم الواقع والتحديات" },
-        { "_key": "journey-2", "title": "تنظيم عملي", "description": "نحوّل الأولويات إلى خطة" },
-        { "_key": "journey-3", "title": "نمو مستدام", "description": "نقيس، نطوّر، ونتقدّم" }
-      ], "closingBadgeText": "من الفكرة إلى أثر قابل للقياس"
+        { "_key": "journey-1", "title": "التشخيص", "description": "نحدد المشكلات، الأولويات، ومصادر الهدر داخل المشروع." },
+        { "_key": "journey-2", "title": "بناء النظام", "description": "نوضح الأدوار، ننظم العمليات، ونبني أدوات متابعة عملية." },
+        { "_key": "journey-3", "title": "القياس والنمو", "description": "نحدد مؤشرات الأداء ونراجع النتائج لضمان التحسين المستمر." }
+      ], "closingBadgeText": "جلسة أولية لفهم التحدي وتحديد الخطوة القادمة."
     }
   },
   "aboutPage": {

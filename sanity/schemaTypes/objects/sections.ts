@@ -24,6 +24,11 @@ export const homeHeroSection = defineType({
     defineField({ name: "description", title: "الوصف", type: "text", rows: 3, validation: (r) => r.required().max(300).custom(nonEmpty) }),
     defineField({ name: "primaryButton", title: "الزر الرئيسي", type: "controlledLink", validation: (r) => r.required() }),
     defineField({ name: "secondaryButton", title: "الزر الثاني", type: "controlledLink", validation: (r) => r.required() }),
+    defineField({
+      name: "trustPoints", title: "رسائل الثقة أسفل أزرار الهيرو", description: "أضف ثلاث رسائل قصيرة فقط حتى يبقى التصميم متوازنًا.", type: "array",
+      of: [defineArrayMember({ type: "string", validation: (r) => r.required().max(80).custom(nonEmpty) })],
+      validation: (r) => r.required().min(3).max(3),
+    }),
     defineField({ name: "journeyTitle", title: "عنوان رحلة العمل", type: "string", validation: (r) => r.required().max(80).custom(nonEmpty) }),
     defineField({ name: "journeyDescription", title: "وصف رحلة العمل", type: "text", rows: 2, validation: (r) => r.required().max(180).custom(nonEmpty) }),
     stage("journeyStageOne", "المرحلة الأولى"), stage("journeyStageTwo", "المرحلة الثانية"), stage("journeyStageThree", "المرحلة الثالثة"),

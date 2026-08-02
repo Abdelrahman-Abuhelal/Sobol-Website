@@ -32,7 +32,7 @@ export const navigationQuery = defineQuery(`*[_id == "navigation"][0]{
 export const homePageQuery = defineQuery(`*[_id == "homePage"][0]{
   _id, seo${seoProjection},
   hero{_type, eyebrow, titleLineOne, titleLineTwo, description,
-    primaryButton${linkProjection}, secondaryButton${linkProjection}, journeyTitle,
+    primaryButton${linkProjection}, secondaryButton${linkProjection}, trustPoints, journeyTitle,
     journeyDescription,
     "journeyStages": [
       journeyStageOne{ "_key": "journey-1", title, description },
