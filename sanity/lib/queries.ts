@@ -82,7 +82,7 @@ const articleCardProjection = `{
   categories[]->{_id, title, "slug": slug.current}
 }`;
 
-export const articlesQuery = defineQuery(`*[_type == "article" && defined(slug.current)] | order(featured desc, publishedAt desc) ${articleCardProjection}`);
+export const articlesQuery = defineQuery(`*[_type == "article" && defined(slug.current) && !(_id in path("drafts.**"))] | order(featured desc, publishedAt desc) ${articleCardProjection}`);
 
 export const articleSlugsQuery = defineQuery(`*[_type == "article" && defined(slug.current)].slug.current`);
 

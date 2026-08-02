@@ -22,7 +22,7 @@ export async function sanityFetch<T>({ query, params = {}, tag, stega = true, re
       perspective: isDraft ? "drafts" : "published",
       useCdn: !isDraft,
       stega: isDraft && stega,
-      ...(isDraft ? { cache: "no-store" } : { next: { tags: [tag] } }),
+      ...(isDraft ? { cache: "no-store" } : { next: { revalidate: 60, tags: [tag] } }),
     });
   } catch (error) {
     if (process.env.NODE_ENV === "development") {
