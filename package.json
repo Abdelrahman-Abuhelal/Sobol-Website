@@ -8,7 +8,9 @@
     "start": "next start",
     "lint": "eslint",
     "typecheck": "tsc --noEmit",
-    "seed:sanity": "sanity exec scripts/seed-sanity.mjs --with-user-token"
+    "seed:sanity": "sanity exec scripts/seed-sanity.mjs --with-user-token",
+    "migrate:sanity:solutions": "sanity exec scripts/migrate-solution-pages.ts --with-user-token",
+    "verify:sanity:seo": "sanity exec scripts/verify-seo-sanity.ts --with-user-token"
   },
   "dependencies": {
     "@portabletext/react": "^6.2.0",

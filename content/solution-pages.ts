@@ -1,23 +1,7 @@
-export type SolutionPage = {
-  slug: string;
-  eyebrow: string;
-  title: string;
-  shortTitle: string;
-  metaTitle: string;
-  metaDescription: string;
-  lead: string;
-  directAnswer: string;
-  symptomsHeading: string;
-  symptoms: string[];
-  outcomesHeading: string;
-  outcomesIntro: string;
-  outcomes: Array<{ title: string; description: string }>;
-  process: Array<{ title: string; description: string }>;
-  questions: Array<{ question: string; answer: string }>;
-  related: string[];
-};
+import type { SolutionPage } from "@/sanity/lib/types";
 
-export const solutionPages: SolutionPage[] = [
+// Exact-content resilience fallback. Sanity is the primary source at runtime.
+export const fallbackSolutionPages: SolutionPage[] = [
   {
     slug: "business-diagnosis",
     eyebrow: "تشخيص المشروع",
@@ -230,8 +214,8 @@ export const solutionPages: SolutionPage[] = [
   },
 ];
 
-export const solutionPageSlugs = solutionPages.map((page) => page.slug);
+export const fallbackSolutionPageSlugs = fallbackSolutionPages.map((page) => page.slug);
 
-export function getSolutionPage(slug: string): SolutionPage | undefined {
-  return solutionPages.find((page) => page.slug === slug);
+export function getFallbackSolutionPage(slug: string): SolutionPage | undefined {
+  return fallbackSolutionPages.find((page) => page.slug === slug);
 }

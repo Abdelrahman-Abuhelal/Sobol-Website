@@ -1,8 +1,9 @@
 import Link from "next/link";
 import { ArrowLeft, Search } from "lucide-react";
-import { solutionPages } from "@/content/solution-pages";
+import { getSolutionPages } from "@/sanity/lib/data";
 
-export function SolutionDirectory({ compact = false }: { compact?: boolean }) {
+export async function SolutionDirectory({ compact = false }: { compact?: boolean }) {
+  const solutionPages = await getSolutionPages();
   return (
     <section className={compact ? "py-14 sm:py-16" : "bg-[oklch(0.975_0.01_180)] py-16 sm:py-20 lg:py-24"} aria-labelledby="solution-directory-title">
       <div className="container-custom">

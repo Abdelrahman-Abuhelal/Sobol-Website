@@ -1,5 +1,6 @@
 export const publicRoutes = ["/", "/about", "/services", "/portfolio", "/blog", "/contact"] as const;
 export type PublicRoute = (typeof publicRoutes)[number];
+export type PublicPageSitemapEntry = { route: PublicRoute; updatedAt?: string };
 
 export type SanityKeyed = { _key: string; _type: string };
 export type ControlledLink = {
@@ -203,3 +204,32 @@ export type Article = ArticleCard & {
   seo?: Seo;
 };
 export type ArticleSitemapEntry = { slug: string; publishedAt: string; updatedAt?: string };
+
+export type SolutionPage = {
+  _id?: string;
+  _updatedAt?: string;
+  slug: string;
+  order?: number;
+  isHidden?: boolean;
+  eyebrow: string;
+  title: string;
+  shortTitle: string;
+  metaTitle: string;
+  metaDescription: string;
+  lead: string;
+  directAnswer: string;
+  symptomsHeading: string;
+  symptoms: string[];
+  outcomesHeading: string;
+  outcomesIntro: string;
+  outcomes: Array<{ title: string; description: string }>;
+  process: Array<{ title: string; description: string }>;
+  questions: Array<{ question: string; answer: string }>;
+  related: string[];
+  seo?: Seo;
+};
+
+export type SolutionSitemapEntry = {
+  slug: string;
+  updatedAt?: string;
+};

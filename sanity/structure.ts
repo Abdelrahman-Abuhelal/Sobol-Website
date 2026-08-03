@@ -13,6 +13,7 @@ export const structure: StructureResolver = (S) =>
           .child(S.document().schemaType(item.type).documentId(item.id)),
       ),
       S.divider(),
+      S.documentTypeListItem("solutionPage").title("صفحات حلول مشاكل المشاريع"),
       S.documentTypeListItem("article").title("المقالات"),
       S.documentTypeListItem("articleCategory").title("تصنيفات المقالات"),
       S.documentTypeListItem("author").title("الكتّاب والمراجعون"),

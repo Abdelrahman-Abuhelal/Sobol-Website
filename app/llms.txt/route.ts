@@ -1,6 +1,5 @@
 import { publicPages, requestOrigin } from "@/lib/agent-discovery";
-import { getArticles, getSiteSettingsForMetadata } from "@/sanity/lib/data";
-import { solutionPages } from "@/content/solution-pages";
+import { getArticles, getSiteSettingsForMetadata, getSolutionPages } from "@/sanity/lib/data";
 
 const pageDescriptions: Record<string, string> = {
   "/": "نبذة عن سُبُل ومنهجها في تنظيم المشاريع ودعم نموها.",
@@ -12,9 +11,10 @@ const pageDescriptions: Record<string, string> = {
 };
 
 export async function GET(request: Request) {
-  const [settings, articles] = await Promise.all([
+  const [settings, articles, solutionPages] = await Promise.all([
     getSiteSettingsForMetadata(),
     getArticles(),
+    getSolutionPages(),
   ]);
   const origin = requestOrigin(request);
   const pageLines = publicPages.map(

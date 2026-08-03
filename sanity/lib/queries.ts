@@ -103,3 +103,47 @@ export const contactPageQuery = defineQuery(`*[_id == "contactPage"][0]{
   _id, seo${seoProjection}, pageIntro${pageIntroProjection},
   contactSection{_type, eyebrow, heading, description, form, serviceLabels}
 }`);
+
+export const publicPageSitemapQuery = defineQuery(`*[
+  _id in ["homePage", "aboutPage", "servicesPage", "portfolioPage", "blogPage", "contactPage"] &&
+  seo.noIndex != true && !(_id in path("drafts.**"))
+]{
+  "route": select(
+    _id == "homePage" => "/",
+    _id == "aboutPage" => "/about",
+    _id == "servicesPage" => "/services",
+    _id == "portfolioPage" => "/portfolio",
+    _id == "blogPage" => "/blog",
+    _id == "contactPage" => "/contact"
+  ),
+  "updatedAt": _updatedAt
+}`);
+
+const solutionPageProjection = `{
+  _id, _updatedAt, "slug": slug.current, order, isHidden,
+  eyebrow, title, shortTitle, metaTitle, metaDescription, lead, directAnswer,
+  symptomsHeading, symptoms,
+  outcomesHeading, outcomesIntro, outcomes[]{title, description},
+  process[]{title, description}, questions[]{question, answer},
+  "related": related[]->slug.current,
+  seo${seoProjection}
+}`;
+
+export const solutionPagesQuery = defineQuery(`*[
+  _type == "solutionPage" && defined(slug.current) && isHidden != true &&
+  !(_id in path("drafts.**"))
+] | order(order asc, title asc) ${solutionPageProjection}`);
+
+export const solutionPageBySlugQuery = defineQuery(`*[
+  _type == "solutionPage" && slug.current == $slug && isHidden != true
+][0] ${solutionPageProjection}`);
+
+export const solutionPageSlugsQuery = defineQuery(`*[
+  _type == "solutionPage" && defined(slug.current) && isHidden != true &&
+  !(_id in path("drafts.**"))
+].slug.current`);
+
+export const solutionSitemapQuery = defineQuery(`*[
+  _type == "solutionPage" && defined(slug.current) && isHidden != true &&
+  seo.noIndex != true && !(_id in path("drafts.**"))
+]{"slug": slug.current, "updatedAt": _updatedAt}`);

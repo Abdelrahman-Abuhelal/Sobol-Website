@@ -31,8 +31,7 @@ export const publicPagePaths = new Set<string>(
 
 export function isPublicContentPath(path: string): boolean {
   if (publicPagePaths.has(path) || /^\/blog\/[^/]+$/.test(path)) return true;
-  if (!path.startsWith("/services/")) return false;
-  return solutionPageSlugs.includes(decodeURIComponent(path.slice("/services/".length)));
+  return /^\/services\/[^/]+$/.test(path);
 }
 
 export function homepageLinkHeader(): string {
@@ -44,4 +43,3 @@ export function homepageLinkHeader(): string {
     '</.well-known/agent-skills/index.json>; rel="describedby"; type="application/json"',
   ].join(", ");
 }
-import { solutionPageSlugs } from "@/content/solution-pages";

@@ -6,18 +6,17 @@ import { ConsultationCTA } from "@/components/layout/ConsultationCTA";
 import { Footer } from "@/components/layout/Footer";
 import { Navbar } from "@/components/layout/Navbar";
 import { PageStructuredData } from "@/components/seo/PageStructuredData";
-import { getSolutionPage, solutionPageSlugs } from "@/content/solution-pages";
-import { getGlobalContent, getSiteSettingsForMetadata } from "@/sanity/lib/data";
+import { getGlobalContent, getSiteSettingsForMetadata, getSolutionPageBySlug, getSolutionPageSlugs } from "@/sanity/lib/data";
 
 type PageProps = { params: Promise<{ slug: string }> };
 
-export function generateStaticParams() {
-  return solutionPageSlugs.map((slug) => ({ slug }));
+export async function generateStaticParams() {
+  return (await getSolutionPageSlugs()).map((slug) => ({ slug }));
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
-  const [page, settings] = [getSolutionPage(slug), await getSiteSettingsForMetadata()];
+  const [page, settings] = await Promise.all([getSolutionPageBySlug(slug), getSiteSettingsForMetadata()]);
   if (!page) return {};
   const base = new URL(settings.publicSiteUrl || process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000");
   const canonical = new URL(`/services/${page.slug}`, base).toString();
@@ -34,10 +33,10 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default async function SolutionPageRoute({ params }: PageProps) {
   const { slug } = await params;
-  const page = getSolutionPage(slug);
+  const page = await getSolutionPageBySlug(slug);
   if (!page) notFound();
   const { navigation, siteSettings } = await getGlobalContent();
-  const relatedPages = page.related.map(getSolutionPage).filter((item) => item !== undefined);
+  const relatedPages = (await Promise.all(page.related.map(getSolutionPageBySlug))).filter((item) => item !== null);
   const base = siteSettings.publicSiteUrl.replace(/\/$/, "");
   const url = `${base}/services/${page.slug}`;
   const serviceSchema = {

@@ -16,7 +16,7 @@ import type {
   Navigation,
   SiteSettings,
 } from "@/sanity/lib/types";
-import { getSolutionPage } from "@/content/solution-pages";
+import { getSolutionPageBySlug } from "@/sanity/lib/data";
 
 function linkHref(link: ControlledLink): string {
   switch (link.kind) {
@@ -217,7 +217,7 @@ export async function getSanityMarkdown(path: string): Promise<string | null> {
 
   if (path.startsWith("/services/")) {
     const slug = decodeURIComponent(path.slice("/services/".length));
-    const page = getSolutionPage(slug);
+    const page = await getSolutionPageBySlug(slug);
     if (!page) return null;
     const main = [
       `# ${page.title}`,

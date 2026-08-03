@@ -4,7 +4,7 @@
     "organizationName": "سُبُل لتطوير الأعمال",
     "defaultSeoTitle": "سُبُل | لتطوير الأعمال",
     "defaultSeoDescription": "شركة استشارات إدارية ومالية وتشغيلية للشركات الصغيرة والمتوسطة.",
-    "publicSiteUrl": "https://sobol.ps",
+    "publicSiteUrl": "https://www.sobol.ps",
     "address": "فلسطين، رام الله", "email": "info@sobol.ps", "telephone": "+970568060330",
     "whatsappNumber": "970568060330", "whatsappMessage": "مرحباً، أود الاستفسار عن خدمات سُبُل لتطوير الأعمال.", "whatsappLabel": "تواصل عبر واتساب",
     "consultationCta": { "eyebrow": "خطوتك التالية", "heading": "لنبدأ من واقع مشروعك.", "link": { "label": "اطلب استشارة", "kind": "internal", "internalRoute": "/contact" } }

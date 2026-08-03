@@ -195,4 +195,57 @@ export const contactPage = defineType({
   ], preview: { prepare: () => ({ title: "صفحة تواصل معنا" }) },
 });
 
-export const documentTypes = [siteSettings, navigation, homePage, aboutPage, servicesPage, portfolioPage, blogPage, contactPage, article, author, articleCategory];
+export const solutionPage = defineType({
+  name: "solutionPage",
+  title: "صفحات حلول مشاكل المشاريع",
+  type: "document",
+  groups: [
+    { name: "content", title: "محتوى الصفحة", default: true },
+    { name: "structure", title: "الأعراض والنتائج والخطوات" },
+    { name: "geo", title: "البحث والذكاء الاصطناعي" },
+    { name: "publishing", title: "النشر" },
+  ],
+  fields: [
+    defineField({ name: "title", title: "العنوان الرئيسي", group: "content", type: "string", validation: (r) => r.required().min(20).max(120).custom(nonEmpty) }),
+    defineField({ name: "shortTitle", title: "العنوان المختصر", group: "content", type: "string", validation: (r) => r.required().max(70).custom(nonEmpty) }),
+    defineField({ name: "eyebrow", title: "التصنيف أعلى العنوان", group: "content", type: "string", validation: (r) => r.required().max(70).custom(nonEmpty) }),
+    defineField({ name: "slug", title: "رابط الصفحة", group: "publishing", type: "slug", options: { source: "shortTitle", maxLength: 80 }, validation: (r) => r.required().custom(validSlug) }),
+    defineField({ name: "order", title: "ترتيب الظهور", group: "publishing", type: "number", validation: (r) => r.required().integer().min(1).max(100) }),
+    defineField({ name: "isHidden", title: "إخفاء الصفحة من الموقع", group: "publishing", type: "boolean", initialValue: false }),
+    defineField({ name: "metaTitle", title: "عنوان Google الأساسي", group: "geo", type: "string", validation: (r) => r.required().max(70).custom(nonEmpty) }),
+    defineField({ name: "metaDescription", title: "وصف Google الأساسي", group: "geo", type: "text", rows: 3, validation: (r) => r.required().max(180).custom(nonEmpty) }),
+    defineField({ name: "lead", title: "المقدمة", group: "content", type: "text", rows: 4, validation: (r) => r.required().min(80).max(500).custom(nonEmpty) }),
+    defineField({ name: "directAnswer", title: "الإجابة المباشرة", description: "تظهر قرب بداية الصفحة ويجب أن تجيب بوضوح عن السؤال الرئيسي.", group: "geo", type: "text", rows: 8, validation: (r) => r.required().min(150).max(1400).custom(nonEmpty) }),
+    defineField({ name: "symptomsHeading", title: "عنوان مؤشرات المشكلة", group: "structure", type: "string", validation: (r) => r.required().max(100).custom(nonEmpty) }),
+    defineField({ name: "symptoms", title: "مؤشرات المشكلة", group: "structure", type: "array", of: [defineArrayMember({ type: "string" })], validation: (r) => r.required().min(3).max(10) }),
+    defineField({ name: "outcomesHeading", title: "عنوان النتائج", group: "structure", type: "string", validation: (r) => r.required().max(100).custom(nonEmpty) }),
+    defineField({ name: "outcomesIntro", title: "مقدمة النتائج", group: "structure", type: "text", rows: 3, validation: (r) => r.required().max(400).custom(nonEmpty) }),
+    defineField({
+      name: "outcomes", title: "النتائج", group: "structure", type: "array", validation: (r) => r.required().min(2).max(6),
+      of: [defineArrayMember({ name: "solutionOutcome", title: "نتيجة", type: "object", fields: [
+        defineField({ name: "title", title: "العنوان", type: "string", validation: (r) => r.required().max(80).custom(nonEmpty) }),
+        defineField({ name: "description", title: "الوصف", type: "text", rows: 3, validation: (r) => r.required().max(350).custom(nonEmpty) }),
+      ] })],
+    }),
+    defineField({
+      name: "process", title: "خطوات العمل", group: "structure", type: "array", validation: (r) => r.required().min(2).max(6),
+      of: [defineArrayMember({ name: "solutionStep", title: "خطوة", type: "object", fields: [
+        defineField({ name: "title", title: "العنوان", type: "string", validation: (r) => r.required().max(80).custom(nonEmpty) }),
+        defineField({ name: "description", title: "الوصف", type: "text", rows: 3, validation: (r) => r.required().max(350).custom(nonEmpty) }),
+      ] })],
+    }),
+    defineField({
+      name: "questions", title: "أسئلة وإجابات ظاهرة في الصفحة", group: "geo", type: "array", validation: (r) => r.required().min(2).max(8),
+      of: [defineArrayMember({ name: "solutionQuestion", title: "سؤال وجواب", type: "object", fields: [
+        defineField({ name: "question", title: "السؤال", type: "string", validation: (r) => r.required().max(180).custom(nonEmpty) }),
+        defineField({ name: "answer", title: "الإجابة", type: "text", rows: 4, validation: (r) => r.required().max(700).custom(nonEmpty) }),
+      ] })],
+    }),
+    defineField({ name: "related", title: "صفحات مرتبطة", group: "structure", type: "array", of: [defineArrayMember({ type: "reference", to: [{ type: "solutionPage" }] })], validation: (r) => r.max(4).unique() }),
+    defineField({ name: "seo", title: "إعدادات Google والمشاركة الاختيارية", group: "geo", type: "seo" }),
+  ],
+  orderings: [{ title: "الترتيب", name: "orderAsc", by: [{ field: "order", direction: "asc" }] }],
+  preview: { select: { title: "shortTitle", subtitle: "title" } },
+});
+
+export const documentTypes = [siteSettings, navigation, homePage, aboutPage, servicesPage, portfolioPage, blogPage, contactPage, solutionPage, article, author, articleCategory];
