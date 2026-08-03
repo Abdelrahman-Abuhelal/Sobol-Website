@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Footer } from "@/components/layout/Footer";
 import { Navbar } from "@/components/layout/Navbar";
 import { PageIntro } from "@/components/layout/PageIntro";
+import { PageStructuredData } from "@/components/seo/PageStructuredData";
 import { AboutPageSections } from "@/components/sections/PageSections";
 import { fallbackAboutPage } from "@/content/fallbacks";
 import { getAboutPage, getGlobalContent, getSeoData, getSiteSettingsForMetadata } from "@/sanity/lib/data";
@@ -16,5 +17,5 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default async function AboutPageRoute() {
   const [page, { navigation, siteSettings }] = await Promise.all([getAboutPage(), getGlobalContent()]);
-  return <main className="min-h-screen bg-background"><Navbar navigation={navigation} /><PageIntro {...page.pageIntro} /><AboutPageSections sections={page.sections} globalCta={siteSettings.consultationCta} /><Footer navigation={navigation} siteSettings={siteSettings} /></main>;
+  return <main className="min-h-screen bg-background"><Navbar navigation={navigation} /><PageIntro {...page.pageIntro} /><AboutPageSections sections={page.sections} globalCta={siteSettings.consultationCta} /><Footer navigation={navigation} siteSettings={siteSettings} /><PageStructuredData settings={siteSettings} path="/about" name={page.seo?.metaTitle || page.pageIntro.heading} description={page.seo?.metaDescription || page.pageIntro.description} type="AboutPage" /></main>;
 }

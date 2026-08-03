@@ -4,6 +4,7 @@ import { ContactForm } from "@/components/contact/ContactForm";
 import { Footer } from "@/components/layout/Footer";
 import { Navbar } from "@/components/layout/Navbar";
 import { PageIntro } from "@/components/layout/PageIntro";
+import { PageStructuredData } from "@/components/seo/PageStructuredData";
 import { fallbackContactPage } from "@/content/fallbacks";
 import { getContactPage, getGlobalContent, getSeoData, getSiteSettingsForMetadata } from "@/sanity/lib/data";
 import { buildPageMetadata } from "@/sanity/lib/metadata";
@@ -32,5 +33,6 @@ export default async function ContactPageRoute() {
       <div><ContactForm content={content} /></div>
     </div></section>
     <Footer navigation={navigation} siteSettings={siteSettings} />
+    <PageStructuredData settings={siteSettings} path="/contact" name={page.seo?.metaTitle || page.pageIntro.heading} description={page.seo?.metaDescription || page.pageIntro.description} type="ContactPage" />
   </main>;
 }

@@ -6,7 +6,8 @@ import { VisualEditing } from "next-sanity/visual-editing";
 import { DisableDraftMode } from "@/components/preview/DisableDraftMode";
 import { WhatsAppButton } from "@/components/layout/WhatsAppButton";
 import { WebMcpTools } from "@/components/agent/WebMcpTools";
-import { getSiteSettings } from "@/sanity/lib/data";
+import { getSiteSettings, getSiteSettingsForMetadata } from "@/sanity/lib/data";
+import { editorialImageUrl } from "@/sanity/lib/image";
 import "./globals.css";
 
 const tajawal = Tajawal({
@@ -15,15 +16,37 @@ const tajawal = Tajawal({
   variable: "--font-tajawal",
 });
 
-export const metadata: Metadata = {
-  title: "سُبُل | لتطوير الأعمال",
-  description: "شركة استشارات إدارية ومالية وتشغيلية للشركات الصغيرة والمتوسطة.",
-  icons: {
-    icon: "/sobol.png",
-    shortcut: "/sobol.png",
-    apple: "/sobol.png",
-  },
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const settings = await getSiteSettingsForMetadata();
+  const base = new URL(settings.publicSiteUrl || process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000");
+  const imageUrl = editorialImageUrl(settings.defaultOpenGraphImage, 1200);
+
+  return {
+    metadataBase: base,
+    title: settings.defaultSeoTitle,
+    description: settings.defaultSeoDescription,
+    applicationName: settings.organizationName,
+    category: "business consulting",
+    creator: settings.organizationName,
+    publisher: settings.organizationName,
+    referrer: "origin-when-cross-origin",
+    icons: { icon: "/sobol.png", shortcut: "/sobol.png", apple: "/sobol.png" },
+    openGraph: {
+      type: "website",
+      locale: "ar_PS",
+      siteName: settings.organizationName,
+      title: settings.defaultSeoTitle,
+      description: settings.defaultSeoDescription,
+      images: imageUrl ? [{ url: imageUrl, alt: settings.organizationName }] : undefined,
+    },
+    twitter: {
+      card: imageUrl ? "summary_large_image" : "summary",
+      title: settings.defaultSeoTitle,
+      description: settings.defaultSeoDescription,
+      images: imageUrl ? [imageUrl] : undefined,
+    },
+  };
+}
 
 export default async function RootLayout({
   children,
@@ -35,8 +58,47 @@ export default async function RootLayout({
   const structuredData = {
     "@context": "https://schema.org",
     "@graph": [
-      { "@type": "Organization", name: siteSettings.organizationName, url: siteSettings.publicSiteUrl, email: siteSettings.email, telephone: siteSettings.telephone, address: { "@type": "PostalAddress", addressLocality: siteSettings.address } },
-      { "@type": "WebSite", name: siteSettings.organizationName, url: siteSettings.publicSiteUrl, inLanguage: "ar" },
+      {
+        "@type": "Organization",
+        "@id": `${siteSettings.publicSiteUrl.replace(/\/$/, "")}/#organization`,
+        name: siteSettings.organizationName,
+        url: siteSettings.publicSiteUrl,
+        logo: {
+          "@type": "ImageObject",
+          url: `${siteSettings.publicSiteUrl.replace(/\/$/, "")}/logo_tr.png`,
+        },
+        description: siteSettings.defaultSeoDescription,
+        email: siteSettings.email,
+        telephone: siteSettings.telephone,
+        address: {
+          "@type": "PostalAddress",
+          streetAddress: siteSettings.address,
+          addressCountry: "PS",
+        },
+        areaServed: { "@type": "Country", name: "فلسطين" },
+        contactPoint: {
+          "@type": "ContactPoint",
+          telephone: siteSettings.telephone,
+          email: siteSettings.email,
+          contactType: "customer service",
+          availableLanguage: ["ar"],
+        },
+        knowsAbout: [
+          "الاستشارات الإدارية",
+          "الاستشارات المالية",
+          "تطوير العمليات",
+          "نمو الأعمال",
+          "التسويق",
+        ],
+      },
+      {
+        "@type": "WebSite",
+        "@id": `${siteSettings.publicSiteUrl.replace(/\/$/, "")}/#website`,
+        name: siteSettings.organizationName,
+        url: siteSettings.publicSiteUrl,
+        inLanguage: "ar-PS",
+        publisher: { "@id": `${siteSettings.publicSiteUrl.replace(/\/$/, "")}/#organization` },
+      },
     ],
   };
   return (

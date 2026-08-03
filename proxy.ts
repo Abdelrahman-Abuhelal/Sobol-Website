@@ -37,4 +37,4 @@ export function proxy(request: NextRequest) {
   return response;
 }
 
-export const config = { matcher: ["/", "/about", "/services", "/portfolio", "/blog/:path*", "/contact"] };
+export const config = { matcher: ["/", "/about", "/services/:path*", "/portfolio", "/blog/:path*", "/contact"] };

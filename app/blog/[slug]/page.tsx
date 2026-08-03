@@ -52,6 +52,7 @@ export default async function ArticlePage({ params }: PageProps) {
   const [article, { navigation, siteSettings }] = await Promise.all([getArticleBySlug(slug), getGlobalContent()]);
   if (!article) notFound();
   const canonical = `${siteSettings.publicSiteUrl.replace(/\/$/, "")}/blog/${article.slug}`;
+  const siteBase = siteSettings.publicSiteUrl.replace(/\/$/, "");
   const imageSrc = editorialImageUrl(article.featuredImage, 1400);
   const authorImageSrc = editorialImageUrl(article.author.image, 160);
   const structuredData = {
@@ -61,21 +62,33 @@ export default async function ArticlePage({ params }: PageProps) {
         "@type": "BlogPosting", "@id": `${canonical}#article`, headline: article.title,
         description: article.excerpt, url: canonical, inLanguage: "ar",
         datePublished: article.publishedAt, dateModified: article.updatedAt || article._updatedAt || article.publishedAt,
-        author: { "@type": "Person", name: article.author.name, jobTitle: article.author.role },
+        author: {
+          "@type": "Person",
+          "@id": `${siteBase}/#person-${article.author.slug}`,
+          name: article.author.name,
+          jobTitle: article.author.role,
+          description: article.author.bio,
+          knowsAbout: article.author.expertise,
+        },
         reviewedBy: article.reviewer ? { "@type": "Person", name: article.reviewer.name, jobTitle: article.reviewer.role } : undefined,
-        publisher: { "@type": "Organization", name: siteSettings.organizationName, url: siteSettings.publicSiteUrl },
-        image: imageSrc || undefined,
+        publisher: { "@id": `${siteBase}/#organization` },
+        image: imageSrc ? { "@type": "ImageObject", url: imageSrc } : undefined,
         articleSection: article.categories?.map((category) => category.title),
         keywords: [...(article.categories?.map((category) => category.title) || []), ...(article.author.expertise || [])],
         about: article.categories?.map((category) => ({ "@type": "Thing", name: category.title })),
-        speakable: { "@type": "SpeakableSpecification", cssSelector: ["#article-title", "#direct-answer"] },
+        citation: article.sources?.map((source) => source.url),
         isPartOf: { "@type": "Blog", name: `مدونة ${siteSettings.organizationName}`, url: `${siteSettings.publicSiteUrl.replace(/\/$/, "")}/blog` },
         mainEntityOfPage: { "@type": "WebPage", "@id": canonical },
       },
-      article.faqs?.length ? {
-        "@type": "FAQPage",
-        mainEntity: article.faqs.map((faq) => ({ "@type": "Question", name: faq.question, acceptedAnswer: { "@type": "Answer", text: faq.answer } })),
-      } : undefined,
+      {
+        "@type": "BreadcrumbList",
+        "@id": `${canonical}#breadcrumb`,
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "الرئيسية", item: `${siteBase}/` },
+          { "@type": "ListItem", position: 2, name: "المدونة", item: `${siteBase}/blog` },
+          { "@type": "ListItem", position: 3, name: article.title, item: canonical },
+        ],
+      },
     ].filter(Boolean),
   };
 

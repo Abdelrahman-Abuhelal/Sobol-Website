@@ -16,6 +16,7 @@ import type {
   Navigation,
   SiteSettings,
 } from "@/sanity/lib/types";
+import { getSolutionPage } from "@/content/solution-pages";
 
 function linkHref(link: ControlledLink): string {
   switch (link.kind) {
@@ -211,6 +212,33 @@ export async function getSanityMarkdown(path: string): Promise<string | null> {
         main.push(...renderCta(resolveCta(section, siteSettings.consultationCta)));
       }
     }
+    return documentFrom(main, navigation, siteSettings);
+  }
+
+  if (path.startsWith("/services/")) {
+    const slug = decodeURIComponent(path.slice("/services/".length));
+    const page = getSolutionPage(slug);
+    if (!page) return null;
+    const main = [
+      `# ${page.title}`,
+      page.eyebrow,
+      page.lead,
+      "## الإجابة المختصرة",
+      page.directAnswer,
+      `## ${page.symptomsHeading}`,
+      ...page.symptoms.map((item) => `- ${item}`),
+      `## ${page.outcomesHeading}`,
+      page.outcomesIntro,
+      ...page.outcomes.flatMap((item) => [`### ${item.title}`, item.description]),
+      "## طريقة العمل",
+      ...page.process.flatMap((item, index) => [
+        `### ${index + 1}. ${item.title}`,
+        item.description,
+      ]),
+      "## أسئلة شائعة",
+      ...page.questions.flatMap((item) => [`### ${item.question}`, item.answer]),
+      "[اطلب استشارة](/contact)",
+    ];
     return documentFrom(main, navigation, siteSettings);
   }
 
