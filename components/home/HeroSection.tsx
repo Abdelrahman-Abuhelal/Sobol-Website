@@ -2,9 +2,9 @@ import Link from "next/link";
 import {
     ArrowLeft,
     ChartNoAxesCombined,
-    Check,
     ListChecks,
     Settings2,
+    TrendingUp,
 } from "lucide-react";
 import { fallbackHomePage } from "@/content/fallbacks";
 import { controlledLinkHref } from "@/sanity/lib/links";
@@ -18,57 +18,91 @@ const defaultTrustPoints = [
 
 const trustIcons = [Settings2, ListChecks, ChartNoAxesCombined] as const;
 
-function OperationalBlueprint() {
+const growthStages = [
+    { label: "فهم الواقع", value: "تشخيص" },
+    { label: "ترتيب الأولويات", value: "خطة واضحة" },
+    { label: "متابعة التنفيذ", value: "قياس مستمر" },
+] as const;
+
+function GrowthChart() {
     return (
         <aside
             className="relative mx-auto w-full max-w-[25.75rem] lg:mx-0 lg:ms-auto"
-            aria-label="تصور مبسط لتحويل فوضى العمل إلى نظام واضح"
+            aria-label="مسار عمل سُبُل من فهم الواقع إلى متابعة التنفيذ"
         >
             <div
                 className="absolute -inset-5 -z-10 rounded-[2.25rem] bg-[oklch(0.93_0.03_178/0.32)] blur-3xl"
                 aria-hidden="true"
             />
 
-            <div className="overflow-hidden rounded-[1.5rem] border border-[oklch(0.88_0.018_190)] bg-[oklch(0.992_0.006_175)] shadow-[0_22px_60px_oklch(0.29_0.055_235/0.075)]">
-                <div className="flex items-center gap-2.5 px-5 pt-5">
-                    <span className="size-2 rounded-full bg-primary" aria-hidden="true" />
-                    <span className="text-sm font-bold text-secondary">منظومة العمل</span>
+            <div className="overflow-hidden rounded-[1.5rem] border border-[oklch(0.88_0.018_190)] bg-[oklch(0.992_0.006_175)] p-5 shadow-[0_22px_60px_oklch(0.29_0.055_235/0.075)] sm:p-6">
+                <div className="flex items-start justify-between gap-4">
+                    <div>
+                        <p className="text-sm font-bold text-secondary">من الوضوح إلى التقدّم</p>
+                        <p className="mt-1 text-xs leading-5 text-secondary/58">مسار عملي بخطوات قابلة للمتابعة</p>
+                    </div>
+                    <span className="flex size-10 shrink-0 items-center justify-center rounded-xl bg-accent text-primary">
+                        <TrendingUp className="size-5" strokeWidth={2} aria-hidden="true" />
+                    </span>
                 </div>
 
-                <div className="p-5 pt-4">
-                    <div aria-label="حالة تنظيم العمليات">
-                        <div className="flex items-center justify-between gap-3 text-xs font-bold text-secondary/58">
-                            <span>عمل مشتت</span>
-                            <span className="text-primary">نظام قابل للمتابعة</span>
-                        </div>
-                        <div className="mt-3 h-2 overflow-hidden rounded-full bg-[oklch(0.91_0.022_190)]">
-                            <span className="block h-full w-[82%] rounded-full bg-primary/62" />
-                        </div>
-                        <div className="mt-3 flex justify-between gap-3 text-xs font-medium text-secondary/66">
-                            <span>العمليات</span>
-                            <span>المالية</span>
-                            <span>المتابعة</span>
-                        </div>
-                    </div>
+                <div className="relative mt-5 rounded-[1.15rem] bg-[oklch(0.975_0.012_178)] px-3 pb-2 pt-4 sm:px-4">
+                    <svg
+                        viewBox="0 0 360 210"
+                        className="h-auto w-full overflow-visible"
+                        role="img"
+                        aria-labelledby="growth-chart-title growth-chart-description"
+                    >
+                        <title id="growth-chart-title">مسار العمل مع سُبُل</title>
+                        <desc id="growth-chart-description">رسم بخط صاعد من فهم الواقع إلى خطة واضحة ثم متابعة التنفيذ</desc>
+                        <defs>
+                            <linearGradient id="growthArea" x1="0" y1="0" x2="0" y2="1">
+                                <stop offset="0%" stopColor="oklch(0.49 0.085 187)" stopOpacity="0.22" />
+                                <stop offset="100%" stopColor="oklch(0.49 0.085 187)" stopOpacity="0" />
+                            </linearGradient>
+                            <marker id="axisArrow" markerWidth="8" markerHeight="8" refX="5" refY="4" orient="auto">
+                                <path d="M1 1L6 4L1 7" fill="none" stroke="oklch(0.29 0.055 235)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                            </marker>
+                            <marker id="trendArrow" markerWidth="9" markerHeight="9" refX="6" refY="4.5" orient="auto">
+                                <path d="M1 1L7 4.5L1 8" fill="none" stroke="oklch(0.49 0.085 187)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+                            </marker>
+                        </defs>
 
-                    <div className="mt-5 rounded-[1.1rem] bg-secondary p-4.5 text-secondary-foreground sm:p-5">
-                        <div className="flex items-center justify-between gap-4">
-                            <span className="text-lg font-black">نظام واضح</span>
-                            <span className="text-xs font-bold text-secondary-foreground/58">الخطوة التالية محددة</span>
-                        </div>
-                        <ul className="mt-3 grid gap-2 text-sm font-medium text-secondary-foreground/82 sm:grid-cols-2 sm:gap-x-4">
-                            {["مسؤوليات واضحة", "مؤشرات قابلة للقياس"].map((item) => (
-                                <li key={item} className="flex items-center gap-2.5">
-                                    <span className="flex size-4.5 shrink-0 items-center justify-center rounded-full bg-primary text-primary-foreground">
-                                        <Check className="size-2.5" strokeWidth={3} aria-hidden="true" />
-                                    </span>
-                                    {item}
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
+                        {[58, 100, 142].map((y) => (
+                            <line key={y} x1="38" y1={y} x2="336" y2={y} stroke="oklch(0.29 0.055 235)" strokeOpacity="0.08" strokeDasharray="4 7" />
+                        ))}
+
+                        <path d="M38 174V25" fill="none" stroke="oklch(0.29 0.055 235)" strokeOpacity="0.48" strokeWidth="1.5" markerEnd="url(#axisArrow)" />
+                        <path d="M38 174H340" fill="none" stroke="oklch(0.29 0.055 235)" strokeOpacity="0.48" strokeWidth="1.5" markerEnd="url(#axisArrow)" />
+
+                        <path d="M51 159C88 151 103 153 130 128C154 106 180 116 207 91C232 68 251 76 278 52C297 35 312 31 326 25V174H51Z" fill="url(#growthArea)" />
+                        <path d="M51 159C88 151 103 153 130 128C154 106 180 116 207 91C232 68 251 76 278 52C297 35 312 31 326 25" fill="none" stroke="oklch(0.49 0.085 187)" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" markerEnd="url(#trendArrow)" />
+
+                        {[
+                            { cx: 130, cy: 128 },
+                            { cx: 207, cy: 91 },
+                            { cx: 278, cy: 52 },
+                        ].map((point) => (
+                            <g key={`${point.cx}-${point.cy}`}>
+                                <circle cx={point.cx} cy={point.cy} r="7" fill="oklch(0.992 0.006 175)" stroke="oklch(0.49 0.085 187)" strokeWidth="3" />
+                                <circle cx={point.cx} cy={point.cy} r="2.5" fill="oklch(0.49 0.085 187)" />
+                            </g>
+                        ))}
+
+                        <text x="38" y="198" fill="oklch(0.29 0.055 235)" fillOpacity="0.58" fontSize="11" fontWeight="700">البداية</text>
+                        <text x="300" y="198" fill="oklch(0.49 0.085 187)" fontSize="11" fontWeight="700">متابعة</text>
+                    </svg>
                 </div>
-            </div>
+
+                <dl className="mt-4 grid grid-cols-3 gap-2 sm:gap-3">
+                    {growthStages.map((stage) => (
+                        <div key={stage.label} className="rounded-xl border border-[oklch(0.89_0.018_190)] bg-white/70 px-2.5 py-3 text-center sm:px-3">
+                            <dt className="text-[0.68rem] font-bold leading-4 text-secondary/62 sm:text-xs">{stage.label}</dt>
+                            <dd className="mt-1 text-sm font-black text-primary sm:text-base">{stage.value}</dd>
+                        </div>
+                    ))}
+                </dl>
+                </div>
         </aside>
     );
 }
@@ -140,7 +174,7 @@ export function HeroSection({ content = fallbackHomePage.hero }: { content?: Hom
                         </ul>
                     </div>
 
-                    <OperationalBlueprint />
+                    <GrowthChart />
                 </div>
             </div>
         </section>
