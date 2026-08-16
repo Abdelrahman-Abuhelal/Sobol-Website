@@ -29,10 +29,10 @@ The original pasted scan output is stored outside the repository at:
 
 - [x] A valid `robots.txt` is available with valid `User-agent` directives.
 - [x] `robots.txt` advertises a valid XML sitemap.
-- [x] AI-bot rules exist for GPTBot, Google-Extended, CCBot, Bytespider, Applebot-Extended, Amazonbot, and Meta-ExternalAgent.
+- [x] The wildcard crawler policy allows search and AI bots to access public content while excluding `/studio` and `/api/`.
 - [x] At least one Cloudflare Content-Signal directive is present in `robots.txt`.
 
-These controls should be preserved while making future changes.
+These controls should be preserved while making future changes. The policy intentionally permits AI content retrieval and training; changing that policy requires an explicit product decision because crawler-specific `Disallow: /` rules prevent those services from extracting public content.
 
 ## Remediation backlog
 

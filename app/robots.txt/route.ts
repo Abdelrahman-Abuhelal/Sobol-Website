@@ -1,45 +1,15 @@
 const CANONICAL_ORIGIN = "https://www.sobol.ps";
 
-const searchAndAgentCrawlers = [
-  "Googlebot",
-  "Bingbot",
-  "OAI-SearchBot",
-  "ChatGPT-User",
-  "Claude-SearchBot",
-  "Claude-User",
-  "PerplexityBot",
-  "Perplexity-User",
-];
-
-const trainingCrawlers = [
-  "GPTBot",
-  "ClaudeBot",
-  "Google-Extended",
-  "CCBot",
-  "Bytespider",
-  "Applebot-Extended",
-];
-
 export function GET() {
   const lines = [
-    "# Sobol permits search indexing and user-directed AI retrieval, but not model training.",
+    "# Sobol permits search indexing and AI content retrieval.",
     "",
     "User-agent: *",
-    "Content-Signal: search=yes, ai-input=yes, ai-train=no, use=reference",
+    "Content-Signal: search=yes, ai-input=yes, ai-train=yes, use=reference",
     "Allow: /",
     "Disallow: /studio",
     "Disallow: /api/",
     "",
-    ...searchAndAgentCrawlers.flatMap((crawler) => [
-      `User-agent: ${crawler}`,
-      "Allow: /",
-      "",
-    ]),
-    ...trainingCrawlers.flatMap((crawler) => [
-      `User-agent: ${crawler}`,
-      "Disallow: /",
-      "",
-    ]),
     `Sitemap: ${CANONICAL_ORIGIN}/sitemap.xml`,
     "Host: www.sobol.ps",
     "",
