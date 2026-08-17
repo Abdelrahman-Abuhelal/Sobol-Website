@@ -30,6 +30,9 @@ export async function generateMetadata(): Promise<Metadata> {
     creator: settings.organizationName,
     publisher: settings.organizationName,
     referrer: "origin-when-cross-origin",
+    verification: {
+      google: "Zyrp7vAEDCb9aXprTcR37NdwdvyqymgW3DnCRGY5zIM",
+    },
     icons: { icon: "/sobol.png", shortcut: "/sobol.png", apple: "/sobol.png" },
     openGraph: {
       type: "website",
