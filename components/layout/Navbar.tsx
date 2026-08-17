@@ -4,7 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { Menu, X } from "lucide-react";
+import { CalendarCheck, Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { fallbackNavigation } from "@/content/fallbacks";
 import { controlledLinkHref, isExternalLink } from "@/sanity/lib/links";
@@ -53,8 +53,9 @@ export function Navbar({ navigation = fallbackNavigation }: { navigation?: Navig
                         <div className="hidden md:block">
                             <Link
                                 href={headerCtaHref}
-                                className="inline-flex min-h-11 items-center justify-center rounded-lg bg-primary px-5 text-sm font-bold text-primary-foreground transition-colors hover:bg-[oklch(0.43_0.08_187)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-4"
+                                className="inline-flex min-h-11 items-center justify-center gap-2 rounded-lg bg-primary px-5 text-sm font-bold text-primary-foreground transition-colors hover:bg-[oklch(0.43_0.08_187)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-4"
                             >
+                                <CalendarCheck className="size-4" strokeWidth={1.9} aria-hidden="true" />
                                 {navigation.headerCta.label}
                             </Link>
                         </div>
@@ -97,7 +98,8 @@ export function Navbar({ navigation = fallbackNavigation }: { navigation?: Navig
                                 </Link>
                             ))}
                             <Link href={headerCtaHref} onClick={() => setIsOpen(false)}>
-                                <span className="inline-flex min-h-11 w-full items-center justify-center rounded-lg bg-primary px-5 text-sm font-bold text-primary-foreground">
+                                <span className="inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-lg bg-primary px-5 text-sm font-bold text-primary-foreground">
+                                    <CalendarCheck className="size-4" strokeWidth={1.9} aria-hidden="true" />
                                     {navigation.mobileHeaderCtaLabel}
                                 </span>
                             </Link>
