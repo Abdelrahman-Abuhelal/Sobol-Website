@@ -29,14 +29,14 @@ export function HowWeHelpSection({ content }: { content: HomeHeroSection }) {
                         return (
                             <li
                                 key={step._key}
-                                className="relative overflow-hidden rounded-[1.4rem] border border-primary bg-primary p-6 shadow-[0_14px_40px_oklch(0.29_0.055_235/0.055)] sm:p-7"
+                                className="relative overflow-hidden rounded-[1.4rem] border border-primary/20 bg-primary/[0.07] p-6 shadow-[0_14px_40px_oklch(0.29_0.055_235/0.045)] sm:p-7"
                             >
                                 <div className="flex items-start justify-between gap-6">
-                                    <span className="text-sm font-black tracking-[0.12em] text-primary-foreground/75">{number}</span>
-                                    <Icon className="size-6 text-primary-foreground/70" strokeWidth={1.6} aria-hidden="true" />
+                                    <span className="text-sm font-black tracking-[0.12em] text-primary/80">{number}</span>
+                                    <Icon className="size-6 text-primary/75" strokeWidth={1.6} aria-hidden="true" />
                                 </div>
-                                <h3 className="mt-10 text-xl font-black text-primary-foreground sm:text-2xl">{step.title}</h3>
-                                <p className="mt-3 text-base leading-7 text-primary-foreground/78">{step.description}</p>
+                                <h3 className="mt-10 text-xl font-black text-secondary sm:text-2xl">{step.title}</h3>
+                                <p className="mt-3 text-base leading-7 text-secondary/68">{step.description}</p>
                             </li>
                         );
                     })}

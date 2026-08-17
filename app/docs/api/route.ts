@@ -15,6 +15,7 @@ The Sobol public API supports consultation requests and machine-readable service
 \`POST /api/contact\` accepts JSON with:
 
 - \`name\` (required, maximum 120 characters)
+- \`email\` (required, valid email address, maximum 254 characters)
 - \`phone\` (required, maximum 50 characters)
 - \`company\` (optional, maximum 160 characters)
 - \`service\` (required): \`firefighting\`, \`structuring\`, \`growth\`, \`marketing\`, or \`other\`

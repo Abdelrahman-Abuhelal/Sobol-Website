@@ -25,9 +25,9 @@ export function Navbar({ navigation = fallbackNavigation }: { navigation?: Navig
                             <Image
                                 src="/logo_tr.png"
                                 alt="سُبُل - لتطوير الأعمال"
-                                width={100}
-                                height={50}
-                                className="h-12 w-auto"
+                                width={64}
+                                height={64}
+                                className="h-14 w-14 object-contain md:h-16 md:w-16"
                                 priority
                             />
                         </Link>

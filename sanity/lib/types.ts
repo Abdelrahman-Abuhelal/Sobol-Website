@@ -158,7 +158,8 @@ export type ContactSection = {
   heading: string;
   description: string;
   form: {
-    nameLabel: string; namePlaceholder?: string; phoneLabel: string; phonePlaceholder?: string;
+    nameLabel: string; namePlaceholder?: string; emailLabel?: string; emailPlaceholder?: string;
+    phoneLabel: string; phonePlaceholder?: string;
     companyLabel: string; companyPlaceholder?: string; serviceLabel: string; servicePlaceholder: string;
     messageLabel: string; messagePlaceholder?: string; submitText: string; sendingText: string;
     successHeading: string; successMessage: string; resetText: string; errorFallback: string;

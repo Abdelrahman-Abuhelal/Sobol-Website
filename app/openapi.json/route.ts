@@ -26,10 +26,11 @@ export function GET(request: Request) {
                 "application/json": {
                   schema: {
                     type: "object",
-                    required: ["name", "phone", "service"],
+                    required: ["name", "email", "phone", "service"],
                     additionalProperties: false,
                     properties: {
                       name: { type: "string", maxLength: 120 },
+                      email: { type: "string", format: "email", maxLength: 254 },
                       phone: { type: "string", maxLength: 50 },
                       company: { type: "string", maxLength: 160 },
                       service: {

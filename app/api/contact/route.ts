@@ -12,6 +12,10 @@ function clean(value: unknown, maxLength: number) {
     return typeof value === "string" ? value.trim().slice(0, maxLength) : "";
 }
 
+function isValidEmail(value: string) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+}
+
 export async function POST(request: Request) {
     try {
         const body = await request.json();
@@ -22,12 +26,13 @@ export async function POST(request: Request) {
         }
 
         const name = clean(body.name, 120);
+        const email = clean(body.email, 254);
         const phone = clean(body.phone, 50);
         const company = clean(body.company, 160);
         const service = clean(body.service, 60);
         const message = clean(body.message, 3000);
 
-        if (!name || !phone || !serviceLabels[service]) {
+        if (!name || !isValidEmail(email) || !phone || !serviceLabels[service]) {
             return NextResponse.json(
                 { error: "يرجى تعبئة الحقول المطلوبة بشكل صحيح." },
                 { status: 400 }
@@ -48,6 +53,7 @@ export async function POST(request: Request) {
 
         const text = [
             `الاسم الكامل: ${name}`,
+            `البريد الإلكتروني: ${email}`,
             `رقم الهاتف: ${phone}`,
             `الشركة / المشروع: ${company || "غير محدد"}`,
             `الخدمة المطلوبة: ${serviceLabels[service]}`,
@@ -66,6 +72,7 @@ export async function POST(request: Request) {
             body: JSON.stringify({
                 from,
                 to: [to],
+                reply_to: email,
                 subject: `طلب استشارة جديد من ${name}`,
                 text,
             }),
