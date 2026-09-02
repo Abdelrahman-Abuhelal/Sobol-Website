@@ -9,6 +9,7 @@ import { presentationResolve } from "./sanity/presentation/resolve";
 import { schemaTypes } from "./sanity/schemaTypes";
 import { singletonTypes } from "./sanity/singletons";
 import { structure } from "./sanity/structure";
+import { analyticsTool } from "./sanity/analytics/AnalyticsTool";
 
 export default defineConfig({
   name: "default",
@@ -32,6 +33,7 @@ export default defineConfig({
     }),
     visionTool({ title: "أدوات المطور" }),
   ],
+  tools: [analyticsTool],
   schema: { types: schemaTypes },
   document: {
     actions: (previousActions, context) => singletonTypes.has(context.schemaType)
