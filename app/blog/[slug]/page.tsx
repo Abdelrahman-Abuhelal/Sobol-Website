@@ -4,6 +4,8 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowRight, CalendarDays } from "lucide-react";
 import { ArticleBody } from "@/components/blog/ArticleBody";
+import { ArticleAnalytics } from "@/components/blog/ArticleAnalytics";
+import { ArticleShare } from "@/components/blog/ArticleShare";
 import { ConsultationCTA } from "@/components/layout/ConsultationCTA";
 import { Footer } from "@/components/layout/Footer";
 import { Navbar } from "@/components/layout/Navbar";
@@ -96,6 +98,7 @@ export default async function ArticlePage({ params }: PageProps) {
     <main className="min-h-screen bg-background">
       <Navbar navigation={navigation} />
       <article>
+        <ArticleAnalytics slug={article.slug} title={article.title} categories={article.categories?.map((category) => category.title) || []} />
         <header className="bg-[oklch(0.982_0.008_178)] pb-14 pt-12 sm:pb-16 sm:pt-16">
           <div className="container-custom">
             <Link href="/blog" className="mb-8 inline-flex items-center gap-2 text-sm font-bold text-primary hover:gap-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-4"><ArrowRight className="size-4" aria-hidden="true" /> العودة إلى المدونة</Link>
@@ -117,14 +120,17 @@ export default async function ArticlePage({ params }: PageProps) {
 
         {imageSrc && <div className="container-custom -mt-4 sm:-mt-6"><div className="relative mx-auto aspect-[16/8] max-w-[68rem] overflow-hidden rounded-[1.75rem] bg-muted shadow-[0_28px_75px_-45px_oklch(0.29_0.055_235/0.7)]"><Image src={imageSrc} alt={article.featuredImage?.alt || article.title} fill priority sizes="(max-width: 1200px) 100vw, 1088px" className="object-cover" /></div></div>}
 
-        <div className="container-custom py-12 sm:py-16">
+        <div className="container-custom py-12 sm:py-16" data-article-content>
           <div className="mx-auto max-w-[58rem]">
             <p id="direct-answer" className="mb-8 text-[1.075rem] leading-[2] text-[oklch(0.34_0.035_220)] sm:text-lg">{article.directAnswer}</p>
+            <ArticleShare canonicalUrl={canonical} slug={article.slug} title={article.title} />
             <ArticleBody value={article.body} />
 
             {article.faqs?.length ? <section className="mt-16" aria-labelledby="faq-heading"><h2 id="faq-heading" className="text-3xl font-black tracking-[-0.025em] text-secondary">أسئلة شائعة</h2><div className="mt-7 divide-y divide-[oklch(0.87_0.018_190)] border-y border-[oklch(0.87_0.018_190)]">{article.faqs.map((faq) => <div key={faq._key} className="py-6"><h3 className="text-xl font-extrabold leading-8 text-secondary">{faq.question}</h3><p className="mt-3 text-base leading-8 text-[oklch(0.38_0.035_215)]">{faq.answer}</p></div>)}</div></section> : null}
 
             {article.sources?.length ? <section className="mt-16" aria-labelledby="sources-heading"><h2 id="sources-heading" className="text-2xl font-black text-secondary">المصادر</h2><ol className="mt-5 list-decimal space-y-3 pr-6 text-base leading-7">{article.sources.map((source) => <li key={source._key}><a href={source.url} target="_blank" rel="noreferrer" className="font-bold text-primary underline decoration-primary/30 underline-offset-4">{source.title}</a>{source.publisher ? `، ${source.publisher}` : ""}{source.accessedAt ? `، تم الاطلاع في ${dateFormatter.format(new Date(source.accessedAt))}` : ""}</li>)}</ol></section> : null}
+
+            <ArticleShare canonicalUrl={canonical} slug={article.slug} title={article.title} placement="bottom" />
 
             <section className="mt-16 border-t border-[oklch(0.87_0.018_190)] pt-8" aria-label="عن الكاتب">
               <div className="flex flex-col gap-5 sm:flex-row sm:items-start">
