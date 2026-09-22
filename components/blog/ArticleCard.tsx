@@ -1,12 +1,13 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, Eye } from "lucide-react";
 import { editorialImageUrl } from "@/sanity/lib/image";
 import type { ArticleCard as ArticleCardData } from "@/sanity/lib/types";
 
 const dateFormatter = new Intl.DateTimeFormat("ar-PS", { year: "numeric", month: "long", day: "numeric" });
+const numberFormatter = new Intl.NumberFormat("ar-PS", { notation: "compact", maximumFractionDigits: 1 });
 
-export function ArticleCard({ article, priority = false }: { article: ArticleCardData; priority?: boolean }) {
+export function ArticleCard({ article, priority = false, viewCount, showViews = false }: { article: ArticleCardData; priority?: boolean; viewCount?: number; showViews?: boolean }) {
   const imageSrc = editorialImageUrl(article.featuredImage, 900);
   return (
     <article className="group grid overflow-hidden rounded-[1.75rem] border border-[oklch(0.86_0.018_190)] bg-[oklch(0.99_0.004_175)] shadow-[0_18px_55px_-42px_oklch(0.29_0.055_235/0.65)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_24px_65px_-38px_oklch(0.29_0.055_235/0.55)]">
@@ -19,6 +20,7 @@ export function ArticleCard({ article, priority = false }: { article: ArticleCar
         <div className="mb-4 flex flex-wrap items-center gap-x-3 gap-y-2 text-sm text-muted-foreground">
           <time dateTime={article.publishedAt}>{dateFormatter.format(new Date(article.publishedAt))}</time>
           {article.categories?.[0] && <><span aria-hidden="true">•</span><span>{article.categories[0].title}</span></>}
+          {showViews && typeof viewCount === "number" && <><span aria-hidden="true">•</span><span className="inline-flex items-center gap-1.5"><Eye className="size-4" aria-hidden="true" />{numberFormatter.format(viewCount)} مشاهدة</span></>}
         </div>
         <h2 className="text-2xl font-extrabold leading-[1.35] tracking-[-0.02em] text-secondary">
           <Link href={`/blog/${article.slug}`} className="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-4">{article.title}</Link>

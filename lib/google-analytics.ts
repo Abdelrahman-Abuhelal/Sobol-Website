@@ -42,6 +42,33 @@ export function getMissingAnalyticsConfiguration() {
   return "missingFields" in configuration ? configuration.missingFields || [] : [];
 }
 
+export async function getArticleViewCounts(): Promise<Record<string, number>> {
+  const configuration = getConfiguration();
+  if ("missingFields" in configuration) return {};
+
+  const client = new BetaAnalyticsDataClient({
+    credentials: {
+      client_email: configuration.clientEmail,
+      private_key: configuration.privateKey,
+    },
+  });
+  const [response] = await client.runReport({
+    property: `properties/${configuration.propertyId}`,
+    dateRanges: [{ startDate: "2020-01-01", endDate: "today" }],
+    dimensions: [{ name: "pagePath" }],
+    metrics: [{ name: "screenPageViews" }],
+    dimensionFilter: BLOG_FILTER,
+    orderBys: [{ metric: { metricName: "screenPageViews" }, desc: true }],
+    limit: 1000,
+  });
+
+  return Object.fromEntries((response.rows || []).flatMap((row) => {
+    const path = row.dimensionValues?.[0]?.value || "";
+    const slug = path.match(/^\/blog\/([^/?]+)\/?$/)?.[1];
+    return slug ? [[slug, numberValue(row.metricValues?.[0]?.value)]] : [];
+  }));
+}
+
 export async function getArticleAnalytics(days: number): Promise<AnalyticsDashboardData> {
   const configuration = getConfiguration();
   if ("missingFields" in configuration) throw new Error("Analytics configuration is incomplete");

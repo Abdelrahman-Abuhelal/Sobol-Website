@@ -1,4 +1,6 @@
 import { cache } from "react";
+import { unstable_cache } from "next/cache";
+import { getArticleViewCounts } from "@/lib/google-analytics";
 import { fallbackAboutPage, fallbackBlogPage, fallbackContactPage, fallbackHomePage, fallbackNavigation, fallbackPortfolioPage, fallbackServicesPage, fallbackSiteSettings } from "@/content/fallbacks";
 import { fallbackSolutionPages, getFallbackSolutionPage } from "@/content/solution-pages";
 import { sanityFetch } from "@/sanity/lib/fetch";
@@ -20,6 +22,7 @@ export const getPortfolioPage = cache(async () => withFallback(await sanityFetch
 export const getBlogPage = cache(async () => withFallback(await sanityFetch<BlogPage>({ query: blogPageQuery, tag: "blogPage" }), fallbackBlogPage, "blogPage"));
 export const getContactPage = cache(async () => withFallback(await sanityFetch<ContactPage>({ query: contactPageQuery, tag: "contactPage" }), fallbackContactPage, "contactPage"));
 export const getArticles = cache(async () => (await sanityFetch<ArticleCard[]>({ query: articlesQuery, tag: "article" })) || []);
+export const getCachedArticleViewCounts = unstable_cache(getArticleViewCounts, ["article-view-counts"], { revalidate: 900 });
 export const getArticleBySlug = cache(async (slug: string) => sanityFetch<Article>({ query: articleBySlugQuery, params: { slug }, tag: "article" }));
 export const getArticleSlugs = cache(async () => (await sanityFetch<string[]>({ query: articleSlugsQuery, tag: "article", stega: false, requestless: true })) || []);
 export const getArticleSitemapEntries = cache(async () => (await sanityFetch<ArticleSitemapEntry[]>({ query: articleSitemapQuery, tag: "article", stega: false, requestless: true })) || []);
