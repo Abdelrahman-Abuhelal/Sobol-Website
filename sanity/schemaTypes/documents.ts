@@ -3,23 +3,25 @@ import { defineArrayMember, defineField, defineType } from "sanity";
 type SectionValue = { _type?: string };
 const nonEmpty = (value: unknown) => typeof value === "string" && value.trim() ? true : "This field cannot be empty.";
 
-function validateSections(value: SectionValue[] | undefined, requireType?: string) {
+function validateSections(value: SectionValue[] | undefined, requireType?: string, repeatableTypes: string[] = []) {
   if (!value) return requireType ? "At least one section is required." : true;
-  const types = value.map((section) => section._type).filter(Boolean);
-  if (new Set(types).size !== types.length) return "Each approved section can appear at most once.";
+  const types = value.map((section) => section._type).filter((type): type is string => Boolean(type));
+  const repeatable = new Set(repeatableTypes);
+  const duplicate = types.find((type, index) => types.indexOf(type) !== index && !repeatable.has(type));
+  if (duplicate) return "لا يمكن تكرار هذا النوع من الأقسام.";
   const ctaIndex = types.indexOf("consultationCtaSection");
-  if (ctaIndex >= 0 && ctaIndex !== types.length - 1) return "The consultation call to action must remain the last section.";
+  if (ctaIndex >= 0 && ctaIndex !== types.length - 1) return "يجب أن يبقى قسم طلب الاستشارة في نهاية الصفحة.";
   if (requireType && !types.includes(requireType)) return `The required ${requireType} section is missing.`;
   return true;
 }
 
-const pageFields = (title: string, sections: string[], requiredSection?: string) => [
+const pageFields = (title: string, sections: string[], requiredSection?: string, repeatableSections: string[] = []) => [
   defineField({ name: "internalTitle", title: "اسم الصفحة", type: "string", initialValue: title, readOnly: true, validation: (r) => r.required() }),
   defineField({ name: "pageIntro", title: "مقدمة الصفحة (العنوان الرئيسي)", type: "pageIntro", validation: (r) => r.required() }),
   defineField({
     name: "sections", title: "أقسام الصفحة", description: "يمكنك سحب الأقسام لتغيير ترتيبها. يجب أن يبقى قسم طلب الاستشارة أخيراً.",
     type: "array", of: sections.map((type) => defineArrayMember({ type })),
-    validation: (r) => r.required().custom((value) => validateSections(value as SectionValue[] | undefined, requiredSection)),
+    validation: (r) => r.required().custom((value) => validateSections(value as SectionValue[] | undefined, requiredSection, repeatableSections)),
   }),
   defineField({ name: "seo", title: "ظهور الصفحة في Google وعند المشاركة", type: "seo" }),
 ];
@@ -77,7 +79,7 @@ export const homePage = defineType({
 });
 
 export const aboutPage = defineType({ name: "aboutPage", title: "صفحة من نحن", type: "document", fields: pageFields("صفحة من نحن", ["aboutMethodSection", "principlesSection", "teamSection", "consultationCtaSection"]), preview: { prepare: () => ({ title: "صفحة من نحن" }) } });
-export const servicesPage = defineType({ name: "servicesPage", title: "صفحة الخدمات", type: "document", fields: pageFields("صفحة الخدمات", ["servicePackagesSection", "marketingServicesSection", "consultationCtaSection"]), preview: { prepare: () => ({ title: "صفحة الخدمات" }) } });
+export const servicesPage = defineType({ name: "servicesPage", title: "صفحة الخدمات", type: "document", fields: pageFields("صفحة الخدمات", ["servicePackagesSection", "marketingServicesSection", "consultationCtaSection"], undefined, ["servicePackagesSection", "marketingServicesSection"]), preview: { prepare: () => ({ title: "صفحة الخدمات" }) } });
 export const portfolioPage = defineType({ name: "portfolioPage", title: "صفحة أعمالنا", type: "document", fields: pageFields("صفحة أعمالنا", ["portfolioListSection", "consultationCtaSection"], "portfolioListSection"), preview: { prepare: () => ({ title: "صفحة أعمالنا" }) } });
 export const blogPage = defineType({ name: "blogPage", title: "صفحة المدونة", type: "document", fields: pageFields("صفحة المدونة", ["blogComingSoonSection"], "blogComingSoonSection"), preview: { prepare: () => ({ title: "صفحة المدونة" }) } });
 

@@ -3,6 +3,14 @@ import { defineArrayMember, defineField, defineType } from "sanity";
 const nonEmpty = (value: unknown) => typeof value === "string" && value.trim() ? true : "This field cannot be empty.";
 const hideField = defineField({ name: "isHidden", title: "إخفاء هذا القسم من الموقع", type: "boolean", initialValue: false });
 
+type OptionalLink = { label?: string; kind?: string; internalRoute?: string; url?: string; email?: string; telephone?: string; whatsapp?: string };
+
+const completeLink = (link?: OptionalLink) => {
+  if (!link?.label?.trim() || !link.kind) return false;
+  const destination = link.kind === "internal" ? link.internalRoute : link.kind === "https" ? link.url : link.kind === "email" ? link.email : link.kind === "telephone" ? link.telephone : link.whatsapp;
+  return Boolean(destination?.trim());
+};
+
 const headingFields = [
   defineField({ name: "eyebrow", title: "النص الصغير فوق العنوان", type: "string", validation: (r) => r.required().max(60).custom(nonEmpty) }),
   defineField({ name: "heading", title: "عنوان القسم", type: "string", validation: (r) => r.required().max(140).custom(nonEmpty) }),
@@ -76,12 +84,12 @@ export const consultationCtaSection = defineType({
     defineField({ name: "useGlobalDefault", title: "استخدام نص الاستشارة العام من إعدادات الموقع", type: "boolean", initialValue: true }),
     defineField({ name: "eyebrow", title: "النص الصغير فوق العنوان", type: "string", hidden: ({ parent }) => parent?.useGlobalDefault !== false, validation: (r) => r.max(60) }),
     defineField({ name: "heading", title: "عنوان القسم", type: "string", hidden: ({ parent }) => parent?.useGlobalDefault !== false, validation: (r) => r.max(120) }),
-    defineField({ name: "link", title: "الزر", type: "controlledLink", hidden: ({ parent }) => parent?.useGlobalDefault !== false }),
+    defineField({ name: "link", title: "الزر", type: "optionalControlledLink", hidden: ({ parent }) => parent?.useGlobalDefault !== false }),
   ], validation: (r) => r.custom((value) => {
-    const cta = value as { useGlobalDefault?: boolean; eyebrow?: string; heading?: string; link?: unknown } | undefined;
-    return cta?.useGlobalDefault === false && (!cta.eyebrow?.trim() || !cta.heading?.trim() || !cta.link) ? "Complete all custom call-to-action fields or use the global default." : true;
+    const cta = value as { useGlobalDefault?: boolean; eyebrow?: string; heading?: string; link?: OptionalLink } | undefined;
+    return cta?.useGlobalDefault === false && (!cta.eyebrow?.trim() || !cta.heading?.trim() || !completeLink(cta.link)) ? "أكمل جميع حقول دعوة الاستشارة المخصصة أو استخدم النص العام." : true;
   }),
-  preview: { select: { title: "heading", global: "useGlobalDefault", hidden: "isHidden" }, prepare: ({ title, global, hidden }) => ({ title: global ? "Global consultation call to action" : `Call to action — ${title}`, subtitle: hidden ? "Hidden" : "Visible" }) },
+  preview: { select: { title: "heading", global: "useGlobalDefault", hidden: "isHidden" }, prepare: ({ title, global, hidden }) => ({ title: global ? "دعوة طلب الاستشارة العامة" : title || "دعوة طلب الاستشارة", subtitle: hidden ? "مخفي" : "ظاهر" }) },
 });
 
 export const servicePackagesSection = defineType({
@@ -97,7 +105,7 @@ export const servicePackagesSection = defineType({
         defineField({ name: "isHidden", title: "إخفاء هذه الباقة", type: "boolean", initialValue: false }),
       ], preview: { select: { title: "title", subtitle: "label" } },
     })] }),
-  ], preview: { select: { title: "heading", hidden: "isHidden" }, prepare: ({ title, hidden }) => ({ title: `Service packages — ${title}`, subtitle: hidden ? "Hidden" : "Visible" }) },
+  ], preview: { select: { title: "heading", hidden: "isHidden" }, prepare: ({ title, hidden }) => ({ title: title || "باقات خدمات الأعمال", subtitle: hidden ? "باقات الخدمات · مخفي" : "باقات الخدمات · ظاهر" }) },
 });
 
 export const marketingServicesSection = defineType({
@@ -112,7 +120,7 @@ export const marketingServicesSection = defineType({
         defineField({ name: "isHidden", title: "إخفاء هذه الخدمة", type: "boolean", initialValue: false }),
       ], preview: { select: { title: "title", subtitle: "icon" } },
     })] }),
-  ], preview: { select: { title: "heading", hidden: "isHidden" }, prepare: ({ title, hidden }) => ({ title: `Marketing services — ${title}`, subtitle: hidden ? "Hidden" : "Visible" }) },
+  ], preview: { select: { title: "heading", hidden: "isHidden" }, prepare: ({ title, hidden }) => ({ title: title || "قسم خدمات", subtitle: hidden ? "قائمة خدمات · مخفي" : "قائمة خدمات · ظاهر" }) },
 });
 
 export const portfolioListSection = defineType({

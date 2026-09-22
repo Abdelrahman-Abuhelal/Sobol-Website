@@ -4,19 +4,15 @@ import { publicRoutes } from "@/sanity/lib/types";
 const nonEmpty = (value: unknown) =>
   typeof value === "string" && value.trim().length > 0 ? true : "This field cannot be empty.";
 
-export const controlledLink = defineType({
-  name: "controlledLink",
-  title: "زر أو رابط",
-  type: "object",
-  fields: [
-    defineField({ name: "label", title: "النص الظاهر للزائر", type: "string", validation: (r) => r.required().max(50).custom(nonEmpty) }),
+const controlledLinkFields = (required: boolean) => [
+    defineField({ name: "label", title: "النص الظاهر للزائر", type: "string", validation: (r) => required ? r.required().max(50).custom(nonEmpty) : r.max(50).custom((value) => value === undefined || nonEmpty(value)) }),
     defineField({
       name: "kind", title: "ماذا يحدث عند الضغط؟", type: "string", initialValue: "internal",
       options: { list: [
         { title: "فتح صفحة داخل الموقع", value: "internal" }, { title: "فتح موقع خارجي آمن", value: "https" },
         { title: "إرسال بريد إلكتروني", value: "email" }, { title: "الاتصال برقم هاتف", value: "telephone" },
         { title: "فتح محادثة واتساب", value: "whatsapp" },
-      ], layout: "radio" }, validation: (r) => r.required(),
+      ], layout: "radio" }, validation: (r) => required ? r.required() : r,
     }),
     defineField({
       name: "internalRoute", title: "اختر صفحة الموقع", type: "string",
@@ -28,13 +24,29 @@ export const controlledLink = defineType({
     defineField({ name: "emailSubject", title: "عنوان الرسالة", type: "string", hidden: ({ parent }) => parent?.kind !== "email", validation: (r) => r.max(120) }),
     defineField({ name: "telephone", title: "رقم الهاتف", type: "string", hidden: ({ parent }) => parent?.kind !== "telephone", validation: (r) => r.max(30) }),
     defineField({ name: "whatsapp", title: "رقم واتساب", description: "اكتب رمز الدولة مع الرقم.", type: "string", hidden: ({ parent }) => parent?.kind !== "whatsapp", validation: (r) => r.max(30) }),
-  ],
+  ];
+
+export const controlledLink = defineType({
+  name: "controlledLink",
+  title: "زر أو رابط",
+  type: "object",
+  fields: controlledLinkFields(true),
   validation: (rule) => rule.custom((value) => {
     if (!value) return true;
     const link = value as { kind?: string; internalRoute?: string; url?: string; email?: string; telephone?: string; whatsapp?: string };
     const destination = link.kind === "internal" ? link.internalRoute : link.kind === "https" ? link.url : link.kind === "email" ? link.email : link.kind === "telephone" ? link.telephone : link.whatsapp;
     return typeof destination === "string" && destination.trim() ? true : "Choose or enter a destination for this link.";
   }),
+  preview: { select: { title: "label", subtitle: "kind" } },
+});
+
+// Used by sections whose link is optional while another content source is selected.
+// Completeness is validated by the parent section when the custom link is enabled.
+export const optionalControlledLink = defineType({
+  name: "optionalControlledLink",
+  title: "زر أو رابط اختياري",
+  type: "object",
+  fields: controlledLinkFields(false),
   preview: { select: { title: "label", subtitle: "kind" } },
 });
 
@@ -100,4 +112,4 @@ export const stringListItem = defineType({
   ], preview: { select: { title: "text", hidden: "isHidden" }, prepare: ({ title, hidden }) => ({ title, subtitle: hidden ? "Hidden" : "Visible" }) },
 });
 
-export const sharedObjectTypes = [controlledLink, editorialImage, seo, ctaContent, navigationItem, pageIntro, stringListItem];
+export const sharedObjectTypes = [controlledLink, optionalControlledLink, editorialImage, seo, ctaContent, navigationItem, pageIntro, stringListItem];
