@@ -39,5 +39,5 @@ export default async function ServicesPageRoute() {
     }
     return [];
   });
-  return <main className="min-h-screen bg-background"><Navbar navigation={navigation} /><PageIntro {...page.pageIntro} /><SolutionDirectory /><ServicesPageSections sections={page.sections} globalCta={siteSettings.consultationCta} /><Footer navigation={navigation} siteSettings={siteSettings} /><PageStructuredData settings={siteSettings} path="/services" name={page.seo?.metaTitle || page.pageIntro.heading} description={page.seo?.metaDescription || page.pageIntro.description} type="CollectionPage" mainEntity={services} /></main>;
+  return <main className="min-h-screen bg-background"><Navbar navigation={navigation} /><PageIntro {...page.pageIntro} />{page.showSolutionDirectory !== false && <SolutionDirectory />}<ServicesPageSections sections={page.sections} globalCta={siteSettings.consultationCta} /><Footer navigation={navigation} siteSettings={siteSettings} /><PageStructuredData settings={siteSettings} path="/services" name={page.seo?.metaTitle || page.pageIntro.heading} description={page.seo?.metaDescription || page.pageIntro.description} type="CollectionPage" mainEntity={services} /></main>;
 }

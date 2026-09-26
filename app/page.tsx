@@ -23,7 +23,7 @@ export default async function Home() {
       <Navbar navigation={navigation} />
       <HeroSection content={page.hero} />
       <HowWeHelpSection content={page.hero} />
-      <SolutionDirectory compact />
+      {page.showSolutionDirectory !== false && <SolutionDirectory compact />}
       <Footer navigation={navigation} siteSettings={siteSettings} />
       <PageStructuredData
         settings={siteSettings}

@@ -77,6 +77,8 @@ export type HomeHeroSection = {
   description: string;
   primaryButton: ControlledLink;
   secondaryButton: ControlledLink;
+  heroVisualType?: "chart" | "image";
+  heroImage?: EditorialImage;
   trustPoints?: string[];
   journeyTitle: string;
   journeyDescription: string;
@@ -167,9 +169,9 @@ export type ContactSection = {
   serviceLabels: { firefighting: string; structuring: string; growth: string; marketing: string; other: string };
 };
 
-export type HomePage = { _id?: string; seo?: Seo; hero: HomeHeroSection };
+export type HomePage = { _id?: string; seo?: Seo; hero: HomeHeroSection; showSolutionDirectory?: boolean };
 export type AboutPage = { _id?: string; seo?: Seo; pageIntro: PageIntroData; sections: Array<AboutMethodSection | PrinciplesSection | TeamSection | ConsultationCtaSection> };
-export type ServicesPage = { _id?: string; seo?: Seo; pageIntro: PageIntroData; sections: Array<ServicePackagesSection | MarketingServicesSection | ConsultationCtaSection> };
+export type ServicesPage = { _id?: string; seo?: Seo; pageIntro: PageIntroData; sections: Array<ServicePackagesSection | MarketingServicesSection | ConsultationCtaSection>; showSolutionDirectory?: boolean };
 export type PortfolioPage = { _id?: string; seo?: Seo; pageIntro: PageIntroData; sections: Array<PortfolioListSection | ConsultationCtaSection> };
 export type BlogPage = { _id?: string; seo?: Seo; pageIntro: PageIntroData; sections: BlogComingSoonSection[] };
 export type ContactPage = { _id?: string; seo?: Seo; pageIntro: PageIntroData; contactSection: ContactSection };

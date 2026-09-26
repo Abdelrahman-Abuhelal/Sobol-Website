@@ -30,8 +30,8 @@ export const navigationQuery = defineQuery(`*[_id == "navigation"][0]{
 }`);
 
 export const homePageQuery = defineQuery(`*[_id == "homePage"][0]{
-  _id, seo${seoProjection},
-  hero{_type, eyebrow, titleLineOne, titleLineTwo, description,
+  _id, showSolutionDirectory, seo${seoProjection},
+  hero{_type, eyebrow, titleLineOne, titleLineTwo, description, heroVisualType, heroImage${imageProjection},
     primaryButton${linkProjection}, secondaryButton${linkProjection}, trustPoints, journeyTitle,
     journeyDescription,
     "journeyStages": [
@@ -52,7 +52,7 @@ export const aboutPageQuery = defineQuery(`*[_id == "aboutPage"][0]{
 }`);
 
 export const servicesPageQuery = defineQuery(`*[_id == "servicesPage"][0]{
-  _id, seo${seoProjection}, pageIntro${pageIntroProjection},
+  _id, showSolutionDirectory, seo${seoProjection}, pageIntro${pageIntroProjection},
   sections[]{
     _key, _type, isHidden, eyebrow, heading, description,
     packages[]{_key, label, title, description, isHidden, items[]{_key, text, isHidden}},

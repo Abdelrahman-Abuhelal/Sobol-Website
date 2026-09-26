@@ -4,6 +4,8 @@ const nonEmpty = (value: unknown) => typeof value === "string" && value.trim() ?
 const hideField = defineField({ name: "isHidden", title: "إخفاء هذا القسم من الموقع", type: "boolean", initialValue: false });
 
 type OptionalLink = { label?: string; kind?: string; internalRoute?: string; url?: string; email?: string; telephone?: string; whatsapp?: string };
+type HomeHeroVisualParent = { heroVisualType?: "chart" | "image" };
+type HeroImageValue = { image?: unknown };
 
 const completeLink = (link?: OptionalLink) => {
   if (!link?.label?.trim() || !link.kind) return false;
@@ -32,6 +34,35 @@ export const homeHeroSection = defineType({
     defineField({ name: "description", title: "الوصف", type: "text", rows: 3, validation: (r) => r.required().max(300).custom(nonEmpty) }),
     defineField({ name: "primaryButton", title: "الزر الرئيسي", type: "controlledLink", validation: (r) => r.required() }),
     defineField({ name: "secondaryButton", title: "الزر الثاني", type: "controlledLink", validation: (r) => r.required() }),
+    defineField({
+      name: "heroVisualType",
+      title: "العنصر البصري بجانب العنوان",
+      description: "اختر بين الرسم البياني الحالي أو صورة ترفعها من الاستوديو.",
+      type: "string",
+      initialValue: "chart",
+      options: {
+        layout: "radio",
+        list: [
+          { title: "الرسم البياني: من الوضوح إلى التقدّم", value: "chart" },
+          { title: "صورة من الاستوديو", value: "image" },
+        ],
+      },
+      validation: (r) => r.required(),
+    }),
+    defineField({
+      name: "heroImage",
+      title: "الصورة بجانب العنوان",
+      description: "تظهر بدل الرسم البياني. يفضّل رفع صورة أفقية عالية الدقة، وسيتم عرضها كاملة دون قص.",
+      type: "editorialImage",
+      hidden: ({ parent }) => (parent as HomeHeroVisualParent | undefined)?.heroVisualType !== "image",
+      validation: (r) => r.custom((value, context) => {
+        const parent = context.parent as HomeHeroVisualParent | undefined;
+        const imageValue = value as HeroImageValue | undefined;
+        return parent?.heroVisualType === "image" && !imageValue?.image
+          ? "ارفع صورة أو اختر الرسم البياني."
+          : true;
+      }),
+    }),
     defineField({
       name: "trustPoints", title: "رسائل الثقة أسفل أزرار الهيرو", description: "أضف ثلاث رسائل قصيرة فقط حتى يبقى التصميم متوازنًا.", type: "array",
       of: [defineArrayMember({ type: "string", validation: (r) => r.required().max(80).custom(nonEmpty) })],

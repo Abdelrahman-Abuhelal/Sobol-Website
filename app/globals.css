@@ -1,31 +1,37 @@
 @import "tailwindcss";
 
 @theme {
-  --font-sans: var(--font-tajawal);
+  --font-sans: var(--font-alexandria);
 
-  --color-primary: oklch(0.49 0.085 187);
-  --color-primary-foreground: oklch(0.985 0.006 175);
+  --color-primary: oklch(0.44 0.095 184);
+  --color-primary-foreground: oklch(0.985 0.008 175);
+  --color-primary-soft: oklch(0.91 0.045 178);
+  --color-primary-light: oklch(0.79 0.075 178);
 
-  --color-secondary: oklch(0.29 0.055 235);
-  --color-secondary-foreground: oklch(0.985 0.006 215);
+  --color-secondary: oklch(0.255 0.055 232);
+  --color-secondary-foreground: oklch(0.975 0.008 210);
 
-  --color-accent: oklch(0.93 0.04 174);
-  --color-accent-foreground: oklch(0.29 0.055 235);
+  --color-accent: oklch(0.925 0.045 174);
+  --color-accent-foreground: oklch(0.255 0.055 232);
 
-  --color-background: oklch(0.995 0.004 175);
-  --color-foreground: oklch(0.29 0.055 235);
+  --color-background: oklch(0.978 0.009 170);
+  --color-foreground: oklch(0.255 0.055 232);
+  --color-surface: oklch(0.992 0.006 170);
+  --color-surface-muted: oklch(0.952 0.022 174);
+  --color-surface-warm: oklch(0.96 0.022 82);
+  --color-border: oklch(0.845 0.027 187);
 
-  --color-muted: oklch(0.93 0.04 174);
-  --color-muted-foreground: oklch(0.5 0.04 180);
+  --color-muted: oklch(0.925 0.035 174);
+  --color-muted-foreground: oklch(0.455 0.035 210);
 }
 
-/* Custom Utilities if needed */
 .container-custom {
-  @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  @apply mx-auto max-w-7xl px-5 sm:px-7 lg:px-10;
 }
 
 html {
   scroll-behavior: smooth;
+  background: oklch(0.978 0.009 170);
 }
 
 body,
@@ -33,5 +39,39 @@ button,
 input,
 select,
 textarea {
-  font-family: var(--font-tajawal), sans-serif;
+  font-family: var(--font-alexandria), sans-serif;
+}
+
+body {
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at 88% 4%, oklch(0.91 0.045 178 / 0.28), transparent 24rem),
+    oklch(0.978 0.009 170);
+  color: oklch(0.255 0.055 232);
+  font-weight: 400;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: oklch(0.79 0.075 178 / 0.5);
+  color: oklch(0.22 0.05 232);
+}
+
+:focus-visible {
+  outline-color: oklch(0.44 0.095 184);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
 }

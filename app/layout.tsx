@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { draftMode } from "next/headers";
-import { Tajawal } from "next/font/google";
+import { Alexandria } from "next/font/google";
 import Script from "next/script";
 import { VisualEditing } from "next-sanity/visual-editing";
 import { DisableDraftMode } from "@/components/preview/DisableDraftMode";
@@ -10,10 +10,10 @@ import { getSiteSettings, getSiteSettingsForMetadata } from "@/sanity/lib/data";
 import { editorialImageUrl } from "@/sanity/lib/image";
 import "./globals.css";
 
-const tajawal = Tajawal({
+const alexandria = Alexandria({
   subsets: ["arabic"],
-  weight: ["200", "300", "400", "500", "700", "800", "900"],
-  variable: "--font-tajawal",
+  weight: ["300", "400", "500", "600", "700", "800", "900"],
+  variable: "--font-alexandria",
 });
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -120,7 +120,7 @@ export default async function RootLayout({
             `}
         </Script>
       </head>
-      <body className={`${tajawal.variable} font-sans antialiased bg-background text-foreground`} suppressHydrationWarning>
+      <body className={`${alexandria.variable} font-sans antialiased bg-background text-foreground`} suppressHydrationWarning>
         <WebMcpTools />
         {children}
         <WhatsAppButton siteSettings={siteSettings} />

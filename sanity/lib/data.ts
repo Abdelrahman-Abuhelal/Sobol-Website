@@ -3,6 +3,7 @@ import { unstable_cache } from "next/cache";
 import { getArticleViewCounts } from "@/lib/google-analytics";
 import { fallbackAboutPage, fallbackBlogPage, fallbackContactPage, fallbackHomePage, fallbackNavigation, fallbackPortfolioPage, fallbackServicesPage, fallbackSiteSettings } from "@/content/fallbacks";
 import { fallbackSolutionPages, getFallbackSolutionPage } from "@/content/solution-pages";
+import { isSanityConfigured } from "@/sanity/env";
 import { sanityFetch } from "@/sanity/lib/fetch";
 import { aboutPageQuery, articleBySlugQuery, articleSitemapQuery, articleSlugsQuery, articlesQuery, blogPageQuery, contactPageQuery, homePageQuery, navigationQuery, portfolioPageQuery, publicPageSitemapQuery, servicesPageQuery, siteSettingsQuery, solutionPageBySlugQuery, solutionPageSlugsQuery, solutionPagesQuery, solutionSitemapQuery } from "@/sanity/lib/queries";
 import type { AboutPage, Article, ArticleCard, ArticleSitemapEntry, BlogPage, ContactPage, HomePage, Navigation, PortfolioPage, PublicPageSitemapEntry, ServicesPage, SiteSettings, SolutionPage, SolutionSitemapEntry } from "@/sanity/lib/types";
@@ -31,7 +32,7 @@ export const getPublicPageSitemapEntries = cache(async () =>
 );
 export const getSolutionPages = cache(async () => {
   const pages = await sanityFetch<SolutionPage[]>({ query: solutionPagesQuery, tag: "solutionPage" });
-  return pages?.length ? pages : fallbackSolutionPages;
+  return pages ?? (isSanityConfigured ? [] : fallbackSolutionPages);
 });
 export const getSolutionPageBySlug = cache(async (slug: string) =>
   (await sanityFetch<SolutionPage>({ query: solutionPageBySlugQuery, params: { slug }, tag: "solutionPage" })) || getFallbackSolutionPage(slug) || null,

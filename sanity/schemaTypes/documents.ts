@@ -74,12 +74,32 @@ export const homePage = defineType({
   fields: [
     defineField({ name: "internalTitle", title: "اسم الصفحة", type: "string", initialValue: "الصفحة الرئيسية", readOnly: true, validation: (r) => r.required() }),
     defineField({ name: "hero", title: "المحتوى الرئيسي للصفحة", type: "homeHeroSection", validation: (r) => r.required() }),
+    defineField({
+      name: "showSolutionDirectory",
+      title: "إظهار قسم مشاكل المشاريع",
+      description: "عند إيقافه يختفي قسم «لا تعرف أين الخلل في مشروعك؟» من الصفحة الرئيسية فقط.",
+      type: "boolean",
+      initialValue: true,
+    }),
     defineField({ name: "seo", title: "ظهور الصفحة في Google وعند المشاركة", type: "seo" }),
   ], preview: { prepare: () => ({ title: "الصفحة الرئيسية" }) },
 });
 
 export const aboutPage = defineType({ name: "aboutPage", title: "صفحة من نحن", type: "document", fields: pageFields("صفحة من نحن", ["aboutMethodSection", "principlesSection", "teamSection", "consultationCtaSection"]), preview: { prepare: () => ({ title: "صفحة من نحن" }) } });
-export const servicesPage = defineType({ name: "servicesPage", title: "صفحة الخدمات", type: "document", fields: pageFields("صفحة الخدمات", ["servicePackagesSection", "marketingServicesSection", "consultationCtaSection"], undefined, ["servicePackagesSection", "marketingServicesSection"]), preview: { prepare: () => ({ title: "صفحة الخدمات" }) } });
+export const servicesPage = defineType({
+  name: "servicesPage", title: "صفحة الخدمات", type: "document",
+  fields: [
+    ...pageFields("صفحة الخدمات", ["servicePackagesSection", "marketingServicesSection", "consultationCtaSection"], undefined, ["servicePackagesSection", "marketingServicesSection"]),
+    defineField({
+      name: "showSolutionDirectory",
+      title: "إظهار قسم مشاكل المشاريع",
+      description: "عند إيقافه يختفي قسم «لا تعرف أين الخلل في مشروعك؟» من صفحة الخدمات فقط.",
+      type: "boolean",
+      initialValue: true,
+    }),
+  ],
+  preview: { prepare: () => ({ title: "صفحة الخدمات" }) },
+});
 export const portfolioPage = defineType({ name: "portfolioPage", title: "صفحة أعمالنا", type: "document", fields: pageFields("صفحة أعمالنا", ["portfolioListSection", "consultationCtaSection"], "portfolioListSection"), preview: { prepare: () => ({ title: "صفحة أعمالنا" }) } });
 export const blogPage = defineType({ name: "blogPage", title: "صفحة المدونة", type: "document", fields: pageFields("صفحة المدونة", ["blogComingSoonSection"], "blogComingSoonSection"), preview: { prepare: () => ({ title: "صفحة المدونة" }) } });
 

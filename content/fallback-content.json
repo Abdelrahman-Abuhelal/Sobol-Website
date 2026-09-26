@@ -33,11 +33,13 @@
   },
   "homePage": {
     "_id": "homePage", "_type": "homePage", "internalTitle": "Homepage",
+    "showSolutionDirectory": true,
     "seo": { "metaTitle": "سُبُل | لتطوير الأعمال", "metaDescription": "تساعدك سُبُل على تنظيم العمليات، معالجة التحديات، وبناء نمو مستدام يناسب واقع السوق الفلسطيني." },
     "hero": {
       "_type": "homeHeroSection", "eyebrow": "حلول إدارية وتشغيلية ومالية للمشاريع الطموحة",
       "titleLineOne": "نحوّل فوضى العمل", "titleLineTwo": "إلى نظام واضح وقابل للنمو",
       "description": "نساعد المشاريع على خفض الهدر، تنظيم العمليات، وبناء نظام واضح يدعم النمو والربحية.",
+      "heroVisualType": "chart",
       "primaryButton": { "label": "احجز جلسة تشخيص", "kind": "internal", "internalRoute": "/contact" },
       "secondaryButton": { "label": "استكشف حلولنا", "kind": "internal", "internalRoute": "/services" },
       "trustPoints": ["حلول مخصصة لواقع مشروعك", "خطوات عملية قابلة للتنفيذ", "متابعة بمؤشرات واضحة"],
@@ -71,6 +73,7 @@
   },
   "servicesPage": {
     "_id": "servicesPage", "_type": "servicesPage", "internalTitle": "Services page",
+    "showSolutionDirectory": true,
     "seo": { "metaTitle": "خدماتنا | سُبُل", "metaDescription": "استشارات لتطوير الأعمال والتنظيم المالي والإداري والتشغيلي والتسويق للشركات الفلسطينية." },
     "pageIntro": { "eyebrow": "خدماتنا", "heading": "الحل المناسب لمرحلة مشروعك.", "description": "نبدأ من التحدي الحقيقي، ثم نختار نطاق العمل الذي يعيد التنظيم أو يعالج الخلل أو يفتح مساحة للنمو.", "image": { "alt": "فريق يشخّص هيكل العمل ويبني الحل المناسب", "fallbackSrc": "/images/page-intros/services.webp" } },
     "sections": [
