@@ -10,13 +10,13 @@ export function PageIntro({ eyebrow, heading, description, image }: PageIntroDat
             <div className="absolute inset-y-0 right-[7%] -z-10 w-px bg-primary/12" aria-hidden="true" />
 
             <div className={imageSrc ? "container-custom max-w-[93rem]" : "container-custom"}>
-                <div className={imageSrc ? "grid items-center gap-12 lg:grid-cols-[minmax(0,0.75fr)_minmax(0,1.25fr)] lg:gap-20 xl:gap-28" : ""}>
-                <div className="max-w-[52rem]">
+                <div className={imageSrc ? "grid items-center gap-10 lg:grid-cols-2 lg:gap-10 xl:gap-16" : ""}>
+                <div className="min-w-0 max-w-[52rem]">
                     <p className="mb-5 flex items-center gap-3 text-sm font-bold text-primary sm:text-[0.95rem]">
                         <span className="h-px w-9 bg-primary" aria-hidden="true" />
                         {eyebrow}
                     </p>
-                    <h1 className="text-[clamp(2.65rem,6vw,5.35rem)] font-extrabold leading-[1.13] tracking-[-0.04em] text-secondary">
+                    <h1 className={`${imageSrc ? "text-[clamp(2.15rem,3.5vw,3.5rem)]" : "text-[clamp(2.35rem,5vw,4.5rem)]"} font-extrabold text-secondary`}>
                         {heading}
                     </h1>
                     <p className="mt-7 max-w-[43rem] text-lg font-normal leading-9 text-muted-foreground sm:text-xl sm:leading-10">
@@ -25,7 +25,7 @@ export function PageIntro({ eyebrow, heading, description, image }: PageIntroDat
                 </div>
 
                 {imageSrc && (
-                    <div className="relative mx-auto aspect-[4/3] w-full max-w-[34rem] lg:max-w-[48rem] lg:-translate-x-4 xl:-translate-x-6">
+                    <div className="relative mx-auto aspect-[4/3] w-full max-w-[34rem] lg:max-w-[48rem]">
                         <div className="absolute -inset-4 -z-10 rounded-[38%_62%_54%_46%/46%_42%_58%_54%] bg-primary-soft/60 blur-2xl" aria-hidden="true" />
                         <div className="absolute -bottom-4 -start-4 -z-10 size-28 rounded-full bg-surface-warm/85" aria-hidden="true" />
                         <div className="absolute inset-0 overflow-hidden rounded-[1.75rem] border border-surface/90 bg-surface shadow-[0_28px_70px_oklch(0.255_0.055_232/0.12)]">
@@ -34,8 +34,8 @@ export function PageIntro({ eyebrow, heading, description, image }: PageIntroDat
                                 alt={image?.alt || ""}
                                 fill
                                 priority
-                                sizes="(max-width: 1024px) 544px, 744px"
-                                className="object-contain"
+                                sizes="(max-width: 639px) calc(100vw - 40px), (max-width: 1023px) 544px, (max-width: 1279px) calc((100vw - 120px) / 2), (max-width: 1487px) calc((100vw - 144px) / 2), 672px"
+                                className="object-cover"
                             />
                         </div>
                     </div>

@@ -52,6 +52,13 @@ body {
   text-rendering: optimizeLegibility;
 }
 
+/* Keep Arabic ascenders and descenders clear across wrapped headings.
+   Outside the utility layers so compact heading classes cannot undo this. */
+main :where(h1, h2, h3, h4, h5, h6) {
+  line-height: 1.5;
+  letter-spacing: normal;
+}
+
 ::selection {
   background: oklch(0.79 0.075 178 / 0.5);
   color: oklch(0.22 0.05 232);

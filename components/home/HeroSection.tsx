@@ -155,7 +155,7 @@ export function HeroSection({ content = fallbackHomePage.hero }: { content?: Hom
 
                         <h1
                             id="hero-title"
-                            className="mt-6 max-w-[40rem] text-[clamp(2.55rem,5vw,4.65rem)] font-extrabold leading-[1.14] tracking-[-0.04em] text-secondary"
+                            className="mt-6 max-w-[40rem] text-[clamp(2.55rem,5vw,4.65rem)] font-extrabold text-secondary"
                         >
                             <span className="block">{content.titleLineOne}</span>
                             <span className="mt-1 block text-primary">{content.titleLineTwo}</span>

@@ -104,7 +104,7 @@ export default async function ArticlePage({ params }: PageProps) {
             <Link href="/blog" className="mb-8 inline-flex items-center gap-2 text-sm font-bold text-primary hover:gap-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-4"><ArrowRight className="size-4" aria-hidden="true" /> العودة إلى المدونة</Link>
             <div className="mx-auto max-w-[68rem] text-right">
               {article.categories?.length ? <div className="mb-5 flex flex-wrap justify-start gap-2">{article.categories.map((category) => <span key={category._id} className="rounded-full bg-accent px-3 py-1 text-sm font-bold text-accent-foreground">{category.title}</span>)}</div> : null}
-              <h1 id="article-title" className="max-w-[62rem] text-[clamp(2.35rem,5vw,4.25rem)] font-black leading-[1.15] tracking-[-0.035em] text-secondary">{article.title}</h1>
+              <h1 id="article-title" className="max-w-[62rem] text-[clamp(2.15rem,4.5vw,3.75rem)] font-black text-secondary">{article.title}</h1>
               <p className="mt-6 max-w-[52rem] text-lg leading-8 text-[oklch(0.42_0.035_210)] sm:text-xl sm:leading-9">{article.excerpt}</p>
               <div className="mt-7 flex flex-wrap items-center justify-start gap-x-5 gap-y-3 text-sm text-muted-foreground">
                 <span className="inline-flex items-center gap-3 text-secondary">

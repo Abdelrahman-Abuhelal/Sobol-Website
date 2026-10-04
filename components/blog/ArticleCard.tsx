@@ -22,7 +22,7 @@ export function ArticleCard({ article, priority = false, viewCount, showViews = 
           {article.categories?.[0] && <><span aria-hidden="true">•</span><span>{article.categories[0].title}</span></>}
           {showViews && typeof viewCount === "number" && <><span aria-hidden="true">•</span><span className="inline-flex items-center gap-1.5"><Eye className="size-4" aria-hidden="true" />{numberFormatter.format(viewCount)} مشاهدة</span></>}
         </div>
-        <h2 className="text-2xl font-extrabold leading-[1.35] tracking-[-0.02em] text-secondary">
+        <h2 className="text-2xl font-extrabold text-secondary">
           <Link href={`/blog/${article.slug}`} className="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-4">{article.title}</Link>
         </h2>
         <p className="mt-4 line-clamp-3 text-base leading-7 text-[oklch(0.43_0.035_210)]">{article.excerpt}</p>
