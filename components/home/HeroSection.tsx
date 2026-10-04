@@ -114,7 +114,7 @@ function HeroImage({ image }: { image: EditorialImage }) {
     if (!imageSrc) return <GrowthChart />;
 
     return (
-        <aside className="relative mx-auto w-full max-w-[31rem] lg:mx-0 lg:ms-auto">
+        <aside className="relative mx-auto w-full max-w-[42rem] lg:mx-0 lg:ms-auto">
             <div className="absolute -inset-5 -z-10 rounded-[2.5rem] bg-primary-soft/55 blur-3xl" aria-hidden="true" />
             <div className="relative aspect-[4/3] overflow-hidden rounded-[1.5rem] border border-border bg-surface shadow-[0_24px_65px_oklch(0.255_0.055_232/0.1)]">
                 <Image
@@ -122,7 +122,7 @@ function HeroImage({ image }: { image: EditorialImage }) {
                     alt={image.alt || ""}
                     fill
                     priority
-                    sizes="(max-width: 1024px) 496px, 496px"
+                    sizes="(max-width: 639px) calc(100vw - 40px), (max-width: 1023px) min(672px, calc(100vw - 56px)), (max-width: 1407px) calc((100vw - 128px) * 0.5122), 656px"
                     className="object-contain"
                 />
             </div>
@@ -145,8 +145,8 @@ export function HeroSection({ content = fallbackHomePage.hero }: { content?: Hom
             />
             <div className="absolute inset-y-0 right-[7%] -z-10 w-px bg-primary/10" aria-hidden="true" />
 
-            <div className="container-custom max-w-[77.5rem]">
-                <div className="grid items-center gap-12 lg:grid-cols-[minmax(0,1.16fr)_minmax(21rem,0.84fr)] lg:gap-14 xl:gap-20">
+            <div className={`container-custom ${showHeroImage ? "max-w-[88rem]" : "max-w-[77.5rem]"}`}>
+                <div className={`grid items-center gap-12 ${showHeroImage ? "lg:grid-cols-[minmax(0,1fr)_minmax(0,1.05fr)] lg:gap-8 xl:gap-12" : "lg:grid-cols-[minmax(0,1.16fr)_minmax(21rem,0.84fr)] lg:gap-14 xl:gap-20"}`}>
                     <div className="max-w-[42rem]">
                         <p className="flex items-center gap-3 text-sm font-bold text-primary sm:text-base">
                             <span className="h-px w-8 bg-primary" aria-hidden="true" />
