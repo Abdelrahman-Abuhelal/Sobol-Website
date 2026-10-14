@@ -10,7 +10,7 @@ export const structure: StructureResolver = (S) =>
           .id(item.id)
           .title(item.title)
           .schemaType(item.type)
-          .child(S.document().schemaType(item.type).documentId(item.id)),
+          .child(S.document().title(item.title).schemaType(item.type).documentId(item.id)),
       ),
       S.divider(),
       S.documentTypeListItem("solutionPage").title("صفحات حلول مشاكل المشاريع"),

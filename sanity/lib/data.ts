@@ -59,7 +59,14 @@ export async function getSeoData<T extends { seo?: unknown }>(query: string, tag
   return withFallback(await sanityFetch<T>({ query, tag, stega: false }), fallback, tag);
 }
 
-export const getSuccessStoriesPage = cache(async () => withFallback(await sanityFetch<SuccessStoriesPage>({ query: successStoriesPageQuery, tag: "successStoriesPage" }), fallbackSuccessStoriesPage, "successStoriesPage"));
+export const getSuccessStoriesPage = cache(async () => {
+  const page = withFallback(await sanityFetch<SuccessStoriesPage>({ query: successStoriesPageQuery, tag: "successStoriesPage" }), fallbackSuccessStoriesPage, "successStoriesPage");
+  return {
+    ...page,
+    emptyHeading: page.emptyHeading?.trim() ? page.emptyHeading : fallbackSuccessStoriesPage.emptyHeading,
+    emptyDescription: page.emptyDescription?.trim() ? page.emptyDescription : fallbackSuccessStoriesPage.emptyDescription,
+  };
+});
 export const getSuccessStories = cache(async () => (await sanityFetch<SuccessStoryCard[]>({ query: successStoriesQuery, tag: "successStory" })) || []);
 export const getSuccessStoryBySlug = cache(async (slug: string) => sanityFetch<SuccessStory>({ query: successStoryBySlugQuery, params: { slug }, tag: "successStory" }));
 export const getSuccessStorySlugs = cache(async () => (await sanityFetch<string[]>({ query: successStorySlugsQuery, tag: "successStory", stega: false, requestless: true })) || []);

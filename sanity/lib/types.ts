@@ -212,8 +212,8 @@ export type SuccessStoriesPage = {
   _id?: string;
   seo?: Seo;
   pageIntro: PageIntroData;
-  emptyHeading: string;
-  emptyDescription: string;
+  emptyHeading?: string;
+  emptyDescription?: string;
 };
 export type SuccessStoryCard = {
   _id: string;

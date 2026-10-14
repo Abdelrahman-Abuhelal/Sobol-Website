@@ -276,14 +276,27 @@ export const solutionPage = defineType({
 
 export const successStoriesPage = defineType({
   name: "successStoriesPage", title: "صفحة قصص النجاح", type: "document",
-  initialValue: fallbackSuccessStoriesPage,
-  fields: [
-    defineField({ name: "pageIntro", title: "مقدمة الصفحة", type: "pageIntro", validation: (r) => r.required() }),
-    defineField({ name: "emptyHeading", title: "عنوان الصفحة قبل نشر أول قصة", type: "string", validation: (r) => r.required().max(100).custom(nonEmpty) }),
-    defineField({ name: "emptyDescription", title: "وصف الصفحة قبل نشر أول قصة", type: "text", rows: 3, validation: (r) => r.required().max(400).custom(nonEmpty) }),
-    defineField({ name: "seo", title: "Google والمشاركة", type: "seo" }),
+  groups: [
+    { name: "content", title: "محتوى الصفحة", default: true },
+    { name: "settings", title: "إعدادات اختيارية" },
   ],
-  preview: { prepare: () => ({ title: "صفحة قصص النجاح" }) },
+  fieldsets: [
+    { name: "emptyState", title: "النص قبل نشر أول قصة (اختياري)", description: "الموقع يعرض رسالة جاهزة تلقائياً. افتح هذا القسم فقط إذا أردت تغييرها.", group: "settings", options: { collapsible: true, collapsed: true } },
+  ],
+  initialValue: {
+    pageIntro: {
+      eyebrow: fallbackSuccessStoriesPage.pageIntro.eyebrow,
+      heading: fallbackSuccessStoriesPage.pageIntro.heading,
+      description: fallbackSuccessStoriesPage.pageIntro.description,
+    },
+  },
+  fields: [
+    defineField({ name: "pageIntro", title: "مقدمة صفحة قصص النجاح", description: "هذه مقدمة صفحة عرض القصص. لإضافة قصة جديدة افتح «قصص النجاح» من القائمة الجانبية.", group: "content", type: "pageIntro", validation: (r) => r.required() }),
+    defineField({ name: "emptyHeading", title: "عنوان رسالة الانتظار", group: "settings", fieldset: "emptyState", type: "string", validation: (r) => r.max(100) }),
+    defineField({ name: "emptyDescription", title: "وصف رسالة الانتظار", group: "settings", fieldset: "emptyState", type: "text", rows: 3, validation: (r) => r.max(400) }),
+    defineField({ name: "seo", title: "تخصيص Google والمشاركة (اختياري)", description: "تُستخدم مقدمة الصفحة وصورتها تلقائياً. افتح هذا القسم فقط إذا أردت عنواناً أو وصفاً أو صورة مختلفة.", group: "settings", type: "seo", options: { collapsible: true, collapsed: true } }),
+  ],
+  preview: { select: { heading: "pageIntro.heading" }, prepare: ({ heading }) => ({ title: "صفحة قصص النجاح", subtitle: heading || "إعداد مقدمة صفحة عرض القصص" }) },
 });
 
 function hasUploadedImage(value: unknown): boolean {

@@ -12,13 +12,21 @@ import { getGlobalContent, getSeoData, getSiteSettingsForMetadata, getSuccessSto
 import { buildPageMetadata } from "@/sanity/lib/metadata";
 import { editorialImageUrl } from "@/sanity/lib/image";
 import { successStoriesPageQuery } from "@/sanity/lib/queries";
+import type { SuccessStoriesPage } from "@/sanity/lib/types";
 
 export async function generateMetadata(): Promise<Metadata> {
   const [page, settings] = await Promise.all([
-    getSeoData(successStoriesPageQuery, "successStoriesPage", fallbackSuccessStoriesPage),
+    getSeoData<SuccessStoriesPage>(successStoriesPageQuery, "successStoriesPage", fallbackSuccessStoriesPage),
     getSiteSettingsForMetadata(),
   ]);
-  return buildPageMetadata("/success-stories", { ...page.seo, metaTitle: page.seo?.metaTitle || page.pageIntro.heading, metaDescription: page.seo?.metaDescription || page.pageIntro.description }, settings);
+  const introImage = editorialImageUrl(page.pageIntro.image, 1200) ? page.pageIntro.image : fallbackSuccessStoriesPage.pageIntro.image;
+  const shareImage = editorialImageUrl(page.seo?.openGraphImage, 1200) ? page.seo?.openGraphImage : introImage;
+  return buildPageMetadata("/success-stories", {
+    ...page.seo,
+    metaTitle: page.seo?.metaTitle?.trim() || page.pageIntro.heading,
+    metaDescription: page.seo?.metaDescription?.trim() || page.pageIntro.description,
+    openGraphImage: shareImage,
+  }, settings);
 }
 
 export default async function SuccessStoriesPageRoute() {

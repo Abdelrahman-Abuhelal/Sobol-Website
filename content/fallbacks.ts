@@ -11,14 +11,13 @@ export const fallbackPortfolioPage = content.portfolioPage as PortfolioPage;
 export const fallbackBlogPage = content.blogPage as BlogPage;
 export const fallbackContactPage = content.contactPage as ContactPage;
 
-export const fallbackSuccessStoriesPage: SuccessStoriesPage = {
+export const fallbackSuccessStoriesPage = {
   pageIntro: {
     eyebrow: "من أعمالنا",
     heading: "قصص نجاح",
     image: { alt: "مشروعات مكتملة مرتبة على درجات النجاح", fallbackSrc: "/images/page-intros/portfolio.webp" },
     description: "كل مشروع له ظروفه وتحدياته. هنا نشارك قصص العمل مع عملائنا، من فهم التحدي إلى خطوات التنفيذ وما تحقق على أرض الواقع.",
   },
-  seo: { metaTitle: "قصص نجاح | سُبُل لتطوير الأعمال", metaDescription: "قصص تعاون سُبُل مع الشركات: التحديات، طريقة العمل، والنتائج التي تحققت." },
   emptyHeading: "لكل تعاون قصة تستحق أن تُروى",
   emptyDescription: "نعمل على توثيق قصص تعاوننا مع الشركات. سنشارك هنا تفاصيلها وتجاربها قريباً.",
-};
+} satisfies SuccessStoriesPage;
