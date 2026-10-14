@@ -1,20 +1,21 @@
 import { publicPages, requestOrigin } from "@/lib/agent-discovery";
-import { getArticles, getSiteSettingsForMetadata, getSolutionPages } from "@/sanity/lib/data";
+import { getArticles, getSiteSettingsForMetadata, getSolutionPages, getSuccessStories } from "@/sanity/lib/data";
 
 const pageDescriptions: Record<string, string> = {
   "/": "نبذة عن سُبُل ومنهجها في تنظيم المشاريع ودعم نموها.",
   "/about": "تعريف بالشركة ومنهج العمل والمبادئ والفريق.",
   "/services": "الخدمات الإدارية والمالية والتشغيلية والتسويقية المتاحة.",
-  "/portfolio": "نماذج مختصرة من نتائج الأعمال والمشاريع السابقة.",
+  "/success-stories": "قصص تعاوننا مع الشركات: التحدي وطريقة العمل والنتائج.",
   "/blog": "مقالات عملية في الإدارة والعمليات والمالية ونمو الأعمال.",
   "/contact": "بيانات التواصل ونموذج طلب الاستشارة.",
 };
 
 export async function GET(request: Request) {
-  const [settings, articles, solutionPages] = await Promise.all([
+  const [settings, articles, solutionPages, stories] = await Promise.all([
     getSiteSettingsForMetadata(),
     getArticles(),
     getSolutionPages(),
+    getSuccessStories(),
   ]);
   const origin = requestOrigin(request);
   const pageLines = publicPages.map(
@@ -45,6 +46,7 @@ export async function GET(request: Request) {
     `- البريد الإلكتروني: ${settings.email}`,
     `- الهاتف: ${settings.telephone}`,
     "- اللغة الأساسية: العربية",
+    ...(stories.length ? ["", "## قصص النجاح", ...stories.map((story) => `- [${story.title}](${origin}/success-stories/${story.slug}): ${story.excerpt}`)] : []),
     ...(articleLines.length ? ["", "## أحدث المقالات", ...articleLines] : []),
     "",
     "## الوصول المنظم",

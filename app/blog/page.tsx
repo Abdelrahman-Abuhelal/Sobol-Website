@@ -25,5 +25,5 @@ export default async function BlogPageRoute({ searchParams }: { searchParams: Pr
     getCachedArticleViewCounts().catch(() => ({})),
     getGlobalContent(),
   ]);
-  return <main className="min-h-screen bg-background"><Navbar navigation={navigation} /><PageIntro {...page.pageIntro} />{articles.length ? <ArticleList articles={articles} viewCounts={viewCounts} initialSort={initialSort} /> : <BlogPageSections sections={page.sections} />}<Footer navigation={navigation} siteSettings={siteSettings} /><PageStructuredData settings={siteSettings} path="/blog" name={page.seo?.metaTitle || page.pageIntro.heading} description={page.seo?.metaDescription || page.pageIntro.description} type="CollectionPage" /></main>;
+  return <main className="min-h-screen bg-background"><Navbar navigation={navigation} /><PageIntro {...page.pageIntro} fallbackImage={fallbackBlogPage.pageIntro.image} />{articles.length ? <ArticleList articles={articles} viewCounts={viewCounts} initialSort={initialSort} /> : <BlogPageSections sections={page.sections} />}<Footer navigation={navigation} siteSettings={siteSettings} /><PageStructuredData settings={siteSettings} path="/blog" name={page.seo?.metaTitle || page.pageIntro.heading} description={page.seo?.metaDescription || page.pageIntro.description} type="CollectionPage" /></main>;
 }

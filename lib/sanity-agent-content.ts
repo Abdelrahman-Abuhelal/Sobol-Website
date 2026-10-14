@@ -7,7 +7,9 @@ import {
   getContactPage,
   getGlobalContent,
   getHomePage,
-  getPortfolioPage,
+  getSuccessStoriesPage,
+  getSuccessStories,
+  getSuccessStoryBySlug,
   getServicesPage,
 } from "@/sanity/lib/data";
 import type {
@@ -21,7 +23,7 @@ import { getSolutionPageBySlug } from "@/sanity/lib/data";
 function linkHref(link: ControlledLink): string {
   switch (link.kind) {
     case "internal":
-      return link.internalRoute ?? "/";
+      return link.internalRoute === "/portfolio" ? "/success-stories" : link.internalRoute ?? "/";
     case "https":
       return link.url ?? "/";
     case "email": {
@@ -139,7 +141,6 @@ export async function getSanityMarkdown(path: string): Promise<string | null> {
     const { hero } = await getHomePage();
     const main = [
       `# ${hero.titleLineOne} ${hero.titleLineTwo}`,
-      hero.eyebrow,
       hero.description,
       markdownLink(hero.primaryButton),
       markdownLink(hero.secondaryButton),
@@ -149,7 +150,6 @@ export async function getSanityMarkdown(path: string): Promise<string | null> {
         `### ${stage.title}`,
         stage.description,
       ]),
-      hero.closingBadgeText,
     ];
     return documentFrom(main, navigation, siteSettings);
   }
@@ -242,24 +242,25 @@ export async function getSanityMarkdown(path: string): Promise<string | null> {
     return documentFrom(main, navigation, siteSettings);
   }
 
-  if (path === "/portfolio") {
-    const page = await getPortfolioPage();
+  if (path === "/success-stories" || path === "/portfolio") {
+    const [page, stories] = await Promise.all([getSuccessStoriesPage(), getSuccessStories()]);
     const main = [...renderIntro(page.pageIntro)];
-    for (const section of visible(page.sections)) {
-      if (section._type === "portfolioListSection") {
-        main.push(`## ${section.heading}`, section.eyebrow, section.description);
-        for (const project of visible(section.projects)) {
-          main.push(
-            `### ${project.name}`,
-            `- التصنيف: ${project.category}`,
-            `- النتيجة: ${project.result}`,
-          );
-        }
-        main.push(section.privacyNote);
-      } else if (section._type === "consultationCtaSection") {
-        main.push(...renderCta(resolveCta(section, siteSettings.consultationCta)));
-      }
-    }
+    if (stories.length) main.push(...stories.flatMap((story) => [
+      `## [${story.title}](/success-stories/${story.slug})`,
+      [story.clientName, story.industry].filter(Boolean).join(" · "), story.excerpt,
+    ]));
+    else main.push(`## ${page.emptyHeading}`, page.emptyDescription);
+    return documentFrom([...main, ...renderCta(siteSettings.consultationCta)], navigation, siteSettings);
+  }
+
+  if (path.startsWith("/success-stories/")) {
+    const story = await getSuccessStoryBySlug(decodeURIComponent(path.slice("/success-stories/".length)));
+    if (!story) return null;
+    const main = [`# ${story.title}`, story.excerpt, [story.clientName, story.industry].filter(Boolean).join(" · ")];
+    if (story.challenge) main.push("## التحدي", story.challenge);
+    if (story.approach) main.push("## كيف عملنا معهم", story.approach);
+    if (story.results) main.push("## ما تحقق", story.results);
+    main.push(...portableTextToMarkdown(story.body), ...renderCta(siteSettings.consultationCta));
     return documentFrom(main, navigation, siteSettings);
   }
 

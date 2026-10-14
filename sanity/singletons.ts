@@ -4,9 +4,9 @@ export const singletonDocuments = [
   { id: "homePage", type: "homePage", title: "🏠 الصفحة الرئيسية" },
   { id: "aboutPage", type: "aboutPage", title: "👥 صفحة من نحن" },
   { id: "servicesPage", type: "servicesPage", title: "🧩 صفحة الخدمات" },
-  { id: "portfolioPage", type: "portfolioPage", title: "💼 صفحة أعمالنا" },
+  { id: "successStoriesPage", type: "successStoriesPage", title: "💼 صفحة قصص النجاح" },
   { id: "blogPage", type: "blogPage", title: "📝 صفحة المدونة" },
   { id: "contactPage", type: "contactPage", title: "✉️ صفحة تواصل معنا" },
 ] as const;
 
-export const singletonTypes: Set<string> = new Set(singletonDocuments.map((item) => item.type));
+export const singletonTypes: Set<string> = new Set([...singletonDocuments.map((item) => item.type), "portfolioPage"]);

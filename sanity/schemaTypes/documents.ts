@@ -1,4 +1,5 @@
 import { defineArrayMember, defineField, defineType } from "sanity";
+import { fallbackSuccessStoriesPage } from "@/content/fallbacks";
 
 type SectionValue = { _type?: string };
 const nonEmpty = (value: unknown) => typeof value === "string" && value.trim() ? true : "This field cannot be empty.";
@@ -133,6 +134,26 @@ export const articleCategory = defineType({
   preview: { select: { title: "title", subtitle: "description" } },
 });
 
+const editorialBodyMembers = [
+  defineArrayMember({
+    type: "block",
+    styles: [
+      { title: "فقرة", value: "normal" }, { title: "عنوان رئيسي داخل النص", value: "h2" },
+      { title: "عنوان فرعي", value: "h3" }, { title: "اقتباس", value: "blockquote" },
+    ],
+    lists: [{ title: "نقاط", value: "bullet" }, { title: "خطوات مرقمة", value: "number" }],
+    marks: {
+      decorators: [{ title: "عريض", value: "strong" }, { title: "مائل", value: "em" }],
+      annotations: [{
+        name: "externalLink", title: "رابط موثوق", type: "object",
+        fields: [defineField({ name: "href", title: "الرابط", type: "url", validation: (r) => r.required().uri({ scheme: ["https"] }) })],
+      }],
+    },
+  }),
+  defineArrayMember({ type: "editorialImage" }),
+];
+
+
 export const article = defineType({
   name: "article", title: "المقالات", type: "document",
   groups: [
@@ -154,24 +175,7 @@ export const article = defineType({
     defineField({ name: "featured", title: "إبراز المقال في صفحة المدونة", group: "publishing", type: "boolean", initialValue: false }),
     defineField({
       name: "body", title: "محتوى المقال", group: "content", type: "array",
-      of: [
-        defineArrayMember({
-          type: "block",
-          styles: [
-            { title: "فقرة", value: "normal" }, { title: "عنوان رئيسي داخل المقال", value: "h2" },
-            { title: "عنوان فرعي", value: "h3" }, { title: "اقتباس", value: "blockquote" },
-          ],
-          lists: [{ title: "نقاط", value: "bullet" }, { title: "خطوات مرقمة", value: "number" }],
-          marks: {
-            decorators: [{ title: "عريض", value: "strong" }, { title: "مائل", value: "em" }],
-            annotations: [{
-              name: "externalLink", title: "رابط موثوق", type: "object",
-              fields: [defineField({ name: "href", title: "الرابط", type: "url", validation: (r) => r.required().uri({ scheme: ["https"] }) })],
-            }],
-          },
-        }),
-        defineArrayMember({ type: "editorialImage" }),
-      ],
+      of: editorialBodyMembers,
       validation: (r) => r.required().min(1),
     }),
     defineField({
@@ -270,4 +274,53 @@ export const solutionPage = defineType({
   preview: { select: { title: "shortTitle", subtitle: "title" } },
 });
 
-export const documentTypes = [siteSettings, navigation, homePage, aboutPage, servicesPage, portfolioPage, blogPage, contactPage, solutionPage, article, author, articleCategory];
+export const successStoriesPage = defineType({
+  name: "successStoriesPage", title: "صفحة قصص النجاح", type: "document",
+  initialValue: fallbackSuccessStoriesPage,
+  fields: [
+    defineField({ name: "pageIntro", title: "مقدمة الصفحة", type: "pageIntro", validation: (r) => r.required() }),
+    defineField({ name: "emptyHeading", title: "عنوان الصفحة قبل نشر أول قصة", type: "string", validation: (r) => r.required().max(100).custom(nonEmpty) }),
+    defineField({ name: "emptyDescription", title: "وصف الصفحة قبل نشر أول قصة", type: "text", rows: 3, validation: (r) => r.required().max(400).custom(nonEmpty) }),
+    defineField({ name: "seo", title: "Google والمشاركة", type: "seo" }),
+  ],
+  preview: { prepare: () => ({ title: "صفحة قصص النجاح" }) },
+});
+
+function hasUploadedImage(value: unknown): boolean {
+  if (!value || typeof value !== "object" || !("image" in value)) return false;
+  const image = value.image;
+  if (!image || typeof image !== "object" || !("asset" in image)) return false;
+  const asset = image.asset;
+  return Boolean(asset && typeof asset === "object" && "_ref" in asset && typeof asset._ref === "string" && asset._ref.trim());
+}
+
+export const successStory = defineType({
+  name: "successStory", title: "قصص النجاح", type: "document",
+  groups: [
+    { name: "content", title: "القصة", default: true },
+    { name: "overview", title: "لمحة عن التعاون" },
+    { name: "publishing", title: "النشر وGoogle" },
+  ],
+  fields: [
+    defineField({ name: "title", title: "عنوان القصة", group: "content", type: "string", validation: (r) => r.required().max(120).custom(nonEmpty) }),
+    defineField({ name: "slug", title: "رابط القصة", description: "أنشئه من العنوان وراجعه قبل النشر. لا تغيّره بعد مشاركة القصة.", group: "publishing", type: "slug", options: { source: "title", maxLength: 96 }, validation: (r) => r.required().custom(validSlug) }),
+    defineField({ name: "excerpt", title: "ملخص القصة", description: "يظهر في بطاقة القصة ومقدمتها.", group: "content", type: "text", rows: 3, validation: (r) => r.required().max(300).custom(nonEmpty) }),
+    defineField({ name: "featuredImage", title: "الصورة الرئيسية", group: "content", type: "editorialImage", validation: (r) => r.required().custom((value) => hasUploadedImage(value) ? true : "ارفع صورة رئيسية قبل نشر القصة.") }),
+    defineField({ name: "body", title: "محتوى القصة", description: "اكتب القصة كما تكتب مقالاً: خلفية التعاون، التحدي، طريقة العمل، والنتائج. أضف الصور بين الفقرات حسب الحاجة.", group: "content", type: "array", of: editorialBodyMembers, validation: (r) => r.required().min(1) }),
+    defineField({ name: "clientName", title: "اسم الشركة أو وصف العميل", description: "يمكن كتابة وصف مثل «شركة تجارية محلية» عند عدم مشاركة الاسم.", group: "overview", type: "string", validation: (r) => r.max(120).custom((v) => v === undefined || nonEmpty(v)) }),
+    defineField({ name: "industry", title: "قطاع الشركة", group: "overview", type: "string", validation: (r) => r.max(100).custom((v) => v === undefined || nonEmpty(v)) }),
+    ...[
+      { name: "challenge", title: "التحدي" },
+      { name: "approach", title: "كيف عملنا معهم" },
+      { name: "results", title: "ما تحقق" },
+    ].map(({ name, title }) => defineField({ name, title, description: "اختياري: خلاصة قصيرة تظهر قبل النص الكامل. لا حاجة لتكرار التفاصيل هنا.", group: "overview", type: "text", rows: 3, validation: (r) => r.max(600).custom((v) => v === undefined || nonEmpty(v)) })),
+    defineField({ name: "publishedAt", title: "تاريخ النشر", group: "publishing", type: "datetime", initialValue: () => new Date().toISOString(), validation: (r) => r.required() }),
+    defineField({ name: "featured", title: "إبراز القصة في بداية القائمة", group: "publishing", type: "boolean", initialValue: false }),
+    defineField({ name: "seo", title: "Google والمشاركة", group: "publishing", type: "seo" }),
+  ],
+  validation: (r) => r.custom((value) => value?.clientName || value?.industry ? true : "أضف اسم الشركة أو وصفها، أو اختر قطاعها لتوضيح سياق القصة."),
+  orderings: [{ title: "الأحدث أولاً", name: "publishedAtDesc", by: [{ field: "publishedAt", direction: "desc" }] }],
+  preview: { select: { title: "title", subtitle: "clientName", media: "featuredImage.image" } },
+});
+
+export const documentTypes = [siteSettings, navigation, homePage, aboutPage, servicesPage, portfolioPage, blogPage, contactPage, solutionPage, article, author, articleCategory, successStory, successStoriesPage];

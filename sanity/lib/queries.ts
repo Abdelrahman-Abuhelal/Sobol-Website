@@ -82,6 +82,22 @@ const articleCardProjection = `{
   categories[]->{_id, title, "slug": slug.current}
 }`;
 
+export const successStoriesPageQuery = defineQuery(`*[_id == "successStoriesPage"][0]{
+  _id, seo${seoProjection}, pageIntro${pageIntroProjection}, emptyHeading, emptyDescription
+}`);
+const successStoryCardProjection = `{
+  _id, title, "slug": slug.current, excerpt, clientName, industry,
+  featuredImage${imageProjection}, publishedAt, featured
+}`;
+const successStoryProjection = `{
+  ${successStoryCardProjection.slice(1, -1)},
+  _updatedAt, challenge, approach, results, body, seo${seoProjection}
+}`;
+export const successStoriesQuery = defineQuery(`*[_type == "successStory" && defined(slug.current)] | order(featured desc, publishedAt desc) ${successStoryCardProjection}`);
+export const successStoryBySlugQuery = defineQuery(`*[_type == "successStory" && slug.current == $slug][0] ${successStoryProjection}`);
+export const successStorySlugsQuery = defineQuery(`*[_type == "successStory" && defined(slug.current)].slug.current`);
+export const successStorySitemapQuery = defineQuery(`*[_type == "successStory" && defined(slug.current) && seo.noIndex != true]{"slug": slug.current, publishedAt, "updatedAt": _updatedAt}`);
+
 export const articlesQuery = defineQuery(`*[_type == "article" && defined(slug.current) && !(_id in path("drafts.**"))] | order(featured desc, publishedAt desc) ${articleCardProjection}`);
 
 export const articleSlugsQuery = defineQuery(`*[_type == "article" && defined(slug.current)].slug.current`);
@@ -105,14 +121,14 @@ export const contactPageQuery = defineQuery(`*[_id == "contactPage"][0]{
 }`);
 
 export const publicPageSitemapQuery = defineQuery(`*[
-  _id in ["homePage", "aboutPage", "servicesPage", "portfolioPage", "blogPage", "contactPage"] &&
+  _id in ["homePage", "aboutPage", "servicesPage", "successStoriesPage", "blogPage", "contactPage"] &&
   seo.noIndex != true && !(_id in path("drafts.**"))
 ]{
   "route": select(
     _id == "homePage" => "/",
     _id == "aboutPage" => "/about",
     _id == "servicesPage" => "/services",
-    _id == "portfolioPage" => "/portfolio",
+    _id == "successStoriesPage" => "/success-stories",
     _id == "blogPage" => "/blog",
     _id == "contactPage" => "/contact"
   ),

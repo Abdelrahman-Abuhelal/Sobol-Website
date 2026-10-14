@@ -4,7 +4,7 @@ const routeMap = {
   homePage: { title: "Homepage", href: "/" },
   aboutPage: { title: "About page", href: "/about" },
   servicesPage: { title: "Services page", href: "/services" },
-  portfolioPage: { title: "Portfolio page", href: "/portfolio" },
+  successStoriesPage: { title: "قصص النجاح", href: "/success-stories" },
   blogPage: { title: "Blog page", href: "/blog" },
   contactPage: { title: "Contact page", href: "/contact" },
 } as const;
@@ -22,10 +22,21 @@ locations.solutionPage = defineLocations({
   }),
 });
 
+locations.successStory = defineLocations({
+  select: { title: "title", slug: "slug.current" },
+  resolve: (document) => ({
+    locations: document?.slug ? [
+      { title: document.title || "قصة نجاح", href: `/success-stories/${document.slug}` },
+      { title: "كل قصص النجاح", href: "/success-stories" },
+    ] : [],
+  }),
+});
+
 export const mainDocuments = defineDocuments(
   [
     ...Object.entries(routeMap).map(([type, location]) => ({ route: location.href, type })),
     { route: "/services/:slug", type: "solutionPage" },
+    { route: "/success-stories/:slug", type: "successStory" },
   ],
 );
 

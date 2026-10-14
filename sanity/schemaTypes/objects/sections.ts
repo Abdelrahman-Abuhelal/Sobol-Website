@@ -28,9 +28,9 @@ const stage = (name: string, title: string) => defineField({
 export const homeHeroSection = defineType({
   name: "homeHeroSection", title: "المحتوى الرئيسي للصفحة", type: "object",
   fields: [
-    defineField({ name: "eyebrow", title: "النص الصغير فوق العنوان", type: "string", validation: (r) => r.required().max(80).custom(nonEmpty) }),
-    defineField({ name: "titleLineOne", title: "السطر الأول من العنوان", type: "string", validation: (r) => r.required().max(80).custom(nonEmpty) }),
-    defineField({ name: "titleLineTwo", title: "السطر المميز من العنوان", type: "string", validation: (r) => r.required().max(80).custom(nonEmpty) }),
+    defineField({ name: "eyebrow", title: "النص الصغير القديم فوق العنوان", type: "string", hidden: true }),
+    defineField({ name: "titleLineOne", title: "الجزء الأول من العنوان", type: "string", validation: (r) => r.required().max(80).custom(nonEmpty) }),
+    defineField({ name: "titleLineTwo", title: "الجزء الثاني من العنوان", description: "يظهر الجزآن بعنوان واحد ويلتف النص بحسب حجم الشاشة.", type: "string", validation: (r) => r.required().max(80).custom(nonEmpty) }),
     defineField({ name: "description", title: "الوصف", type: "text", rows: 3, validation: (r) => r.required().max(300).custom(nonEmpty) }),
     defineField({ name: "primaryButton", title: "الزر الرئيسي", type: "controlledLink", validation: (r) => r.required() }),
     defineField({ name: "secondaryButton", title: "الزر الثاني", type: "controlledLink", validation: (r) => r.required() }),
@@ -52,7 +52,7 @@ export const homeHeroSection = defineType({
     defineField({
       name: "heroImage",
       title: "الصورة بجانب العنوان",
-      description: "تظهر بدل الرسم البياني. يفضّل رفع صورة أفقية عالية الدقة، وسيتم عرضها كاملة دون قص.",
+      description: "تظهر في إطار بنسبة 4:3 مثل مقدمات صفحات الموقع. قد تُقص الأطراف لتعبئة الإطار؛ حدّد نقطة التركيز للحفاظ على الجزء المهم من الصورة.",
       type: "editorialImage",
       hidden: ({ parent }) => (parent as HomeHeroVisualParent | undefined)?.heroVisualType !== "image",
       validation: (r) => r.custom((value, context) => {
@@ -64,16 +64,15 @@ export const homeHeroSection = defineType({
       }),
     }),
     defineField({
-      name: "trustPoints", title: "رسائل الثقة أسفل أزرار الهيرو", description: "أضف ثلاث رسائل قصيرة فقط حتى يبقى التصميم متوازنًا.", type: "array",
-      of: [defineArrayMember({ type: "string", validation: (r) => r.required().max(80).custom(nonEmpty) })],
-      validation: (r) => r.required().min(3).max(3),
+      name: "trustPoints", title: "رسائل الثقة القديمة", type: "array", hidden: true,
+      of: [defineArrayMember({ type: "string" })],
     }),
     defineField({ name: "journeyTitle", title: "عنوان رحلة العمل", type: "string", validation: (r) => r.required().max(80).custom(nonEmpty) }),
     defineField({ name: "journeyDescription", title: "وصف رحلة العمل", type: "text", rows: 2, validation: (r) => r.required().max(180).custom(nonEmpty) }),
     stage("journeyStageOne", "المرحلة الأولى"), stage("journeyStageTwo", "المرحلة الثانية"), stage("journeyStageThree", "المرحلة الثالثة"),
-    defineField({ name: "closingBadgeText", title: "النص الختامي", type: "string", validation: (r) => r.required().max(80).custom(nonEmpty) }),
+    defineField({ name: "closingBadgeText", title: "النص الختامي القديم", type: "string", hidden: true }),
   ],
-  preview: { select: { title: "titleLineOne", subtitle: "eyebrow" } },
+  preview: { select: { title: "titleLineOne", subtitle: "titleLineTwo" } },
 });
 
 export const aboutMethodSection = defineType({

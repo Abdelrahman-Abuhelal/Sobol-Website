@@ -21,7 +21,7 @@ export default async function ContactPageRoute() {
   const content = page.contactSection;
   const whatsappHref = `https://wa.me/${siteSettings.whatsappNumber.replace(/\D/g, "")}`;
   return <main className="min-h-screen bg-background">
-    <Navbar navigation={navigation} /><PageIntro {...page.pageIntro} />
+    <Navbar navigation={navigation} /><PageIntro {...page.pageIntro} fallbackImage={fallbackContactPage.pageIntro.image} />
     <section className="bg-surface py-16 sm:py-20 lg:py-24"><div className="container-custom grid gap-12 lg:grid-cols-[0.65fr_1.35fr] lg:gap-20">
       <aside><p className="text-sm font-bold text-primary">{content.eyebrow}</p><h2 className="mt-3 text-3xl font-extrabold leading-[1.3] text-secondary">{content.heading}</h2><p className="mt-4 leading-8 text-muted-foreground">{content.description}</p>
         <ul className="mt-8 space-y-4 border-y border-border py-5 text-sm font-bold text-secondary/78">

@@ -68,8 +68,8 @@ In Sanity Manage → API → Webhooks, create a webhook with:
 - URL: `https://your-production-origin.example/api/revalidate`
 - Dataset: `production`
 - Trigger on: create, update, and delete
-- Filter: `_type in ["siteSettings","navigation","homePage","aboutPage","servicesPage","portfolioPage","blogPage","contactPage"]`
-- Projection: `{_type}`
+- Filter: `_type in ["siteSettings","navigation","homePage","aboutPage","servicesPage","portfolioPage","successStoriesPage","successStory","blogPage","contactPage","article","author","articleCategory","solutionPage"]`
+- Projection: `{_type, slug}`
 - HTTP method: POST
 - Secret: the exact `SANITY_REVALIDATE_SECRET`
 
@@ -77,7 +77,7 @@ Enable drafts only if the webhook UI separates draft and published events and th
 
 ## 6. Preview and Presentation mode
 
-Open `/studio`, select **Presentation**, and choose a singleton document. Document locations map to `/`, `/about`, `/services`, `/portfolio`, `/blog`, or `/contact`.
+Open `/studio`, select **Presentation**, and choose a singleton document. Document locations map to `/`, `/about`, `/services`, `/success-stories`, `/blog`, or `/contact`.
 
 Presentation enters Next.js Draft Mode through `/api/draft-mode/enable`. The server-only Viewer token fetches draft content and Visual Editing enables click-to-edit overlays. Use the **Exit preview** control on the site, or visit `/api/draft-mode/disable`, to clear the preview cookie. Normal visitors never receive draft content.
 
@@ -125,3 +125,5 @@ npm run seed:sanity
 ```
 
 No Sanity deployment command is needed for the embedded Studio because it is built and deployed with Next.js.
+
+Success story documents preview at `/success-stories/:slug`. The new **صفحة قصص النجاح** singleton starts with editable default copy; publish it when customization is needed. `/portfolio` permanently redirects to `/success-stories`. No existing portfolio content is converted into published stories.

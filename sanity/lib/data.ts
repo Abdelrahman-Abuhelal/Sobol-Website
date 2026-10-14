@@ -1,12 +1,13 @@
 import { cache } from "react";
 import { unstable_cache } from "next/cache";
 import { getArticleViewCounts } from "@/lib/google-analytics";
-import { fallbackAboutPage, fallbackBlogPage, fallbackContactPage, fallbackHomePage, fallbackNavigation, fallbackPortfolioPage, fallbackServicesPage, fallbackSiteSettings } from "@/content/fallbacks";
+import { fallbackAboutPage, fallbackBlogPage, fallbackContactPage, fallbackHomePage, fallbackNavigation, fallbackPortfolioPage, fallbackServicesPage, fallbackSiteSettings, fallbackSuccessStoriesPage } from "@/content/fallbacks";
 import { fallbackSolutionPages, getFallbackSolutionPage } from "@/content/solution-pages";
 import { isSanityConfigured } from "@/sanity/env";
+import { withSuccessStoriesNavigation } from "@/sanity/lib/links";
 import { sanityFetch } from "@/sanity/lib/fetch";
-import { aboutPageQuery, articleBySlugQuery, articleSitemapQuery, articleSlugsQuery, articlesQuery, blogPageQuery, contactPageQuery, homePageQuery, navigationQuery, portfolioPageQuery, publicPageSitemapQuery, servicesPageQuery, siteSettingsQuery, solutionPageBySlugQuery, solutionPageSlugsQuery, solutionPagesQuery, solutionSitemapQuery } from "@/sanity/lib/queries";
-import type { AboutPage, Article, ArticleCard, ArticleSitemapEntry, BlogPage, ContactPage, HomePage, Navigation, PortfolioPage, PublicPageSitemapEntry, ServicesPage, SiteSettings, SolutionPage, SolutionSitemapEntry } from "@/sanity/lib/types";
+import { aboutPageQuery, articleBySlugQuery, articleSitemapQuery, articleSlugsQuery, articlesQuery, blogPageQuery, contactPageQuery, homePageQuery, navigationQuery, portfolioPageQuery, publicPageSitemapQuery, servicesPageQuery, siteSettingsQuery, solutionPageBySlugQuery, solutionPageSlugsQuery, solutionPagesQuery, solutionSitemapQuery, successStoriesPageQuery, successStoriesQuery, successStoryBySlugQuery, successStorySlugsQuery, successStorySitemapQuery } from "@/sanity/lib/queries";
+import type { AboutPage, Article, ArticleCard, ArticleSitemapEntry, BlogPage, ContactPage, HomePage, Navigation, PortfolioPage, PublicPageSitemapEntry, ServicesPage, SiteSettings, SolutionPage, SolutionSitemapEntry, SuccessStoriesPage, SuccessStory, SuccessStoryCard } from "@/sanity/lib/types";
 
 function withFallback<T>(value: T | null, fallback: T, name: string): T {
   if (!value && process.env.NODE_ENV === "development") console.warn(`[sanity] Missing ${name}; rendering temporary fallback content.`);
@@ -15,7 +16,10 @@ function withFallback<T>(value: T | null, fallback: T, name: string): T {
 
 export const getSiteSettings = cache(async () => withFallback(await sanityFetch<SiteSettings>({ query: siteSettingsQuery, tag: "siteSettings" }), fallbackSiteSettings, "siteSettings"));
 export const getSiteSettingsForMetadata = cache(async () => withFallback(await sanityFetch<SiteSettings>({ query: siteSettingsQuery, tag: "siteSettings", stega: false }), fallbackSiteSettings, "siteSettings"));
-export const getNavigation = cache(async () => withFallback(await sanityFetch<Navigation>({ query: navigationQuery, tag: "navigation" }), fallbackNavigation, "navigation"));
+export const getNavigation = cache(async () => {
+  const navigation = withFallback(await sanityFetch<Navigation>({ query: navigationQuery, tag: "navigation" }), fallbackNavigation, "navigation");
+  return withSuccessStoriesNavigation(navigation);
+});
 export const getHomePage = cache(async () => withFallback(await sanityFetch<HomePage>({ query: homePageQuery, tag: "homePage" }), fallbackHomePage, "homePage"));
 export const getAboutPage = cache(async () => withFallback(await sanityFetch<AboutPage>({ query: aboutPageQuery, tag: "aboutPage" }), fallbackAboutPage, "aboutPage"));
 export const getServicesPage = cache(async () => withFallback(await sanityFetch<ServicesPage>({ query: servicesPageQuery, tag: "servicesPage" }), fallbackServicesPage, "servicesPage"));
@@ -54,3 +58,9 @@ export async function getGlobalContent() {
 export async function getSeoData<T extends { seo?: unknown }>(query: string, tag: string, fallback: T) {
   return withFallback(await sanityFetch<T>({ query, tag, stega: false }), fallback, tag);
 }
+
+export const getSuccessStoriesPage = cache(async () => withFallback(await sanityFetch<SuccessStoriesPage>({ query: successStoriesPageQuery, tag: "successStoriesPage" }), fallbackSuccessStoriesPage, "successStoriesPage"));
+export const getSuccessStories = cache(async () => (await sanityFetch<SuccessStoryCard[]>({ query: successStoriesQuery, tag: "successStory" })) || []);
+export const getSuccessStoryBySlug = cache(async (slug: string) => sanityFetch<SuccessStory>({ query: successStoryBySlugQuery, params: { slug }, tag: "successStory" }));
+export const getSuccessStorySlugs = cache(async () => (await sanityFetch<string[]>({ query: successStorySlugsQuery, tag: "successStory", stega: false, requestless: true })) || []);
+export const getSuccessStorySitemapEntries = cache(async () => (await sanityFetch<ArticleSitemapEntry[]>({ query: successStorySitemapQuery, tag: "successStory", stega: false, requestless: true })) || []);

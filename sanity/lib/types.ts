@@ -1,4 +1,4 @@
-export const publicRoutes = ["/", "/about", "/services", "/portfolio", "/blog", "/contact"] as const;
+export const publicRoutes = ["/", "/about", "/services", "/success-stories", "/portfolio", "/blog", "/contact"] as const;
 export type PublicRoute = (typeof publicRoutes)[number];
 export type PublicPageSitemapEntry = { route: PublicRoute; updatedAt?: string };
 
@@ -71,7 +71,7 @@ export type PageIntroData = {
 
 export type HomeHeroSection = {
   _type: "homeHeroSection";
-  eyebrow: string;
+  eyebrow?: string;
   titleLineOne: string;
   titleLineTwo: string;
   description: string;
@@ -83,7 +83,7 @@ export type HomeHeroSection = {
   journeyTitle: string;
   journeyDescription: string;
   journeyStages: Array<{ _key: string; title: string; description: string }>;
-  closingBadgeText: string;
+  closingBadgeText?: string;
 };
 
 export type AboutMethodSection = SanityKeyed & {
@@ -207,6 +207,33 @@ export type Article = ArticleCard & {
   seo?: Seo;
 };
 export type ArticleSitemapEntry = { slug: string; publishedAt: string; updatedAt?: string };
+
+export type SuccessStoriesPage = {
+  _id?: string;
+  seo?: Seo;
+  pageIntro: PageIntroData;
+  emptyHeading: string;
+  emptyDescription: string;
+};
+export type SuccessStoryCard = {
+  _id: string;
+  title: string;
+  slug: string;
+  excerpt: string;
+  clientName?: string;
+  industry?: string;
+  featuredImage: EditorialImage;
+  publishedAt: string;
+  featured?: boolean;
+};
+export type SuccessStory = SuccessStoryCard & {
+  _updatedAt?: string;
+  body: Article["body"];
+  challenge?: string;
+  approach?: string;
+  results?: string;
+  seo?: Seo;
+};
 
 export type SolutionPage = {
   _id?: string;

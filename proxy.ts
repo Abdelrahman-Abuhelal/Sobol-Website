@@ -6,6 +6,7 @@ import {
 
 export function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
+  if (pathname === "/portfolio") return NextResponse.redirect(new URL("/success-stories", request.url), 308);
   const acceptsMarkdown = request.headers
     .get("accept")
     ?.toLowerCase()
@@ -37,4 +38,4 @@ export function proxy(request: NextRequest) {
   return response;
 }
 
-export const config = { matcher: ["/", "/about", "/services/:path*", "/portfolio", "/blog/:path*", "/contact"] };
+export const config = { matcher: ["/", "/about", "/services/:path*", "/portfolio", "/success-stories/:path*", "/blog/:path*", "/contact"] };

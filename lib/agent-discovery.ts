@@ -20,7 +20,7 @@ export const publicPages = [
   { path: "/", title: "Home", titleAr: "الرئيسية" },
   { path: "/about", title: "About", titleAr: "من نحن" },
   { path: "/services", title: "Services", titleAr: "خدماتنا" },
-  { path: "/portfolio", title: "Portfolio", titleAr: "أعمالنا" },
+  { path: "/success-stories", title: "Success stories", titleAr: "قصص نجاح" },
   { path: "/blog", title: "Blog", titleAr: "المدونة" },
   { path: "/contact", title: "Contact", titleAr: "تواصل معنا" },
 ] as const;
@@ -30,7 +30,7 @@ export const publicPagePaths = new Set<string>(
 );
 
 export function isPublicContentPath(path: string): boolean {
-  if (publicPagePaths.has(path) || /^\/blog\/[^/]+$/.test(path)) return true;
+  if (publicPagePaths.has(path) || /^\/blog\/[^/]+$/.test(path) || /^\/success-stories\/[^/]+$/.test(path)) return true;
   return /^\/services\/[^/]+$/.test(path);
 }
 

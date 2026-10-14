@@ -3,11 +3,13 @@ import { revalidatePath, revalidateTag } from "next/cache";
 import { NextResponse } from "next/server";
 
 const routeByType: Record<string, string[]> = {
-  siteSettings: ["/", "/about", "/services", "/portfolio", "/blog", "/contact", "/sitemap.xml", "/llms.txt", "/robots.txt"],
-  navigation: ["/", "/about", "/services", "/portfolio", "/blog", "/contact"],
+  siteSettings: ["/", "/about", "/services", "/portfolio", "/success-stories", "/blog", "/contact", "/sitemap.xml", "/llms.txt", "/robots.txt"],
+  navigation: ["/", "/about", "/services", "/portfolio", "/success-stories", "/blog", "/contact"],
   homePage: ["/"], aboutPage: ["/about"], servicesPage: ["/services"],
   portfolioPage: ["/portfolio"], blogPage: ["/blog"], contactPage: ["/contact"],
   article: ["/blog"], author: ["/blog"], articleCategory: ["/blog"],
+  successStoriesPage: ["/success-stories", "/sitemap.xml", "/llms.txt"],
+  successStory: ["/success-stories", "/sitemap.xml", "/llms.txt"],
   solutionPage: ["/", "/services", "/sitemap.xml", "/llms.txt"],
 };
 
@@ -26,5 +28,7 @@ export async function POST(request: Request) {
   for (const path of paths) revalidatePath(path);
   if (body._type === "solutionPage" && body.slug?.current) revalidatePath(`/services/${body.slug.current}`);
   if (types.some((type) => type === "article" || type === "author" || type === "articleCategory")) revalidatePath("/blog/[slug]", "page");
+  if (types.includes("successStory")) revalidatePath("/success-stories/[slug]", "page");
+  if (types.some((type) => type === "siteSettings" || type === "navigation")) revalidatePath("/success-stories/[slug]", "page");
   return NextResponse.json({ ok: true, revalidatedTypes: types, revalidatedPaths: [...paths] });
 }
