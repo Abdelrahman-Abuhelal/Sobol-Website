@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { cn } from "@/lib/utils";
 import type { ReactNode } from "react";
 import { editorialImageUrl } from "@/sanity/lib/image";
 import type { EditorialImage, PageIntroData } from "@/sanity/lib/types";
@@ -17,37 +18,32 @@ export function PageIntro({ eyebrow, heading, description, image, headingId, act
     const imageAlt = primaryImageSrc ? image?.alt : fallbackImage?.alt;
     const hasVisual = Boolean(imageSrc || visual);
     return (
-        <section aria-labelledby={headingId} className="relative isolate overflow-hidden border-b border-border/70 bg-surface-muted py-[clamp(4.5rem,8vw,7rem)]">
-            <div className="absolute inset-0 -z-20 bg-[radial-gradient(circle_at_80%_15%,oklch(0.88_0.07_176/0.55),transparent_32rem),radial-gradient(circle_at_8%_90%,oklch(0.91_0.035_82/0.62),transparent_29rem)]" aria-hidden="true" />
-            <div className="absolute inset-y-0 right-[7%] -z-10 w-px bg-primary/12" aria-hidden="true" />
-
-            <div className={hasVisual ? "container-custom max-w-[93rem]" : "container-custom"}>
-                <div className={hasVisual ? "grid items-center gap-10 lg:grid-cols-2 lg:gap-10 xl:gap-16" : ""}>
+        <section aria-labelledby={headingId} className="relative isolate overflow-hidden border-b border-border bg-background py-14 lg:py-20">
+            <div className="container-custom">
+                <div className={hasVisual ? "grid items-center gap-10 lg:grid-cols-[1.08fr_1fr] lg:gap-16" : ""}>
                 <div className="min-w-0 max-w-[52rem]">
-                    {eyebrow && <p className="mb-5 flex items-center gap-3 text-sm font-bold text-primary sm:text-[0.95rem]">
-                        <span className="h-px w-9 bg-primary" aria-hidden="true" />
-                        {eyebrow}
+                    {eyebrow && <p className="mb-5 flex items-center gap-3 text-xs font-semibold text-primary">
+                        <span className="h-px w-7 bg-primary" aria-hidden="true" />
+                        سُبُل · {eyebrow}
                     </p>}
-                    <h1 id={headingId} className={`${hasVisual ? "text-[clamp(2.15rem,3.5vw,3.5rem)]" : "text-[clamp(2.35rem,5vw,4.5rem)]"} font-extrabold text-secondary`}>
+                    <h1 id={headingId} className={cn("font-extrabold text-secondary", hasVisual ? "text-[clamp(2.1rem,3.6vw,3.3rem)]" : "text-[clamp(2.1rem,4.5vw,3.75rem)]")}>
                         {heading}
                     </h1>
-                    <p className="mt-7 max-w-[43rem] text-lg font-normal leading-9 text-muted-foreground sm:text-xl sm:leading-10">
+                    <p className="mt-6 max-w-[32rem] text-base font-normal leading-9 text-muted-foreground">
                         {description}
                     </p>
-                    {actions && <div className="mt-7">{actions}</div>}
+                    {actions && <div className="mt-8">{actions}</div>}
                 </div>
 
                 {hasVisual && (
-                    <div className="relative mx-auto aspect-[4/3] w-full max-w-[34rem] lg:max-w-[48rem]">
-                        <div className="absolute -inset-4 -z-10 rounded-[38%_62%_54%_46%/46%_42%_58%_54%] bg-primary-soft/60 blur-2xl" aria-hidden="true" />
-                        <div className="absolute -bottom-4 -start-4 -z-10 size-28 rounded-full bg-surface-warm/85" aria-hidden="true" />
-                        <div className="absolute inset-0 overflow-hidden rounded-[1.75rem] border border-surface/90 bg-surface shadow-[0_28px_70px_oklch(0.255_0.055_232/0.12)]">
+                    <div className="relative mx-auto aspect-[4/3] w-full max-w-[32.5rem]">
+                        <div className="absolute inset-0 overflow-hidden rounded-[22%_7%_22%_7%] border border-border/50 bg-primary-soft">
                             {imageSrc ? <Image
                                 src={imageSrc}
                                 alt={imageAlt || ""}
                                 fill
                                 priority
-                                sizes="(max-width: 639px) calc(100vw - 40px), (max-width: 1023px) 544px, (max-width: 1279px) calc((100vw - 120px) / 2), (max-width: 1487px) calc((100vw - 144px) / 2), 672px"
+                                sizes="(max-width: 639px) calc(100vw - 40px), (max-width: 1023px) 520px, (max-width: 1279px) 44vw, 520px"
                                 className="object-cover"
                             /> : visual}
                         </div>

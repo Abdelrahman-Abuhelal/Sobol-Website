@@ -10,13 +10,12 @@ export function Footer({ navigation = fallbackNavigation, siteSettings = fallbac
     const phoneHref = `tel:${siteSettings.telephone}`;
     const whatsappHref = `https://wa.me/${siteSettings.whatsappNumber.replace(/\D/g, "")}`;
     return (
-        <footer className="relative isolate overflow-hidden border-t border-secondary/10 bg-[oklch(0.205_0.052_232)] text-secondary-foreground">
-            <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_88%_15%,oklch(0.42_0.09_184/0.28),transparent_30rem)]" aria-hidden="true" />
+        <footer className="relative isolate overflow-hidden border-t border-secondary/10 bg-secondary text-secondary-foreground">
             <div className="container-custom py-14 sm:py-16 lg:py-20">
                 <div className="grid gap-12 lg:grid-cols-[1.35fr_0.65fr_0.9fr] lg:gap-20">
                     <div className="max-w-lg">
                         <Link href="/" className="group inline-flex items-center gap-4 rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-light focus-visible:ring-offset-4 focus-visible:ring-offset-secondary">
-                            <span className="relative flex size-16 shrink-0 items-center justify-center overflow-hidden rounded-2xl bg-primary-light p-2 shadow-[0_14px_30px_oklch(0.12_0.035_232/0.3)] transition-transform duration-200 ease-out group-hover:-translate-y-0.5">
+                            <span className="relative flex size-16 shrink-0 items-center justify-center overflow-hidden rounded-2xl bg-primary-soft p-2 transition-transform duration-200 ease-out group-hover:-translate-y-0.5">
                                 <Image
                                     src="/logo_tr.png"
                                     alt=""
