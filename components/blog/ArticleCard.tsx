@@ -10,11 +10,11 @@ const numberFormatter = new Intl.NumberFormat("ar-PS", { notation: "compact", ma
 export function ArticleCard({ article, priority = false, viewCount, showViews = false }: { article: ArticleCardData; priority?: boolean; viewCount?: number; showViews?: boolean }) {
   const imageSrc = editorialImageUrl(article.featuredImage, 900);
   return (
-    <article className="group grid overflow-hidden rounded-[1.75rem] border border-[oklch(0.86_0.018_190)] bg-[oklch(0.99_0.004_175)] shadow-[0_18px_55px_-42px_oklch(0.29_0.055_235/0.65)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_24px_65px_-38px_oklch(0.29_0.055_235/0.55)]">
+    <article className="group grid overflow-hidden rounded-2xl border border-border bg-surface transition-[transform,border-color] duration-200 hover:-translate-y-0.5 hover:border-primary/50">
       <Link href={`/blog/${article.slug}`} className="relative aspect-[16/10] overflow-hidden bg-muted" aria-label={article.title}>
         {imageSrc ? (
           <Image src={imageSrc} alt={article.featuredImage?.alt || article.title} fill priority={priority} sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 420px" className="object-cover transition duration-500 group-hover:scale-[1.025]" />
-        ) : <div className="absolute inset-0 bg-[oklch(0.93_0.04_174)]" aria-hidden="true" />}
+        ) : <div className="absolute inset-0 bg-primary-soft" aria-hidden="true" />}
       </Link>
       <div className="flex flex-1 flex-col p-6 sm:p-7">
         <div className="mb-4 flex flex-wrap items-center gap-x-3 gap-y-2 text-sm text-muted-foreground">
@@ -25,8 +25,8 @@ export function ArticleCard({ article, priority = false, viewCount, showViews = 
         <h2 className="text-2xl font-extrabold text-secondary">
           <Link href={`/blog/${article.slug}`} className="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-4">{article.title}</Link>
         </h2>
-        <p className="mt-4 line-clamp-3 text-base leading-7 text-[oklch(0.43_0.035_210)]">{article.excerpt}</p>
-        <div className="mt-6 flex items-center justify-between gap-4 border-t border-[oklch(0.9_0.012_185)] pt-5">
+        <p className="mt-4 line-clamp-3 text-base leading-7 text-muted-foreground">{article.excerpt}</p>
+        <div className="mt-6 flex items-center justify-between gap-4 border-t border-border pt-5">
           <span className="text-sm font-medium text-muted-foreground">{article.author.name}</span>
           <Link href={`/blog/${article.slug}`} className="inline-flex items-center gap-2 text-sm font-bold text-primary transition hover:gap-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-4">
             اقرأ المقال <ArrowLeft className="size-4" aria-hidden="true" />

@@ -3,26 +3,27 @@
 @theme {
   --font-sans: var(--font-alexandria);
 
-  --color-primary: oklch(0.44 0.095 184);
-  --color-primary-foreground: oklch(0.985 0.008 175);
-  --color-primary-soft: oklch(0.91 0.045 178);
-  --color-primary-light: oklch(0.79 0.075 178);
+  --color-primary: #21645e;
+  --color-primary-hover: #174f49;
+  --color-primary-foreground: #fbfdfb;
+  --color-primary-soft: #deeee5;
+  --color-primary-light: #afcec0;
 
-  --color-secondary: oklch(0.255 0.055 232);
-  --color-secondary-foreground: oklch(0.975 0.008 210);
+  --color-secondary: #142f40;
+  --color-secondary-foreground: #f5f9f6;
 
-  --color-accent: oklch(0.925 0.045 174);
-  --color-accent-foreground: oklch(0.255 0.055 232);
+  --color-accent: #deeee5;
+  --color-accent-foreground: #142f40;
 
-  --color-background: oklch(0.978 0.009 170);
-  --color-foreground: oklch(0.255 0.055 232);
-  --color-surface: oklch(0.992 0.006 170);
-  --color-surface-muted: oklch(0.952 0.022 174);
-  --color-surface-warm: oklch(0.96 0.022 82);
-  --color-border: oklch(0.845 0.027 187);
+  --color-background: #f5f9f6;
+  --color-foreground: #142f40;
+  --color-surface: #fbfdfb;
+  --color-surface-muted: #eaf3ee;
+  --color-surface-warm: #edf4ee;
+  --color-border: #c9d9d2;
 
-  --color-muted: oklch(0.925 0.035 174);
-  --color-muted-foreground: oklch(0.455 0.035 210);
+  --color-muted: #e2ede6;
+  --color-muted-foreground: #526572;
 }
 
 .container-custom {
@@ -31,7 +32,7 @@
 
 html {
   scroll-behavior: smooth;
-  background: oklch(0.978 0.009 170);
+  background: var(--color-background);
 }
 
 body,
@@ -44,10 +45,8 @@ textarea {
 
 body {
   min-height: 100vh;
-  background:
-    radial-gradient(circle at 88% 4%, oklch(0.91 0.045 178 / 0.28), transparent 24rem),
-    oklch(0.978 0.009 170);
-  color: oklch(0.255 0.055 232);
+  background: var(--color-background);
+  color: var(--color-foreground);
   font-weight: 400;
   text-rendering: optimizeLegibility;
 }

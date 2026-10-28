@@ -99,7 +99,7 @@ export default async function ArticlePage({ params }: PageProps) {
       <Navbar navigation={navigation} />
       <article>
         <ArticleAnalytics slug={article.slug} title={article.title} categories={article.categories?.map((category) => category.title) || []} />
-        <header className="bg-[oklch(0.982_0.008_178)] pb-14 pt-12 sm:pb-16 sm:pt-16">
+        <header className="bg-background pb-14 pt-12 sm:pb-16 sm:pt-16">
           <div className="container-custom">
             <Link href="/blog" className="mb-8 inline-flex items-center gap-2 text-sm font-bold text-primary hover:gap-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-4"><ArrowRight className="size-4" aria-hidden="true" /> العودة إلى المدونة</Link>
             <div className="mx-auto max-w-[68rem] text-right">
@@ -108,7 +108,7 @@ export default async function ArticlePage({ params }: PageProps) {
               <p className="mt-6 max-w-[52rem] text-lg leading-8 text-[oklch(0.42_0.035_210)] sm:text-xl sm:leading-9">{article.excerpt}</p>
               <div className="mt-7 flex flex-wrap items-center justify-start gap-x-5 gap-y-3 text-sm text-muted-foreground">
                 <span className="inline-flex items-center gap-3 text-secondary">
-                  {authorImageSrc ? <span className="relative size-10 overflow-hidden rounded-full bg-muted"><Image src={authorImageSrc} alt={`صورة ${article.author.name}`} fill sizes="40px" className="object-cover" /></span> : <span className="flex size-10 items-center justify-center rounded-full bg-[oklch(0.91_0.045_176)] font-black text-primary">{article.author.name.trim().charAt(0)}</span>}
+                  {authorImageSrc ? <span className="relative size-10 overflow-hidden rounded-full bg-muted"><Image src={authorImageSrc} alt={`صورة ${article.author.name}`} fill sizes="40px" className="object-cover" /></span> : <span className="flex size-10 items-center justify-center rounded-full bg-primary-soft font-black text-primary">{article.author.name.trim().charAt(0)}</span>}
                   <span><span className="block text-xs text-muted-foreground">بقلم</span><span className="font-extrabold">{article.author.name}</span></span>
                 </span>
                 <time dateTime={article.publishedAt} className="inline-flex items-center gap-2"><CalendarDays className="size-4" aria-hidden="true" />{dateFormatter.format(new Date(article.publishedAt))}</time>
@@ -118,7 +118,7 @@ export default async function ArticlePage({ params }: PageProps) {
           </div>
         </header>
 
-        {imageSrc && <div className="container-custom -mt-4 sm:-mt-6"><div className="relative mx-auto aspect-[16/8] max-w-[68rem] overflow-hidden rounded-[1.75rem] bg-muted shadow-[0_28px_75px_-45px_oklch(0.29_0.055_235/0.7)]"><Image src={imageSrc} alt={article.featuredImage?.alt || article.title} fill priority sizes="(max-width: 1200px) 100vw, 1088px" className="object-cover" /></div></div>}
+        {imageSrc && <div className="container-custom -mt-4 sm:-mt-6"><div className="relative mx-auto aspect-[16/8] max-w-[68rem] overflow-hidden rounded-3xl bg-muted"><Image src={imageSrc} alt={article.featuredImage?.alt || article.title} fill priority sizes="(max-width: 1200px) 100vw, 1088px" className="object-cover" /></div></div>}
 
         <div className="container-custom py-12 sm:py-16" data-article-content>
           <div className="mx-auto max-w-[58rem]">
@@ -134,7 +134,7 @@ export default async function ArticlePage({ params }: PageProps) {
 
             <section className="mt-16 border-t border-[oklch(0.87_0.018_190)] pt-8" aria-label="عن الكاتب">
               <div className="flex flex-col gap-5 sm:flex-row sm:items-start">
-                {authorImageSrc ? <div className="relative size-20 shrink-0 overflow-hidden rounded-full bg-muted"><Image src={authorImageSrc} alt={`صورة ${article.author.name}`} fill sizes="80px" className="object-cover" /></div> : <div className="flex size-20 shrink-0 items-center justify-center rounded-full bg-[oklch(0.91_0.045_176)] text-2xl font-black text-primary">{article.author.name.trim().charAt(0)}</div>}
+                {authorImageSrc ? <div className="relative size-20 shrink-0 overflow-hidden rounded-full bg-muted"><Image src={authorImageSrc} alt={`صورة ${article.author.name}`} fill sizes="80px" className="object-cover" /></div> : <div className="flex size-20 shrink-0 items-center justify-center rounded-full bg-primary-soft text-2xl font-black text-primary">{article.author.name.trim().charAt(0)}</div>}
                 <div className="min-w-0"><p className="text-sm font-bold text-primary">عن الكاتب</p><h2 className="mt-1 text-2xl font-black text-secondary">{article.author.name}</h2><p className="text-sm font-medium text-muted-foreground">{article.author.role}</p>{article.author.bio && <p className="mt-4 leading-7 text-[oklch(0.4_0.035_210)]">{article.author.bio}</p>}</div>
               </div>
             </section>

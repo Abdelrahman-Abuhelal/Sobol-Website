@@ -4,8 +4,6 @@ const nonEmpty = (value: unknown) => typeof value === "string" && value.trim() ?
 const hideField = defineField({ name: "isHidden", title: "إخفاء هذا القسم من الموقع", type: "boolean", initialValue: false });
 
 type OptionalLink = { label?: string; kind?: string; internalRoute?: string; url?: string; email?: string; telephone?: string; whatsapp?: string };
-type HomeHeroVisualParent = { heroVisualType?: "chart" | "image" };
-type HeroImageValue = { image?: unknown };
 
 const completeLink = (link?: OptionalLink) => {
   if (!link?.label?.trim() || !link.kind) return false;
@@ -27,42 +25,16 @@ const stage = (name: string, title: string) => defineField({
 
 export const homeHeroSection = defineType({
   name: "homeHeroSection", title: "المحتوى الرئيسي للصفحة", type: "object",
+  description: "يستخدم القسم رسم سُبُل المعتمد مع الشعار ومراحل العمل. يمكنك تعديل العنوان والوصف والأزرار ومراحل الرحلة أدناه.",
   fields: [
     defineField({ name: "eyebrow", title: "النص الصغير القديم فوق العنوان", type: "string", hidden: true }),
     defineField({ name: "titleLineOne", title: "الجزء الأول من العنوان", type: "string", validation: (r) => r.required().max(80).custom(nonEmpty) }),
-    defineField({ name: "titleLineTwo", title: "الجزء الثاني من العنوان", description: "يظهر الجزآن بعنوان واحد ويلتف النص بحسب حجم الشاشة.", type: "string", validation: (r) => r.required().max(80).custom(nonEmpty) }),
+    defineField({ name: "titleLineTwo", title: "الجزء الثاني من العنوان", description: "يظهر في سطر جديد بلون سُبُل الأخضر، ويلتف بحسب حجم الشاشة.", type: "string", validation: (r) => r.required().max(80).custom(nonEmpty) }),
     defineField({ name: "description", title: "الوصف", type: "text", rows: 3, validation: (r) => r.required().max(300).custom(nonEmpty) }),
     defineField({ name: "primaryButton", title: "الزر الرئيسي", type: "controlledLink", validation: (r) => r.required() }),
     defineField({ name: "secondaryButton", title: "الزر الثاني", type: "controlledLink", validation: (r) => r.required() }),
-    defineField({
-      name: "heroVisualType",
-      title: "العنصر البصري بجانب العنوان",
-      description: "اختر بين الرسم البياني الحالي أو صورة ترفعها من الاستوديو.",
-      type: "string",
-      initialValue: "chart",
-      options: {
-        layout: "radio",
-        list: [
-          { title: "الرسم البياني: من الوضوح إلى التقدّم", value: "chart" },
-          { title: "صورة من الاستوديو", value: "image" },
-        ],
-      },
-      validation: (r) => r.required(),
-    }),
-    defineField({
-      name: "heroImage",
-      title: "الصورة بجانب العنوان",
-      description: "تظهر في إطار بنسبة 4:3 مثل مقدمات صفحات الموقع. قد تُقص الأطراف لتعبئة الإطار؛ حدّد نقطة التركيز للحفاظ على الجزء المهم من الصورة.",
-      type: "editorialImage",
-      hidden: ({ parent }) => (parent as HomeHeroVisualParent | undefined)?.heroVisualType !== "image",
-      validation: (r) => r.custom((value, context) => {
-        const parent = context.parent as HomeHeroVisualParent | undefined;
-        const imageValue = value as HeroImageValue | undefined;
-        return parent?.heroVisualType === "image" && !imageValue?.image
-          ? "ارفع صورة أو اختر الرسم البياني."
-          : true;
-      }),
-    }),
+    defineField({ name: "heroVisualType", title: "العنصر البصري القديم", type: "string", hidden: true }),
+    defineField({ name: "heroImage", title: "صورة الهيرو المحفوظة", type: "editorialImage", hidden: true }),
     defineField({
       name: "trustPoints", title: "رسائل الثقة القديمة", type: "array", hidden: true,
       of: [defineArrayMember({ type: "string" })],
